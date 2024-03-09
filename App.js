@@ -1,7 +1,7 @@
-import HomeScreen from "./src/screens/HomeScreen";
+import MedBuddyStackNavigation from "./src/navigation/Navigation";
 
 export default function App() {
   return (
-    <HomeScreen />
+    <MedBuddyStackNavigation />
   );
 };
