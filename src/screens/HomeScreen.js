@@ -1,18 +1,20 @@
 import React from "react";
-import { View, SafeAreaView } from "react-native";
+import { Image, TouchableOpacity } from "react-native";
 import { commonStyle } from "../styles/commonStyle";
-import { BottomNavigationView } from "../components/BottomNavigationView";
+import { useNavigation } from "@react-navigation/native";
 import { selectLanguageScreenRoute } from "../navigation/Navigation";
 
 
 export default function HomeScreen() {
+    const navigation = useNavigation();
     return (
-        <SafeAreaView style={commonStyle.body}>
-            <View style={commonStyle.header}></View>
-            <View style={commonStyle.section}></View>
-            <View style={commonStyle.footer}>
-                <BottomNavigationView navigateTo={selectLanguageScreenRoute}/>
-            </View>
-        </SafeAreaView>
+        <TouchableOpacity 
+            style={commonStyle.body} 
+            onPress={() => navigation.navigate(selectLanguageScreenRoute)}>
+                <Image
+                    style={commonStyle.body}
+                    source={require("../assets/images/home-logo.png")}
+                />
+        </TouchableOpacity>
     );
-}
+};
