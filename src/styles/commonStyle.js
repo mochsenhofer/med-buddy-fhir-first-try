@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import colors from "./colors";
+import {backgroundWhite, mainBlue, medBuddyBlue} from "./colors";
 
 export const commonStyle = StyleSheet.create({
     body: {
@@ -32,7 +32,7 @@ export const commonStyle = StyleSheet.create({
     },
 });
 
-const buttonFontSize = 20;
+const buttonFontSize = 30;
 
 export const buttonStyle = StyleSheet.create({
     button: {
@@ -46,17 +46,19 @@ export const buttonStyle = StyleSheet.create({
         justifyContent: "center",
     },
     primaryButton: {
-        backgroundColor: colors.mainBlue,
+        backgroundColor: mainBlue,
     },
     primaryButtonText: {
-        color: colors.backgroundWhite,
+        color: backgroundWhite,
         fontSize: buttonFontSize,
     },
     secondaryButton: {
-        backgroundColor: colors.backgroundWhite,
+        backgroundColor: backgroundWhite,
+        borderWidth: 2,
+        borderColor: mainBlue,
     },
     secondaryButtonText: {
-        color: colors.mainBlue,
+        color: mainBlue,
         fontSize: buttonFontSize,
     },
 });
