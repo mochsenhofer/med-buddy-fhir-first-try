@@ -17,9 +17,9 @@ export const commonStyle = StyleSheet.create({
     },
     section: {
         flex: 5,
-        width: "100%",
-        alignItems: "center",
-        justifyContent: "center",
+        width: "75%",
+        alignItems: "flex-start",
+        justifyContent: "flex-start",
         backgroundColor: "red",
     },
     footer: {
@@ -29,6 +29,9 @@ export const commonStyle = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         backgroundColor: "green",
+    },
+    sectionHeading: {
+        margin: 10,
     },
 });
 
@@ -60,5 +63,25 @@ export const buttonStyle = StyleSheet.create({
     secondaryButtonText: {
         color: mainBlue,
         fontSize: buttonFontSize,
+    },
+});
+
+export const fontStyle = StyleSheet.create({
+    h1: {
+        fontSize: 40,
+        fontWeight: "bold",
+    },
+    h2: {
+        fontSize: 25,
+        color: mainBlue,
+        textTransform: "uppercase",
+    },
+    h3: {
+        fontSize: 20,
+        fontWeight: "bold",
+    },
+    h4: {
+        fontSize: 15,
+        fontWeight: "bold",
     },
 });
