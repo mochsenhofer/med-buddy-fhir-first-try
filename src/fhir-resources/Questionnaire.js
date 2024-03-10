@@ -273,3 +273,11 @@ export const Questionnaire = {
         // Placeholder for additional groups or individual questions
     ],
 };
+
+// Transform the Questionnaire resource into a format that can be used by the SectionList component
+
+export const questionnaireSections = Questionnaire.item.map((qItem) => ({
+    title: qItem.text, // Use 'text' as the title for the section
+    data: qItem.item ? qItem.item.map(subItem => subItem.text) : [], // Map sub-items' 'text' to data if they exist
+}));
+
