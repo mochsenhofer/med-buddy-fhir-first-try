@@ -278,6 +278,7 @@ export const Questionnaire = {
 
 export const questionnaireSections = Questionnaire.item.map((qItem) => ({
     title: qItem.text, // Use 'text' as the title for the section
-    data: qItem.item ? qItem.item.map(subItem => subItem.text) : [], // Map sub-items' 'text' to data if they exist
+    data: qItem.item ? qItem.item : [], // Pass the full item objects if they exist
 }));
+
 
