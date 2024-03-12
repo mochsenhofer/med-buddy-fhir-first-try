@@ -23,7 +23,7 @@ export const commonStyle = StyleSheet.create({
         backgroundColor: "red",
     },
     footer: {
-        flex: 1.5,
+        flex: 1,
         flexDirection: "row",
         width: "100%",
         alignItems: "center",
