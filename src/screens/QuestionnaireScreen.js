@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, SafeAreaView, SectionList, Text } from "react-native";
+import { View, SafeAreaView, SectionList, KeyboardAvoidingView } from "react-native";
 import { commonStyle } from "../styles/commonStyle";
 import { BottomNavigationView } from "../components/BottomNavigationView";
 import { overviewScreenRoute } from "../navigation/Navigation";
@@ -44,14 +44,15 @@ export default function QuestionnaireScreen() {
     return (
         <SafeAreaView style={commonStyle.body}>
             <View style={commonStyle.header}></View>
-            <View style={commonStyle.section}>
+            <KeyboardAvoidingView behavior="padding" style={commonStyle.section}>
             <SectionList
                 sections={currentQuestionnaireSection}
                 keyExtractor={(item, index) => item + index}
                 renderItem={renderQuestionnaireItem}
                 renderSectionHeader={renderSectionHeader}
+                stickySectionHeadersEnabled={false}
             />
-            </View>
+            </KeyboardAvoidingView>
             <View style={commonStyle.footer}>
                 <BottomNavigationView primaryButtonPressed={handleNextButtonPress} secondaryButtonPressed={handleBackButtonPress} page={`${page + 1}`}/>
             </View>
