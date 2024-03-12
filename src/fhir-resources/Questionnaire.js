@@ -1,7 +1,6 @@
 export const Questionnaire = {
     resourceType: "Questionnaire",
     id: "questionnaire-1",
-    subjectType: ["Patient"],
     status: "active",
     item: [
         {
@@ -12,31 +11,27 @@ export const Questionnaire = {
                 {
                     linkId: "1.1",
                     text: "Computed Tomography (CT)",
-                    display: "Computed Tomography (CT)",
                     type: "choice",
                     answerOption: [
                         {
                             valueCoding: {
-                                system: "http://terminology.hl7.org/CodeSystem/v2-0136",
-                                code: "N",
-                                text: "No",
-                                display: "No"
-                            }
-                        },
-                        {
-                            valueCoding: {
-                                system: "http://terminology.hl7.org/CodeSystem/v2-0136",
+                                system: "http://terminology.hl7.org/CodeSystem/v2-0532",
                                 code: "Y",
-                                text: "Yes",
                                 display: "Yes"
                             }
                         },
                         {
                             valueCoding: {
-                                system: "http://terminology.hl7.org/CodeSystem/v2-0136",
+                                system: "http://terminology.hl7.org/CodeSystem/v2-0532",
+                                code: "N",
+                                display: "No"
+                            }
+                        },
+                        {
+                            valueCoding: {
+                                system: "http://terminology.hl7.org/CodeSystem/v2-0532",
                                 code: "ASKU",
-                                text: "Unknown",
-                                display: "I don't know"
+                                display: "asked but unknown"
                             }
                         }
                     ]
@@ -48,26 +43,23 @@ export const Questionnaire = {
                     answerOption: [
                         {
                             valueCoding: {
-                                system: "http://terminology.hl7.org/CodeSystem/v2-0136",
-                                code: "N",
-                                text: "No",
-                                display: "No"
-                            }
-                        },
-                        {
-                            valueCoding: {
-                                system: "http://terminology.hl7.org/CodeSystem/v2-0136",
+                                system: "http://terminology.hl7.org/CodeSystem/v2-0532",
                                 code: "Y",
-                                text: "Yes",
                                 display: "Yes"
                             }
                         },
                         {
                             valueCoding: {
-                                system: "http://terminology.hl7.org/CodeSystem/v2-0136",
+                                system: "http://terminology.hl7.org/CodeSystem/v2-0532",
+                                code: "N",
+                                display: "No"
+                            }
+                        },
+                        {
+                            valueCoding: {
+                                system: "http://terminology.hl7.org/CodeSystem/v2-0532",
                                 code: "ASKU",
-                                text: "Unknown",
-                                display: "I don't know"
+                                display: "asked but unknown"
                             }
                         }
                     ]
@@ -75,31 +67,27 @@ export const Questionnaire = {
                 {
                     linkId: "1.3",
                     text: "Kidney X-ray (Urography)",
-                    display: "Kidney X-ray (Urography)",
                     type: "choice",
                     answerOption: [
                         {
                             valueCoding: {
-                                system: "http://terminology.hl7.org/CodeSystem/v2-0136",
-                                code: "N",
-                                text: "No",
-                                display: "No"
-                            }
-                        },
-                        {
-                            valueCoding: {
-                                system: "http://terminology.hl7.org/CodeSystem/v2-0136",
+                                system: "http://terminology.hl7.org/CodeSystem/v2-0532",
                                 code: "Y",
-                                text: "Yes",
                                 display: "Yes"
                             }
                         },
                         {
                             valueCoding: {
-                                system: "http://terminology.hl7.org/CodeSystem/v2-0136",
+                                system: "http://terminology.hl7.org/CodeSystem/v2-0532",
+                                code: "N",
+                                display: "No"
+                            }
+                        },
+                        {
+                            valueCoding: {
+                                system: "http://terminology.hl7.org/CodeSystem/v2-0532",
                                 code: "ASKU",
-                                text: "Unknown",
-                                display: "I don't know"
+                                display: "asked but unknown"
                             }
                         }
                     ]
@@ -111,26 +99,23 @@ export const Questionnaire = {
                     answerOption: [
                         {
                             valueCoding: {
-                                system: "http://terminology.hl7.org/CodeSystem/v2-0136",
-                                code: "N",
-                                text: "No",
-                                display: "No"
-                            }
-                        },
-                        {
-                            valueCoding: {
-                                system: "http://terminology.hl7.org/CodeSystem/v2-0136",
+                                system: "http://terminology.hl7.org/CodeSystem/v2-0532",
                                 code: "Y",
-                                text: "Yes",
                                 display: "Yes"
                             }
                         },
                         {
                             valueCoding: {
-                                system: "http://terminology.hl7.org/CodeSystem/v2-0136",
+                                system: "http://terminology.hl7.org/CodeSystem/v2-0532",
+                                code: "N",
+                                display: "No"
+                            }
+                        },
+                        {
+                            valueCoding: {
+                                system: "http://terminology.hl7.org/CodeSystem/v2-0532",
                                 code: "ASKU",
-                                text: "Unknown",
-                                display: "I don't know"
+                                display: "asked but unknown"
                             }
                         }
                     ]
@@ -150,26 +135,23 @@ export const Questionnaire = {
                     answerOption: [
                         {
                             valueCoding: {
-                                system: "http://terminology.hl7.org/CodeSystem/v2-0136",
-                                code: "N",
-                                text: "No",
-                                display: "No"
-                            }
-                        },
-                        {
-                            valueCoding: {
-                                system: "http://terminology.hl7.org/CodeSystem/v2-0136",
+                                system: "http://terminology.hl7.org/CodeSystem/v2-0532",
                                 code: "Y",
-                                text: "Yes",
                                 display: "Yes"
                             }
                         },
                         {
                             valueCoding: {
-                                system: "http://terminology.hl7.org/CodeSystem/v2-0136",
+                                system: "http://terminology.hl7.org/CodeSystem/v2-0532",
+                                code: "N",
+                                display: "No"
+                            }
+                        },
+                        {
+                            valueCoding: {
+                                system: "http://terminology.hl7.org/CodeSystem/v2-0532",
                                 code: "ASKU",
-                                text: "Unknown",
-                                display: "I don't know"
+                                display: "asked but unknown"
                             }
                         }
                     ]
@@ -181,26 +163,23 @@ export const Questionnaire = {
                     answerOption: [
                         {
                             valueCoding: {
-                                system: "http://terminology.hl7.org/CodeSystem/v2-0136",
-                                code: "N",
-                                text: "No",
-                                display: "No"
-                            }
-                        },
-                        {
-                            valueCoding: {
-                                system: "http://terminology.hl7.org/CodeSystem/v2-0136",
+                                system: "http://terminology.hl7.org/CodeSystem/v2-0532",
                                 code: "Y",
-                                text: "Yes",
                                 display: "Yes"
                             }
                         },
                         {
                             valueCoding: {
-                                system: "http://terminology.hl7.org/CodeSystem/v2-0136",
+                                system: "http://terminology.hl7.org/CodeSystem/v2-0532",
+                                code: "N",
+                                display: "No"
+                            }
+                        },
+                        {
+                            valueCoding: {
+                                system: "http://terminology.hl7.org/CodeSystem/v2-0532",
                                 code: "ASKU",
-                                text: "Unknown",
-                                display: "I don't know"
+                                display: "asked but unknown"
                             }
                         }
                     ]
@@ -208,31 +187,27 @@ export const Questionnaire = {
                 {
                     linkId: "2.3",
                     text: "Rash",
-                    display: "Rash",
                     type: "choice",
                     answerOption: [
                         {
                             valueCoding: {
-                                system: "http://terminology.hl7.org/CodeSystem/v2-0136",
-                                code: "N",
-                                text: "No",
-                                display: "No"
-                            }
-                        },
-                        {
-                            valueCoding: {
-                                system: "http://terminology.hl7.org/CodeSystem/v2-0136",
+                                system: "http://terminology.hl7.org/CodeSystem/v2-0532",
                                 code: "Y",
-                                text: "Yes",
                                 display: "Yes"
                             }
                         },
                         {
                             valueCoding: {
-                                system: "http://terminology.hl7.org/CodeSystem/v2-0136",
+                                system: "http://terminology.hl7.org/CodeSystem/v2-0532",
+                                code: "N",
+                                display: "No"
+                            }
+                        },
+                        {
+                            valueCoding: {
+                                system: "http://terminology.hl7.org/CodeSystem/v2-0532",
                                 code: "ASKU",
-                                text: "Unknown",
-                                display: "I don't know"
+                                display: "asked but unknown"
                             }
                         }
                     ]
@@ -244,26 +219,23 @@ export const Questionnaire = {
                     answerOption: [
                         {
                             valueCoding: {
-                                system: "http://terminology.hl7.org/CodeSystem/v2-0136",
-                                code: "N",
-                                text: "No",
-                                display: "No"
-                            }
-                        },
-                        {
-                            valueCoding: {
-                                system: "http://terminology.hl7.org/CodeSystem/v2-0136",
+                                system: "http://terminology.hl7.org/CodeSystem/v2-0532",
                                 code: "Y",
-                                text: "Yes",
                                 display: "Yes"
                             }
                         },
                         {
                             valueCoding: {
-                                system: "http://terminology.hl7.org/CodeSystem/v2-0136",
+                                system: "http://terminology.hl7.org/CodeSystem/v2-0532",
+                                code: "N",
+                                display: "No"
+                            }
+                        },
+                        {
+                            valueCoding: {
+                                system: "http://terminology.hl7.org/CodeSystem/v2-0532",
                                 code: "ASKU",
-                                text: "Unknown",
-                                display: "I don't know"
+                                display: "asked but unknown"
                             }
                         }
                     ]
