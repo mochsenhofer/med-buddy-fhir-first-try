@@ -19,7 +19,7 @@ export const QuestionnaireResponse = {
                     type: {
                         coding: [
                             {
-                                system: "https://terminology.hl7.org/5.5.0/CodeSystem-v2-0203.html",
+                                system: "http://terminology.hl7.org/CodeSystem/v2-0203",
                                 code: "SS",
                                 display: "Social Security number"
                             }
