@@ -52,4 +52,8 @@ export const QuestionnaireResponse = {
             ],
         },
     ],
+    author: 
+    {
+        reference: "#patient-01",
+    },
 };
