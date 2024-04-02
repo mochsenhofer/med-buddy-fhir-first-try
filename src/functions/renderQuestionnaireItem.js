@@ -9,7 +9,7 @@ export default function renderQuestionnaireItem({ item }) {
     <View style={commonStyle.sectionContainer}>
         <Text style={commonStyle.text}>{item.text}</Text>
         {item.type === "choice" ? <Text >Radio</Text> : null}
-        {item.type === "text" ? <Text >Text</Text> : null}
+        {item.type === "integer" ? <Text >Text</Text> : null}
     </View>
 );
 };
