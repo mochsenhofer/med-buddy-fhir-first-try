@@ -4,6 +4,23 @@ export const Questionnaire = {
     status: "active",
     item: [
         {
+            linkId: "0",
+            text: "Please answer the following questions to the best of your knowledge.",
+            type: "group",
+            item: [
+                {
+                    linkId: "0.1",
+                    text: "Size (kg)",
+                    type: "integer",
+                },
+                {
+                    linkId: "0.2",
+                    text: "Height (cm)",
+                    type: "integer",
+                },
+            ],
+        },
+        {
             linkId: "1",
             text: "Did you have one of these examinations before?",
             type: "group",
@@ -240,7 +257,183 @@ export const Questionnaire = {
                         }
                     ]
                 },
+                {
+                    linkId: "2.5",
+                    text: "Shivering attacks",
+                    type: "choice",
+                    answerOption: [
+                        {
+                            valueCoding: {
+                                system: "http://terminology.hl7.org/CodeSystem/v2-0532",
+                                code: "Y",
+                                display: "Yes"
+                            }
+                        },
+                        {
+                            valueCoding: {
+                                system: "http://terminology.hl7.org/CodeSystem/v2-0532",
+                                code: "N",
+                                display: "No"
+                            }
+                        },
+                        {
+                            valueCoding: {
+                                system: "http://terminology.hl7.org/CodeSystem/v2-0532",
+                                code: "ASKU",
+                                display: "asked but unknown"
+                            }
+                        }
+                    ]
+                },
             ]
+        },
+        {
+            linkId: "3",
+            text: "Do you suffer from any of the following medical conditions?",
+            type: "group",
+            item: [
+                {
+                    linkId: "3.1",
+                    text: "Allergies that require treatment?",
+                    type: "choice",
+                    answerOption: [
+                        {
+                            valueCoding: {
+                                system: "http://terminology.hl7.org/CodeSystem/v2-0532",
+                                code: "Y",
+                                display: "Yes"
+                            }
+                        },
+                        {
+                            valueCoding: {
+                                system: "http://terminology.hl7.org/CodeSystem/v2-0532",
+                                code: "N",
+                                display: "No"
+                            }
+                        },
+                        {
+                            valueCoding: {
+                                system: "http://terminology.hl7.org/CodeSystem/v2-0532",
+                                code: "ASKU",
+                                display: "asked but unknown"
+                            }
+                        }
+                    ]
+                },
+                {
+                    linkId: "3.2",
+                    text: "of the heart?",
+                    type: "choice",
+                    answerOption: [
+                        {
+                            valueCoding: {
+                                system: "http://terminology.hl7.org/CodeSystem/v2-0532",
+                                code: "Y",
+                                display: "Yes"
+                            }
+                        },
+                        {
+                            valueCoding: {
+                                system: "http://terminology.hl7.org/CodeSystem/v2-0532",
+                                code: "N",
+                                display: "No"
+                            }
+                        },
+                        {
+                            valueCoding: {
+                                system: "http://terminology.hl7.org/CodeSystem/v2-0532",
+                                code: "ASKU",
+                                display: "asked but unknown"
+                            }
+                        }
+                    ]
+                },
+                {
+                    linkId: "3.3",
+                    text: "of the kidney / adrenal gland?",
+                    type: "choice",
+                    answerOption: [
+                        {
+                            valueCoding: {
+                                system: "http://terminology.hl7.org/CodeSystem/v2-0532",
+                                code: "Y",
+                                display: "Yes"
+                            }
+                        },
+                        {
+                            valueCoding: {
+                                system: "http://terminology.hl7.org/CodeSystem/v2-0532",
+                                code: "N",
+                                display: "No"
+                            }
+                        },
+                        {
+                            valueCoding: {
+                                system: "http://terminology.hl7.org/CodeSystem/v2-0532",
+                                code: "ASKU",
+                                display: "asked but unknown"
+                            }
+                        },
+                    ],
+                },
+                {
+                    linkId: "3.4",
+                    text: "of the thyroid gland?",
+                    type: "choice",
+                    answerOption: [
+                        {
+                            valueCoding: {
+                                system: "http://terminology.hl7.org/CodeSystem/v2-0532",
+                                code: "Y",
+                                display: "Yes"
+                            }
+                        },
+                        {
+                            valueCoding: {
+                                system: "http://terminology.hl7.org/CodeSystem/v2-0532",
+                                code: "N",
+                                display: "No"
+                            }
+                        },
+                        {
+                            valueCoding: {
+                                system: "http://terminology.hl7.org/CodeSystem/v2-0532",
+                                code: "ASKU",
+                                display: "asked but unknown"
+                            }
+                        },
+                    ],
+                },
+                {
+                    linkId: "3.5",
+                    text: "Diabetes?",
+                    type: "choice",
+                    answerOption: [
+                        {
+                            valueCoding: {
+                                system: "http://terminology.hl7.org/CodeSystem/v2-0532",
+                                code: "Y",
+                                display: "Yes"
+                            }
+                        },
+                        {
+                            valueCoding: {
+                                system: "http://terminology.hl7.org/CodeSystem/v2-0532",
+                                code: "N",
+                                display: "No"
+                            }
+                        },
+                        {
+                            valueCoding: {
+                                system: "http://terminology.hl7.org/CodeSystem/v2-0532",
+                                code: "ASKU",
+                                display: "asked but unknown"
+                            }
+                        },
+                    ],
+                },
+            ],
+            
         },
         // Placeholder for additional groups or individual questions
     ],
