@@ -1,36 +1,15 @@
+import { Patient } from "./Patient.js";
+
 export const QuestionnaireResponse = {
     resourceType: "QuestionnaireResponse",
-    status: "completed",
+    status: "in-progress",
     id: "questionnaire-response-01",
+    author: 
+    {
+        reference: `#${Patient.id}`,
+    },
     contained: [
-        {
-            resourceType: "Patient",
-            id: "patient-01",
-            gender: "male",
-            birthDate: "1905-08-23",
-            name: [
-                {
-                    family: "Turbo",
-                    given: ["Tom"],
-                },
-            ],
-            identifier: [
-                {
-                    type: {
-                        coding: [
-                            {
-                                system: "http://terminology.hl7.org/CodeSystem/v2-0203",
-                                code: "SS",
-                                display: "Social Security number"
-                            }
-                        ],
-                    },
-                    value: "78689",
-                    use: "official",
-                },
-            ]
-            
-        },
+        Patient,
     ],
     item: [
         {
@@ -43,17 +22,13 @@ export const QuestionnaireResponse = {
                     answer: [
                         {
                             valueCoding: {
-                                system: "http://terminology.hl7.org/CodeSystem/v2-0136",
-                                code: "Y",
+                                system: "http://terminology.hl7.org/CodeSystem/v2-0532",
+                                code: "UNK",
                             }
                         },
                     ],
                 },
             ],
         },
-    ],
-    author: 
-    {
-        reference: "#patient-01",
-    },
+    ],    
 };
