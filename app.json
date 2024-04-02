@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "med-buddy-mt",
-    "slug": "med-buddy-mt",
+    "name": "med-buddy-fhir",
+    "slug": "med-buddy-fhir",
     "version": "1.0.0",
     "orientation": "landscape",
     "icon": "./assets/icon.png",
