@@ -18,11 +18,9 @@ export default function QuestionnaireScreen() {
         // Check if it's the last page before navigating
         if (page < totalNumberOfPages) {
           setPage(page + 1);
-          console.log(currentQuestionnaireSection);
 
         } else {
           // Navigate to the next screen
-          console.log(currentQuestionnaireSection);
           navigation.navigate(overviewScreenRoute);
         }
       };
@@ -39,7 +37,6 @@ export default function QuestionnaireScreen() {
       };
 
     const currentQuestionnaireSection = [questionnaireSections[page]];
-    console.log(currentQuestionnaireSection);
 
     return (
         <SafeAreaView style={commonStyle.body}>
@@ -58,4 +55,4 @@ export default function QuestionnaireScreen() {
             </View>
         </SafeAreaView>
     );
-}
+};
