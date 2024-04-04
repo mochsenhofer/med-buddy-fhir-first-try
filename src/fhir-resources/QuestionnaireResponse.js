@@ -14,10 +14,34 @@ export const QuestionnaireResponse = {
     item: [
         {
             linkId: "1",
-            text: "Patient Information",
+            text: "Personal Information",
             item: [
                 {
                     linkId: "1.1",
+                    text: "Size",
+                    answer: [
+                        {
+                            valueInteger: "John",
+                        },
+                    ],
+                },
+                {
+                    linkId: "1.2",
+                    text: "Weight",
+                    answer: [
+                        {
+                            valueInteger: "Doe",
+                        },
+                    ],
+                },
+            ],
+        },
+        {
+            linkId: "2",
+            text: "Previous Examinations",
+            item: [
+                {
+                    linkId: "2.1",
                     text: "CT Examination",
                     answer: [
                         {
