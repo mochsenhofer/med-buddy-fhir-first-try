@@ -8,7 +8,7 @@ export const commonStyle = StyleSheet.create({
         alignItems: "center",
     },
     header: {
-        flex: 1.75,
+        flex: 1.5,
         flexDirection: "row",
         width: "100%",
         alignItems: "center",
@@ -83,5 +83,18 @@ export const fontStyle = StyleSheet.create({
     h4: {
         fontSize: 15,
         fontWeight: "bold",
+    },
+});
+
+export const questionnaireItemStyle = StyleSheet.create({
+    textInput: {
+        height: 40,
+        width: "100%",
+        borderColor: "black",
+        borderWidth: 2,
+        borderRadius: 1000,
+    },
+    questionText: {
+        fontSize: 20,
     },
 });
