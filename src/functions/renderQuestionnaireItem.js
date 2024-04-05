@@ -6,8 +6,6 @@ import RadioButtons from '../components/RadioButtons';
 
 // Define renderItem function outside of the component's return statement
 export default function renderQuestionnaireItem({ item }) {
-    console.log(item.answerOption)
-
     return (
     <View style={commonStyle.sectionContainer}>
         <Text style={questionnaireItemStyle.questionText}>{item.text}</Text>
@@ -50,6 +48,7 @@ function renderUserInput(type, maxLength, linkId, answerOption) {
             return (
                 <RadioButtons 
                     options={answerOption} 
+                    onSelect={(option) => console.log('Hier '+ option)} // todo: option in QuestionnaireResponse speichern
                 />
             );
         default:
