@@ -10,12 +10,12 @@ function RadioButton({ selected, text, onPress }) { // Changed parameter to onPr
     );
 }
 
-export default function RadioButtons({ options }) {
+export default function RadioButtons({ options, onSelect }) {
     const [selectedAnswer, setSelectedAnswer] = useState(null);
 
     function radioButtonPressed(option) { // Now accepts option as an argument
         setSelectedAnswer(option);
-        console.log("Selected Answer: ", option); // Log the option directly
+        onSelect(option); // Pass the option to the onSelect prop
     }
 
     return (
