@@ -2,22 +2,24 @@ import React from 'react';
 import { View, Text, TextInput } from 'react-native';
 import { commonStyle, questionnaireItemStyle } from '../styles/commonStyle';
 import { QuestionnaireResponse } from '../fhir-resources/QuestionnaireResponse';
+import RadioButtons from '../components/RadioButtons';
 
 // Define renderItem function outside of the component's return statement
 export default function renderQuestionnaireItem({ item }) {
-    console.log(item)
+    console.log(item.answerOption)
+
     return (
     <View style={commonStyle.sectionContainer}>
         <Text style={questionnaireItemStyle.questionText}>{item.text}</Text>
-        {renderUserInput(item.type, item.maxLength, item.linkId)}
+        {renderUserInput(item.type, item.maxLength, item.linkId, item.answerOption)}
     </View>
 );
 };
 
 
-function renderUserInput(type, maxLength, linkId) {
+function renderUserInput(type, maxLength, linkId, answerOption) {
 
-    console.log(QuestionnaireResponse.item)
+    // console.log(QuestionnaireResponse.item)
     
     switch (type) {
         case "integer":
@@ -46,7 +48,9 @@ function renderUserInput(type, maxLength, linkId) {
             );
         case "choice":
             return (
-                <Text>Radio</Text>
+                <RadioButtons 
+                    options={answerOption} 
+                />
             );
         default:
             return null;
