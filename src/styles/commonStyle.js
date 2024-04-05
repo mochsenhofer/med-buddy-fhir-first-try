@@ -23,7 +23,7 @@ export const commonStyle = StyleSheet.create({
         backgroundColor: "red",
     },
     footer: {
-        flex: 1,
+        flex: 0.75,
         flexDirection: "row",
         width: "100%",
         alignItems: "center",
@@ -72,8 +72,9 @@ export const fontStyle = StyleSheet.create({
         fontWeight: "bold",
     },
     h2: {
-        fontSize: 25,
+        fontSize: 20,
         color: mainBlue,
+        fontWeight: "bold",
         textTransform: "uppercase",
     },
     h3: {
@@ -86,15 +87,39 @@ export const fontStyle = StyleSheet.create({
     },
 });
 
+const questionnaireItemBorderWidth = 2;
+const questionnaireItemHeight = 40;
+const questionnaireItemBorderRadius = 1000;
+const questionnaireItemHorizontalMargin = 20;
+
 export const questionnaireItemStyle = StyleSheet.create({
     textInput: {
-        height: 40,
-        width: "100%",
+        height: questionnaireItemHeight,
+        width: "90%",
         borderColor: "black",
-        borderWidth: 2,
-        borderRadius: 1000,
+        borderWidth: questionnaireItemBorderWidth,
+        borderRadius: questionnaireItemBorderRadius,
+        marginHorizontal: questionnaireItemHorizontalMargin,
+
     },
     questionText: {
         fontSize: 20,
+        marginBottom: 5,
+        marginTop: 10,
     },
+    radioButton: {
+        backgroundColor: "transparent",
+        width: "33%",
+        marginHorizontal: questionnaireItemHorizontalMargin,
+        height: questionnaireItemHeight,
+        borderWidth: questionnaireItemBorderWidth,
+        borderColor: mainBlue,
+        borderRadius: questionnaireItemBorderRadius,
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    radioButtonText: {
+        color: mainBlue,
+        fontSize: 20,
+    }
 });
