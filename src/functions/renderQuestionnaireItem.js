@@ -9,18 +9,21 @@ export default function renderQuestionnaireItem({ item }) {
     return (
     <View style={commonStyle.sectionContainer}>
         <Text style={questionnaireItemStyle.questionText}>{item.text}</Text>
-        {renderUserInput(item.type, item.maxLength, item.linkId, item.answerOption)}
+        {renderUserInput(item, item.type, item.maxLength, item.linkId, item.answerOption)}
     </View>
 );
 };
 
 
-function renderUserInput(type, maxLength, linkId, answerOption) {
+function renderUserInput(item, type, maxLength, linkId, answerOption) {
 
-    console.log("QR: " + JSON.stringify(QuestionnaireResponse.item));
+    function updateQuestionnaireResponse(questionnaireItem) {
+        console.log("questionnaireItem.linkId: " + JSON.stringify(questionnaireItem.linkId));
+        console.log("QuestionnaireResponse: " + JSON.stringify(QuestionnaireResponse.item[0].item[0].linkId));
+    };
 
-
-    
+    updateQuestionnaireResponse(item);
+  
     switch (type) {
         case "integer":
             return (
@@ -59,3 +62,4 @@ function renderUserInput(type, maxLength, linkId, answerOption) {
             return null;
     }
 };
+
