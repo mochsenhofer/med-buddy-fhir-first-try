@@ -14,7 +14,7 @@ export const Patient = {
                 language: {
                     coding: [
                         {
-                            system: "urn:ietf:bcp:47",
+                            system: "urn:ietf:rfc:3986",
                             code: "de",
                         },
                     ],
