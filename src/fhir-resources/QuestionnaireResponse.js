@@ -21,7 +21,7 @@ export const QuestionnaireResponse = {
                     text: "Size",
                     answer: [
                         {
-                            valueInteger: "John",
+                            valueInteger: 180,
                         },
                     ],
                 },
@@ -30,7 +30,7 @@ export const QuestionnaireResponse = {
                     text: "Weight",
                     answer: [
                         {
-                            valueInteger: "Doe",
+                            valueInteger: 79,
                         },
                     ],
                 },
@@ -52,6 +52,19 @@ export const QuestionnaireResponse = {
                         },
                     ],
                 },
+                {
+                    linkId: "2.2",
+                    text: "Vascular X-ray (Angiography / Cardiac Catheter)",
+                    answer: [
+                        {
+                            valueCoding: {
+                                system: "http://terminology.hl7.org/CodeSystem/v2-0532",
+                                code: "UNK",
+                            }
+                        },
+                    ],
+                },
+                
             ],
         },
     ],    
