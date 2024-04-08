@@ -17,7 +17,9 @@ export default function renderQuestionnaireItem({ item }) {
 
 function renderUserInput(type, maxLength, linkId, answerOption) {
 
-    // console.log(QuestionnaireResponse.item)
+    console.log("QR: " + JSON.stringify(QuestionnaireResponse.item));
+
+
     
     switch (type) {
         case "integer":
@@ -45,6 +47,8 @@ function renderUserInput(type, maxLength, linkId, answerOption) {
                 />
             );
         case "choice":
+
+
             return (
                 <RadioButtons 
                     options={answerOption} 
