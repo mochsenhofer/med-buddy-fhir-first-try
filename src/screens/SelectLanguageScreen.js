@@ -8,8 +8,8 @@ import { QuestionnaireResponse } from "../fhir-resources/QuestionnaireResponse";
 
 
 export default function SelectLanguageScreen() {
-    console.log('Questionnaire: ' + JSON.stringify(Questionnaire));
-    console.log('QuestionnaireResponse: ' + JSON.stringify(QuestionnaireResponse));
+    // console.log('Questionnaire: ' + JSON.stringify(Questionnaire));
+    // console.log('QuestionnaireResponse: ' + JSON.stringify(QuestionnaireResponse));
 
     return (
         <SafeAreaView style={commonStyle.body}>
