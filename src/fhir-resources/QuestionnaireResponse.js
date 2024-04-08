@@ -1,4 +1,4 @@
-import Patient from "./Patient.js";
+import { Patient } from "./Patient.js";
 
 export const QuestionnaireResponse = {
     resourceType: "QuestionnaireResponse",
