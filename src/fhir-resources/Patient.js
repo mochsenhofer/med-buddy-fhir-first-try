@@ -14,8 +14,8 @@ export const Patient = {
                 language: {
                     coding: [
                         {
-                            system: "urn:ietf:rfc:3986",
-                            code: "de",
+                            system: "urn:ietf:bcp:47",
+                            code: "pl",
                         },
                     ],
                 },
@@ -24,20 +24,18 @@ export const Patient = {
     };
 
 /*
-de - deutsch
+
+de - german
 en - english
 fr - french
 hr - croatian
-sr - serbian
 pl - polish
+
+not in the list:
+
 tr - turkish
 sq - albanian
 ro - romanian
 bs - bosnian
-
-
-
-
-
 
 */
