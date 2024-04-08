@@ -7,7 +7,7 @@ import { Patient } from "../fhir-resources/Patient";
 
 
 export default function RegistrationScreen() {
-    console.log(JSON.stringify(Patient));
+    // console.log(JSON.stringify(Patient));
     return (
         <SafeAreaView style={commonStyle.body}>
             <View style={commonStyle.header}></View>
