@@ -5,11 +5,14 @@ import { BottomNavigationView } from "../components/BottomNavigationView";
 import { registrationScreenRoute } from "../navigation/Navigation";
 import { Questionnaire } from "../fhir-resources/Questionnaire";
 import { QuestionnaireResponse } from "../fhir-resources/QuestionnaireResponse";
+import { Patient } from "../fhir-resources/Patient";
 
 
 export default function SelectLanguageScreen() {
     // console.log('Questionnaire: ' + JSON.stringify(Questionnaire));
-    // console.log('QuestionnaireResponse: ' + JSON.stringify(QuestionnaireResponse));
+    console.log('QuestionnaireResponse: ' + JSON.stringify(QuestionnaireResponse));
+    // console.log('Patient: ' + JSON.stringify(Patient));
+
 
     return (
         <SafeAreaView style={commonStyle.body}>

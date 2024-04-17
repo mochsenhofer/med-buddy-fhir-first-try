@@ -1,15 +1,20 @@
 import { Patient } from "./Patient.js";
+import { Questionnaire } from "./Questionnaire.js";
 
 export const QuestionnaireResponse = {
     resourceType: "QuestionnaireResponse",
     status: "in-progress",
     id: "questionnaire-response-01",
+    contained: [
+        Patient,
+        Questionnaire,
+    ],
+    questionnaire: {
+        reference: `#${Questionnaire.id}`,
+    },
     author: {
         reference: `#${Patient.id}`,
     },
-    contained: [
-        Patient,
-    ],
     item: [
         {
             linkId: "1",
