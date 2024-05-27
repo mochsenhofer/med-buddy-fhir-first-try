@@ -6,12 +6,10 @@ import { registrationScreenRoute } from "../navigation/Navigation";
 import { Questionnaire } from "../fhir-resources/Questionnaire";
 import { QuestionnaireResponse } from "../fhir-resources/QuestionnaireResponse";
 import { Patient } from "../fhir-resources/Patient";
-import { questionnaireResponseSections } from "../fhir-resources/QuestionnaireResponse";
 
 
 export default function SelectLanguageScreen() {
     // console.log('Questionnaire: ' + JSON.stringify(Questionnaire));
-    console.log('QuestionnaireResponse: ' + JSON.stringify(questionnaireResponseSections));
     // console.log('Patient: ' + JSON.stringify(Patient));
 
 
