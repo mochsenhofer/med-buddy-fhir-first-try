@@ -2,64 +2,32 @@ import React from 'react';
 import { View, Text, TextInput } from 'react-native';
 import { commonStyle, questionnaireItemStyle } from '../styles/commonStyle';
 import { QuestionnaireResponse } from '../fhir-resources/QuestionnaireResponse';
-import RadioButtons from '../components/RadioButtons';
 
 // Define renderItem function outside of the component's return statement
 export default function renderQuestionnaireItem({ item }) {
     return (
     <View style={commonStyle.sectionContainer}>
         <Text style={questionnaireItemStyle.questionText}>{item.text}</Text>
-        {renderUserInput(item, item.type, item.maxLength, item.linkId, item.answerOption)}
+        {renderUserInput({ item })}
     </View>
 );
 };
 
-
-function renderUserInput(item, type, maxLength, linkId, answerOption) {
-
-    function updateQuestionnaireResponse(questionnaireItem) {
-        console.log("questionnaireItem.linkId: " + JSON.stringify(questionnaireItem.linkId));
-        console.log("QuestionnaireResponse: " + JSON.stringify(QuestionnaireResponse.item[0].item[0].linkId));
-    };
-
-    updateQuestionnaireResponse(item);
-  
-    switch (type) {
-        case "integer":
+function renderUserInput({ item }) {
+    console.log('linkID: ' + item.linkId);
+    switch(item.type) {
+        case 'integer':
             return (
                 <TextInput
                     style={questionnaireItemStyle.textInput}
-                    keyboardType="numeric"
-                    maxLength={maxLength}
+                    keyboardType='numeric'
+                    placeholder='Enter a number'
+                    maxLength={item.maxLength}
                 />
             );
-        case "string":
+        case 'choice':
             return (
-                <TextInput
-                    style={questionnaireItemStyle.textInput}
-                    keyboardType="default"
-                    maxLength={maxLength}
-                />
+                <Text>Choice</Text>
             );
-        case "date":
-            return (
-                <TextInput
-                    style={questionnaireItemStyle.textInput}
-                    keyboardType="numeric"
-                    maxLength={maxLength}
-                />
-            );
-        case "choice":
-
-
-            return (
-                <RadioButtons 
-                    options={answerOption} 
-                    onSelect={(option) => console.log('Hier '+ option)} // todo: option in QuestionnaireResponse speichern
-                />
-            );
-        default:
-            return null;
-    }
+}
 };
-
