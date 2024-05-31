@@ -36,6 +36,12 @@ export default function QuestionnaireScreen() {
         }
       };
 
+    function onQuestionValueChanged({ linkId, value }) {
+        console.log(`linkId: ${linkId}, value: ${value}`);
+        // Add logic to update the QuestionnaireResponse
+        // with the new value
+    }
+
     const currentQuestionnaireSection = [questionnaireSections[page]];
 
     return (
@@ -45,7 +51,10 @@ export default function QuestionnaireScreen() {
             <SectionList
                 sections={currentQuestionnaireSection}
                 keyExtractor={(item, index) => item + index}
-                renderItem={renderQuestionnaireItem}
+                renderItem={listItem => renderQuestionnaireItem({
+                  item: listItem.item,
+                  onChange: onQuestionValueChanged 
+                })}
                 renderSectionHeader={renderSectionHeader}
                 stickySectionHeadersEnabled={false}
             />
