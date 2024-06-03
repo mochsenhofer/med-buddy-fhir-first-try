@@ -271,11 +271,3 @@ export const QuestionnaireResponse = {
     },
   ],
 };
-
-export const questionnaireResponseSections = QuestionnaireResponse.item.map(
-  (qRItem) => ({
-    title: qRItem.text, // Use 'text' as the title for the section
-    linkId: qRItem.linkId, // Use 'linkId' as the key for the section
-    data: qRItem.item ? qRItem.item : [], // Pass the full item objects if they exist
-  })
-);
