@@ -45,6 +45,8 @@ export default function QuestionnaireScreen() {
   }
 
   const currentQuestionnaireSection = [questionnaireSections[page]];
+  const currentQuestionnaireSectionLinkId =
+    currentQuestionnaireSection[0].linkId;
 
   return (
     <SafeAreaView style={commonStyle.body}>
