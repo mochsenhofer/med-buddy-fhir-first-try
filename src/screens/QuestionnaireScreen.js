@@ -12,8 +12,13 @@ import { questionnaireSections } from "../fhir-resources/Questionnaire";
 import renderQuestionnaireItem from "../functions/renderQuestionnaireItem";
 import renderSectionHeader from "../functions/renderSectionHeader";
 import { useNavigation } from "@react-navigation/native";
+import { QuestionnaireResponse } from "../fhir-resources/QuestionnaireResponse";
+import { get } from "react-native/Libraries/TurboModule/TurboModuleRegistry";
 
 export default function QuestionnaireScreen() {
+  const [questionnaireResponseState, setQuestionnaireResponseState] = useState(
+    QuestionnaireResponse
+  );
   const navigation = useNavigation();
   const [page, setPage] = useState(0);
   const totalNumberOfPages = questionnaireSections.length - 1;
