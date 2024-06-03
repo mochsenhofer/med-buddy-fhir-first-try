@@ -62,9 +62,6 @@ export default function QuestionnaireScreen() {
     questionnaireResponseStateSections[page],
   ];
 
-  const currentQuestionnaireResponseStateSectionLinkId =
-    currentQuestionnaireResponseStateSection[0].linkId;
-
   return (
     <SafeAreaView style={commonStyle.body}>
       <View style={commonStyle.header}></View>
@@ -77,6 +74,7 @@ export default function QuestionnaireScreen() {
               qItem: item,
               currentQuestionnaireSectionLinkId,
               currentQuestionnaireResponseStateSection,
+              setQuestionnaireResponseState,
             })
           }
           renderSectionHeader={renderSectionHeader}
