@@ -6,9 +6,6 @@ import renderUserInput from "./renderUserInput";
 // Define renderItem function outside of the component's return statement
 export default function renderQuestionnaireItem({
   qItem,
-  currentQuestionnaireSectionLinkId,
-  currentQuestionnaireResponseSectionLinkId,
-  currentQuestionnaireResponseSection,
   currentQuestionnaireResponseStateSection,
 }) {
   return (
