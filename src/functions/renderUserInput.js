@@ -7,7 +7,7 @@ export default function renderUserInput({
   currentQuestionnaireResponseSection,
 }) {
   const responseItem = currentQuestionnaireResponseSection[0].data.find(
-    (item) => item.linkId === qItem.linkId
+    (qRitem) => qRitem.linkId === qItem.linkId
   );
 
   const updateValue = responseItem.answer[0];
