@@ -12,10 +12,7 @@ import { questionnaireSections } from "../fhir-resources/Questionnaire";
 import renderSectionHeader from "../functions/renderSectionHeader";
 import renderQuestionnaireItem from "../functions/renderQuestionnaireItem";
 import { useNavigation } from "@react-navigation/native";
-import {
-  QuestionnaireResponse,
-  questionnaireResponseSections,
-} from "../fhir-resources/QuestionnaireResponse";
+import { QuestionnaireResponse } from "../fhir-resources/QuestionnaireResponse";
 
 export default function QuestionnaireScreen() {
   const [questionnaireResponseState, setQuestionnaireResponseState] = useState(
@@ -52,14 +49,6 @@ export default function QuestionnaireScreen() {
   const currentQuestionnaireSectionLinkId =
     currentQuestionnaireSection[0].linkId;
 
-  // define QuestionnaireResponseSection
-
-  const currentQuestionnaireResponseSection = [
-    questionnaireResponseSections[page],
-  ];
-  const currentQuestionnaireResponseSectionLinkId =
-    currentQuestionnaireResponseSection[0].linkId;
-
   // define QuestionnaireResponseStateSections
 
   const questionnaireResponseStateSections =
@@ -87,8 +76,6 @@ export default function QuestionnaireScreen() {
             renderQuestionnaireItem({
               qItem: item,
               currentQuestionnaireSectionLinkId,
-              currentQuestionnaireResponseSection,
-              currentQuestionnaireResponseSectionLinkId,
               currentQuestionnaireResponseStateSection,
             })
           }
