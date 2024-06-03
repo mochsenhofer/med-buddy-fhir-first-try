@@ -7,11 +7,16 @@ import renderUserInput from "./renderUserInput";
 export default function renderQuestionnaireItem({
   qItem,
   currentQuestionnaireResponseStateSection,
+  setQuestionnaireResponseState,
 }) {
   return (
     <View style={commonStyle.sectionContainer}>
       <Text style={questionnaireItemStyle.questionText}>{qItem.text}</Text>
-      {renderUserInput({ qItem, currentQuestionnaireResponseStateSection })}
+      {renderUserInput({
+        qItem,
+        currentQuestionnaireResponseStateSection,
+        setQuestionnaireResponseState,
+      })}
     </View>
   );
 }
