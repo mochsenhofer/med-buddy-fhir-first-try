@@ -9,11 +9,12 @@ export default function renderQuestionnaireItem({
   currentQuestionnaireSectionLinkId,
   currentQuestionnaireResponseSectionLinkId,
   currentQuestionnaireResponseSection,
+  currentQuestionnaireResponseStateSection,
 }) {
   return (
     <View style={commonStyle.sectionContainer}>
       <Text style={questionnaireItemStyle.questionText}>{qItem.text}</Text>
-      {renderUserInput({ qItem, currentQuestionnaireResponseSection })}
+      {renderUserInput({ qItem, currentQuestionnaireResponseStateSection })}
     </View>
   );
 }

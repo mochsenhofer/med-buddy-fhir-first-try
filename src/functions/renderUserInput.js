@@ -4,9 +4,9 @@ import { questionnaireItemStyle } from "../styles/commonStyle";
 
 export default function renderUserInput({
   qItem,
-  currentQuestionnaireResponseSection,
+  currentQuestionnaireResponseStateSection,
 }) {
-  const responseItem = currentQuestionnaireResponseSection[0].data.find(
+  const responseItem = currentQuestionnaireResponseStateSection[0].data.find(
     (qRitem) => qRitem.linkId === qItem.linkId
   );
 
@@ -23,6 +23,9 @@ export default function renderUserInput({
           value={updateValue.valueInteger}
           onChangeText={(text) => {
             responseItem.answer[0].valueInteger = text;
+            console.log(
+              JSON.stringify(currentQuestionnaireResponseStateSection)
+            );
           }}
         />
       );

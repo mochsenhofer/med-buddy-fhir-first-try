@@ -60,6 +60,22 @@ export default function QuestionnaireScreen() {
   const currentQuestionnaireResponseSectionLinkId =
     currentQuestionnaireResponseSection[0].linkId;
 
+  // define QuestionnaireResponseStateSections
+
+  const questionnaireResponseStateSections =
+    questionnaireResponseState.item.map((qRSitem) => ({
+      title: qRSitem.text, // Use 'text' as the title for the section
+      linkId: qRSitem.linkId, // Use 'linkId' as the key for the section
+      data: qRSitem.item ? qRSitem.item : [], // Pass the full item objects if they exist
+    }));
+
+  const currentQuestionnaireResponseStateSection = [
+    questionnaireResponseStateSections[page],
+  ];
+
+  const currentQuestionnaireResponseStateSectionLinkId =
+    currentQuestionnaireResponseStateSection[0].linkId;
+
   return (
     <SafeAreaView style={commonStyle.body}>
       <View style={commonStyle.header}></View>
@@ -73,6 +89,7 @@ export default function QuestionnaireScreen() {
               currentQuestionnaireSectionLinkId,
               currentQuestionnaireResponseSection,
               currentQuestionnaireResponseSectionLinkId,
+              currentQuestionnaireResponseStateSection,
             })
           }
           renderSectionHeader={renderSectionHeader}
