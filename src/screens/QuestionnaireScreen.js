@@ -16,7 +16,6 @@ import {
   QuestionnaireResponse,
   questionnaireResponseSections,
 } from "../fhir-resources/QuestionnaireResponse";
-import { get } from "react-native/Libraries/TurboModule/TurboModuleRegistry";
 
 export default function QuestionnaireScreen() {
   const [questionnaireResponseState, setQuestionnaireResponseState] = useState(
