@@ -9,10 +9,13 @@ import { commonStyle } from "../styles/commonStyle";
 import { BottomNavigationView } from "../components/BottomNavigationView";
 import { overviewScreenRoute } from "../navigation/Navigation";
 import { questionnaireSections } from "../fhir-resources/Questionnaire";
-import renderQuestionnaireItem from "../functions/renderQuestionnaireItem";
 import renderSectionHeader from "../functions/renderSectionHeader";
+import renderQuestionnaireItem from "../functions/renderQuestionnaireItem";
 import { useNavigation } from "@react-navigation/native";
-import { QuestionnaireResponse } from "../fhir-resources/QuestionnaireResponse";
+import {
+  QuestionnaireResponse,
+  questionnaireResponseSections,
+} from "../fhir-resources/QuestionnaireResponse";
 import { get } from "react-native/Libraries/TurboModule/TurboModuleRegistry";
 
 export default function QuestionnaireScreen() {
@@ -44,9 +47,18 @@ export default function QuestionnaireScreen() {
     }
   }
 
+  // define QuestionnaireSection
   const currentQuestionnaireSection = [questionnaireSections[page]];
   const currentQuestionnaireSectionLinkId =
     currentQuestionnaireSection[0].linkId;
+
+  // define QuestionnaireResponseSection
+
+  const currentQuestionnaireResponseSection = [
+    questionnaireResponseSections[page],
+  ];
+  const currentQuestionnaireResponseSectionLinkId =
+    currentQuestionnaireResponseSection[0].linkId;
 
   return (
     <SafeAreaView style={commonStyle.body}>
@@ -54,8 +66,14 @@ export default function QuestionnaireScreen() {
       <KeyboardAvoidingView behavior="padding" style={commonStyle.section}>
         <SectionList
           sections={currentQuestionnaireSection}
-          keyExtractor={(item, index) => item + index}
-          renderItem={renderQuestionnaireItem}
+          keyExtractor={(qItem, index) => qItem + index}
+          renderItem={({ item }) =>
+            renderQuestionnaireItem({
+              qItem: item,
+              currentQuestionnaireSectionLinkId,
+              currentQuestionnaireResponseSectionLinkId,
+            })
+          }
           renderSectionHeader={renderSectionHeader}
           stickySectionHeadersEnabled={false}
         />
