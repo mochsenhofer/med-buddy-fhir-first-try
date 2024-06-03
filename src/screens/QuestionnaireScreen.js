@@ -21,6 +21,7 @@ export default function QuestionnaireScreen() {
   const [questionnaireResponseState, setQuestionnaireResponseState] = useState(
     QuestionnaireResponse
   );
+  console.log(questionnaireResponseState.item);
   const navigation = useNavigation();
   const [page, setPage] = useState(0);
   const totalNumberOfPages = questionnaireSections.length - 1;
@@ -70,6 +71,7 @@ export default function QuestionnaireScreen() {
             renderQuestionnaireItem({
               qItem: item,
               currentQuestionnaireSectionLinkId,
+              currentQuestionnaireResponseSection,
               currentQuestionnaireResponseSectionLinkId,
             })
           }

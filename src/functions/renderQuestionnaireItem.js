@@ -7,16 +7,23 @@ export default function renderQuestionnaireItem({
   qItem,
   currentQuestionnaireSectionLinkId,
   currentQuestionnaireResponseSectionLinkId,
+  currentQuestionnaireResponseSection,
 }) {
   return (
     <View style={commonStyle.sectionContainer}>
       <Text style={questionnaireItemStyle.questionText}>{qItem.text}</Text>
-      {renderUserInput({ qItem })}
+      {renderUserInput({ qItem, currentQuestionnaireResponseSection })}
     </View>
   );
 }
 
-function renderUserInput({ qItem }) {
+function renderUserInput({ qItem, currentQuestionnaireResponseSection }) {
+  const responseItem = currentQuestionnaireResponseSection[0].data.find(
+    (item) => item.linkId === qItem.linkId
+  );
+
+  const updateValue = responseItem.answer[0];
+
   switch (qItem.type) {
     case "integer":
       return (
@@ -25,6 +32,10 @@ function renderUserInput({ qItem }) {
           keyboardType="numeric"
           placeholder="Enter a number"
           maxLength={qItem.maxLength}
+          value={updateValue.valueInteger}
+          onChangeText={(text) => {
+            responseItem.answer[0].valueInteger = text;
+          }}
         />
       );
     case "choice":
