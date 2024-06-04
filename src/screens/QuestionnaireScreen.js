@@ -1,18 +1,18 @@
+import { useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
 import {
-  View,
+  KeyboardAvoidingView,
   SafeAreaView,
   SectionList,
-  KeyboardAvoidingView,
+  View,
 } from "react-native";
-import { commonStyle } from "../styles/commonStyle";
 import { BottomNavigationView } from "../components/BottomNavigationView";
-import { overviewScreenRoute } from "../navigation/Navigation";
 import { questionnaireSections } from "../fhir-resources/Questionnaire";
-import renderSectionHeader from "../functions/renderSectionHeader";
-import renderQuestionnaireItem from "../functions/renderQuestionnaireItem";
-import { useNavigation } from "@react-navigation/native";
 import { QuestionnaireResponse } from "../fhir-resources/QuestionnaireResponse";
+import renderQuestionnaireItem from "../functions/renderQuestionnaireItem";
+import renderSectionHeader from "../functions/renderSectionHeader";
+import { overviewScreenRoute } from "../navigation/Navigation";
+import { commonStyle } from "../styles/commonStyle";
 
 export default function QuestionnaireScreen() {
   const [questionnaireResponseState, setQuestionnaireResponseState] = useState(
@@ -28,7 +28,7 @@ export default function QuestionnaireScreen() {
       setPage(page + 1);
     } else {
       // Navigate to the next screen
-      navigation.navigate(overviewScreenRoute);
+      navigation.navigate({ overviewScreenRoute });
     }
   }
 
@@ -56,9 +56,14 @@ export default function QuestionnaireScreen() {
       data: qRSitem.item ? qRSitem.item : [], // Pass the full item objects if they exist
     }));
 
-  const currentQuestionnaireResponseStateSection = [
-    questionnaireResponseStateSections[page],
-  ];
+  // const currentQuestionnaireResponseStateSection = [
+  //   questionnaireResponseStateSections[page],
+  // ];
+
+  const currentQuestionnaireResponseStateSection =
+    questionnaireResponseStateSections.filter(
+      (qRSsection) => qRSsection.linkId === currentQuestionnaireSectionLinkId
+    );
 
   console.log(
     "currentQuestionnaireResponseStateSection",
