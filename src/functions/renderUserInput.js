@@ -14,12 +14,6 @@ export default function renderUserInput({
 
   const currentResponseItemValue = currentResponseItem.answer[0];
 
-  console.log("currentResponseItem: ", currentResponseItem);
-  console.log(
-    "currentQuestionnaireResponseStateSection",
-    currentQuestionnaireResponseStateSection
-  );
-
   switch (qItem.type) {
     case "integer":
       return (
@@ -28,13 +22,20 @@ export default function renderUserInput({
           keyboardType="numeric"
           placeholder="Enter a number"
           maxLength={qItem.maxLength}
-          value={currentResponseItemValue.valueInteger.toString()}
-          onChangeText={() => {
-            updateState(currentResponseItemValue.valueInteger);
+          value={
+            currentResponseItemValue.valueInteger !== undefined
+              ? currentResponseItemValue.valueInteger.toString()
+              : ""
+          }
+          onChangeText={(text) => {
+            const newValue = text;
+            updateState(newValue, currentResponseItem.linkId);
           }}
         />
       );
     case "choice":
       return <Text>Choice</Text>;
+    default:
+      return null; // Handle other types if necessary
   }
 }
