@@ -8,6 +8,7 @@ export default function renderQuestionnaireItem({
   qItem,
   currentQuestionnaireResponseStateSection,
   setQuestionnaireResponseState,
+  updateState,
 }) {
   return (
     <View style={commonStyle.sectionContainer}>
@@ -16,6 +17,7 @@ export default function renderQuestionnaireItem({
         qItem,
         currentQuestionnaireResponseStateSection,
         setQuestionnaireResponseState,
+        updateState,
       })}
     </View>
   );
