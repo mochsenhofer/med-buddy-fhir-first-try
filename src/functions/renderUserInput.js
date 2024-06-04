@@ -33,6 +33,18 @@ export default function renderUserInput({
           }}
         />
       );
+    case "string":
+      return (
+        <TextInput
+          style={questionnaireItemStyle.textInput}
+          placeholder="Enter text"
+          value={currentResponseItemValue.valueString}
+          onChangeText={(text) => {
+            const newValue = text;
+            updateState(newValue, currentResponseItem.linkId);
+          }}
+        />
+      );
     case "choice":
       return <Text>Choice</Text>;
     default:
