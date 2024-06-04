@@ -77,8 +77,14 @@ export default function QuestionnaireScreen() {
         (qRSitem) => qRSitem.linkId === currentQuestionnaireSectionLinkId
       );
       const item = section.item.find((qRitem) => qRitem.linkId === linkId);
-      if (item) {
+      if (item.type === "integer") {
         item.answer[0].valueInteger = newValue;
+      }
+      if (item.type === "string") {
+        item.answer[0].valueString = newValue;
+      }
+      if (item.type === "choice") {
+        item.answer[0].valueCoding = newValue;
       }
       return updatedState;
     });
