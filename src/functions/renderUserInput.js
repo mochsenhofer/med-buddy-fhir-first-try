@@ -5,14 +5,16 @@ import { questionnaireItemStyle } from "../styles/commonStyle";
 export default function renderUserInput({
   qItem,
   currentQuestionnaireResponseStateSection,
-  setQuestionnaireResponseState,
+  updateState,
 }) {
-  const currentResponseValue =
+  const currentResponseItem =
     currentQuestionnaireResponseStateSection[0].data.find(
       (qRitem) => qRitem.linkId === qItem.linkId
     );
 
-  console.log("currentResponseValue", currentResponseValue);
+  const currentResponseItemValue = currentResponseItem.answer[0];
+
+  console.log("currentResponseItem: ", currentResponseItem);
   console.log(
     "currentQuestionnaireResponseStateSection",
     currentQuestionnaireResponseStateSection
@@ -26,9 +28,9 @@ export default function renderUserInput({
           keyboardType="numeric"
           placeholder="Enter a number"
           maxLength={qItem.maxLength}
-          value={currentResponseValue.valueInteger}
-          onChangeText={(text) => {
-            currentResponseValue.valueInteger = text;
+          value={currentResponseItemValue.valueInteger.toString()}
+          onChangeText={() => {
+            updateState(currentResponseItemValue.valueInteger);
           }}
         />
       );
