@@ -43,13 +43,12 @@ export default function QuestionnaireScreen() {
     }
   }
 
-  // define QuestionnaireSection
+  // Define current questionnaire section
   const currentQuestionnaireSection = [questionnaireSections[page]];
   const currentQuestionnaireSectionLinkId =
     currentQuestionnaireSection[0].linkId;
 
-  // define QuestionnaireResponseStateSections
-
+  // Define questionnaire response state sections
   const questionnaireResponseStateSections =
     questionnaireResponseState.item.map((qRSitem) => ({
       title: qRSitem.text, // Use 'text' as the title for the section
@@ -63,8 +62,22 @@ export default function QuestionnaireScreen() {
 
   console.log(
     "currentQuestionnaireResponseStateSection",
-    currentQuestionnaireResponseStateSection
+    JSON.stringify(currentQuestionnaireResponseStateSection[0].data)
   );
+
+  function updateState(newValue, linkId) {
+    setQuestionnaireResponseState((prevState) => {
+      const updatedState = { ...prevState };
+      const section = updatedState.item.find(
+        (qRSitem) => qRSitem.linkId === currentQuestionnaireSectionLinkId
+      );
+      const item = section.item.find((qRitem) => qRitem.linkId === linkId);
+      if (item) {
+        item.answer[0].valueInteger = newValue;
+      }
+      return updatedState;
+    });
+  }
 
   return (
     <SafeAreaView style={commonStyle.body}>
@@ -78,6 +91,7 @@ export default function QuestionnaireScreen() {
               qItem: item,
               currentQuestionnaireSectionLinkId,
               currentQuestionnaireResponseStateSection,
+              updateState,
             })
           }
           renderSectionHeader={renderSectionHeader}
