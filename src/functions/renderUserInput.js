@@ -5,12 +5,18 @@ import { questionnaireItemStyle } from "../styles/commonStyle";
 export default function renderUserInput({
   qItem,
   currentQuestionnaireResponseStateSection,
+  setQuestionnaireResponseState,
 }) {
-  const responseItem = currentQuestionnaireResponseStateSection[0].data.find(
-    (qRitem) => qRitem.linkId === qItem.linkId
-  );
+  const currentResponseValue =
+    currentQuestionnaireResponseStateSection[0].data.find(
+      (qRitem) => qRitem.linkId === qItem.linkId
+    );
 
-  const updateValue = responseItem.answer[0];
+  console.log("currentResponseValue", currentResponseValue);
+  console.log(
+    "currentQuestionnaireResponseStateSection",
+    currentQuestionnaireResponseStateSection
+  );
 
   switch (qItem.type) {
     case "integer":
@@ -20,12 +26,9 @@ export default function renderUserInput({
           keyboardType="numeric"
           placeholder="Enter a number"
           maxLength={qItem.maxLength}
-          value={updateValue.valueInteger}
+          value={currentResponseValue.valueInteger}
           onChangeText={(text) => {
-            responseItem.answer[0].valueInteger = text;
-            console.log(
-              JSON.stringify(currentQuestionnaireResponseStateSection)
-            );
+            currentResponseValue.valueInteger = text;
           }}
         />
       );
