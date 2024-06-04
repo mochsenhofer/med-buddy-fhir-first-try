@@ -74,7 +74,6 @@ export default function QuestionnaireScreen() {
               qItem: item,
               currentQuestionnaireSectionLinkId,
               currentQuestionnaireResponseStateSection,
-              setQuestionnaireResponseState,
             })
           }
           renderSectionHeader={renderSectionHeader}
