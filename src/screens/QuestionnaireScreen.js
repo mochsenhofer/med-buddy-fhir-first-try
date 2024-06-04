@@ -18,7 +18,6 @@ export default function QuestionnaireScreen() {
   const [questionnaireResponseState, setQuestionnaireResponseState] = useState(
     QuestionnaireResponse
   );
-  console.log(questionnaireResponseState.item);
   const navigation = useNavigation();
   const [page, setPage] = useState(0);
   const totalNumberOfPages = questionnaireSections.length - 1;
@@ -61,6 +60,11 @@ export default function QuestionnaireScreen() {
   const currentQuestionnaireResponseStateSection = [
     questionnaireResponseStateSections[page],
   ];
+
+  console.log(
+    "currentQuestionnaireResponseStateSection",
+    currentQuestionnaireResponseStateSection
+  );
 
   return (
     <SafeAreaView style={commonStyle.body}>
