@@ -68,15 +68,22 @@ export default function QuestionnaireScreen() {
         (qRSitem) => qRSitem.linkId === currentQuestionnaireSectionLinkId
       );
       const item = section.item.find((qRitem) => qRitem.linkId === linkId);
-      if (item.type === "integer") {
-        item.answer[0].valueInteger = newValue;
+      if (item) {
+        switch (type) {
+          case "integer":
+            item.answer[0].valueInteger = newValue;
+            break;
+          case "string":
+            item.answer[0].valueString = newValue;
+            break;
+          case "choice":
+            item.answer[0].valueCoding = newValue;
+            break;
+          default:
+            break;
+        }
       }
-      if (item.type === "string") {
-        item.answer[0].valueString = newValue;
-      }
-      if (item.type === "choice") {
-        item.answer[0].valueCoding = newValue;
-      }
+
       return updatedState;
     });
   }
