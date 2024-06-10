@@ -28,7 +28,7 @@ export default function QuestionnaireScreen() {
       setPage(page + 1);
     } else {
       // Navigate to the next screen
-      navigation.navigate({ overviewScreenRoute });
+      navigation.navigate(overviewScreenRoute);
     }
   }
 
@@ -56,21 +56,12 @@ export default function QuestionnaireScreen() {
       data: qRSitem.item ? qRSitem.item : [], // Pass the full item objects if they exist
     }));
 
-  // const currentQuestionnaireResponseStateSection = [
-  //   questionnaireResponseStateSections[page],
-  // ];
-
   const currentQuestionnaireResponseStateSection =
     questionnaireResponseStateSections.filter(
       (qRSsection) => qRSsection.linkId === currentQuestionnaireSectionLinkId
     );
 
-  console.log(
-    "currentQuestionnaireResponseStateSection",
-    JSON.stringify(currentQuestionnaireResponseStateSection[0].data)
-  );
-
-  function updateState(newValue, linkId) {
+  function updateState(newValue, linkId, type) {
     setQuestionnaireResponseState((prevState) => {
       const updatedState = { ...prevState };
       const section = updatedState.item.find(
