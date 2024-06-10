@@ -28,6 +28,7 @@ export default function QuestionnaireScreen() {
       setPage(page + 1);
     } else {
       // Navigate to the next screen
+      console.log(JSON.stringify(questionnaireResponseState, null, 2));
       navigation.navigate(overviewScreenRoute);
     }
   }
