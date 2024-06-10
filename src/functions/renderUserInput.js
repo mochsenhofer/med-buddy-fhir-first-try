@@ -29,7 +29,7 @@ export default function renderUserInput({
           }
           onChangeText={(text) => {
             const newValue = text;
-            updateState(newValue, currentResponseItem.linkId);
+            updateState(newValue, currentResponseItem.linkId, qItem.type);
           }}
         />
       );
@@ -41,7 +41,7 @@ export default function renderUserInput({
           value={currentResponseItemValue.valueString}
           onChangeText={(text) => {
             const newValue = text;
-            updateState(newValue, currentResponseItem.linkId);
+            updateState(newValue, currentResponseItem.linkId, qItem.type);
           }}
         />
       );
