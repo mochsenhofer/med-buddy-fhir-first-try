@@ -1,6 +1,7 @@
 import React from "react";
 import { Text, TextInput } from "react-native";
 import { questionnaireItemStyle } from "../styles/commonStyle";
+import RadioButtons from "../components/RadioButtons";
 
 export default function renderUserInput({
   qItem,
@@ -46,7 +47,14 @@ export default function renderUserInput({
         />
       );
     case "choice":
-      return <Text>Choice</Text>;
+      return (
+        <RadioButtons
+          options={qItem.answerOption}
+          qItem={qItem}
+          qrItem={currentResponseItem}
+          updateState={updateState}
+        />
+      );
     default:
       return null; // Handle other types if necessary
   }
