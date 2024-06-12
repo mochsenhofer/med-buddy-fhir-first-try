@@ -32,6 +32,9 @@ export default function RadioButtons({ options, qItem, qrItem, updateState }) {
             const newValue = option.valueCoding.code;
             setSelectedValue(newValue);
             updateState(newValue, qrItem.linkId, qItem.type);
+            console.log(
+              JSON.stringify(<RadioButton key={index + "," + qItem.linkId} />)
+            );
           }}
         />
       ))}
