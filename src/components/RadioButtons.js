@@ -1,42 +1,40 @@
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { Text, View, TouchableOpacity } from "react-native";
 import { questionnaireItemStyle } from "../styles/commonStyle";
 
-function RadioButton({ selected, text, onPress }) { // Changed parameter to onPress for clarity
-    return (
-        <TouchableOpacity style={questionnaireItemStyle.radioButton} onPress={onPress}>
-            <Text style={questionnaireItemStyle.radioButtonText}>{text}</Text>
-        </TouchableOpacity>
-    );
+function RadioButton({ label, onPress, isSelected }) {
+  return (
+    <TouchableOpacity
+      style={[
+        questionnaireItemStyle.radioButton,
+        isSelected && questionnaireItemStyle.radioButtonSelected,
+      ]}
+      onPress={onPress}
+    >
+      <Text style={questionnaireItemStyle.radioButtonText}>{label}</Text>
+    </TouchableOpacity>
+  );
 }
 
-export default function RadioButtons({ options, onSelect }) {
-    const [selectedAnswer, setSelectedAnswer] = useState(null);
+export default function RadioButtons({ options, qItem, qrItem, updateState }) {
+  const [selectedValue, setSelectedValue] = useState(
+    qrItem.answer[0].valueCoding.code
+  );
 
-    function radioButtonPressed(option) { // Now accepts option as an argument
-        setSelectedAnswer(option);
-        onSelect(option); // Pass the option to the onSelect prop
-    }
-
-    return (
-        <View style={styles.radioButtonView}>
-            {options.map((option, index) => (
-                <RadioButton
-                    key={index}
-                    selected={selectedAnswer === option}
-                    text={option.valueCoding.code}
-                    onPress={() => radioButtonPressed(option.valueCoding.code)} // Correctly invoking the function on press
-                />
-            ))}
-        </View>
-    );
+  return (
+    <View style={questionnaireItemStyle.radioButtonView} key={qItem.linkId}>
+      {options.map((option, index) => (
+        <RadioButton
+          key={index + "," + qItem.linkId}
+          label={option.valueCoding.code}
+          isSelected={selectedValue === option.valueCoding.code}
+          onPress={() => {
+            const newValue = option.valueCoding.code;
+            setSelectedValue(newValue);
+            updateState(newValue, qrItem.linkId, qItem.type);
+          }}
+        />
+      ))}
+    </View>
+  );
 }
-
-const styles = StyleSheet.create({
-    radioButtonView: {
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-between",
-        width: "80%",
-    },
-});
