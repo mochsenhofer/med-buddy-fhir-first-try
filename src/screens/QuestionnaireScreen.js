@@ -78,7 +78,7 @@ export default function QuestionnaireScreen() {
             item.answer[0].valueString = newValue;
             break;
           case "choice":
-            item.answer[0].valueCoding = newValue;
+            item.answer[0].valueCoding.code = newValue;
             break;
           default:
             break;
