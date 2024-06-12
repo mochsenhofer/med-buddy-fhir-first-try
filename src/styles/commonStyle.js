@@ -102,6 +102,15 @@ export const questionnaireItemStyle = StyleSheet.create({
     marginHorizontal: questionnaireItemHorizontalMargin,
     paddingHorizontal: 20,
   },
+  radioButtonView: {
+    height: questionnaireItemHeight,
+    width: "90%",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    borderRadius: questionnaireItemBorderRadius,
+    marginHorizontal: questionnaireItemHorizontalMargin,
+  },
   questionText: {
     fontSize: 20,
     marginBottom: 5,
@@ -110,7 +119,6 @@ export const questionnaireItemStyle = StyleSheet.create({
   radioButton: {
     backgroundColor: "transparent",
     width: "33%",
-    marginHorizontal: questionnaireItemHorizontalMargin,
     height: questionnaireItemHeight,
     borderWidth: questionnaireItemBorderWidth,
     borderColor: mainBlue,
@@ -121,5 +129,8 @@ export const questionnaireItemStyle = StyleSheet.create({
   radioButtonText: {
     color: mainBlue,
     fontSize: 20,
+  },
+  radioButtonSelected: {
+    backgroundColor: medBuddyBlue,
   },
 });
