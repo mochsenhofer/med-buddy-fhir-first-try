@@ -1,38 +1,42 @@
 export const Patient = {
-        resourceType: "Patient",
-        id: "patient-01",
-        gender: "male",
-        birthDate: "1905-08-23",
-        identifier : [{
-            use : "usual",
-            type : {
-              coding : [{
-                system : "http://terminology.hl7.org/CodeSystem/v2-0203",
-                code : "SS"
-              }]
-            },
-            system : "urn:oid:1.2.36.146.595.217.0.1",
-            value : "12345" //Sozialversicherungsnummer
-          }],
-        name: [
-            {
-                family: "Turbo",
-                given: ["Tom"],
-            },
+  resourceType: "Patient",
+  id: "patient-01",
+  gender: "male",
+  birthDate: "2000-20-20",
+  identifier: [
+    {
+      use: "usual",
+      type: {
+        coding: [
+          {
+            system: "http://terminology.hl7.org/CodeSystem/v2-0203",
+            code: "SS",
+          },
         ],
-        communication: [
-            {
-                language: {
-                    coding: [
-                        {
-                            system: "urn:ietf:bcp:47",
-                            code: "tr",
-                        },
-                    ],
-                },
-            },
+      },
+      system: "urn:oid:1.2.36.146.595.217.0.1",
+      value: "1234567890", //Sozialversicherungsnummer
+    },
+  ],
+  name: [
+    {
+      family: "Thomas",
+      given: ["Brezina"],
+    },
+  ],
+  communication: [
+    {
+      language: {
+        coding: [
+          {
+            system: "urn:ietf:bcp:47",
+            code: "tr",
+          },
         ],
-    };
+      },
+    },
+  ],
+};
 
 /*
 
