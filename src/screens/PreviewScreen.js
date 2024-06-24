@@ -7,7 +7,6 @@ import {
   videoScreenRoute,
 } from "../navigation/Navigation";
 import { useSelector } from "react-redux";
-import { Patient } from "../fhir-resources/Patient";
 
 export default function PreviewScreen() {
   const registeredPatient = useSelector((state) => state.patientData.patient);
