@@ -52,7 +52,16 @@ export default (state = initialPatientState, { type, payload }) => {
           ],
         },
       };
+    case "CHANGE_PATIENTS_GENDER":
+      return {
+        ...state,
+        patient: {
+          ...state.patient,
+          gender: payload,
+        },
+      };
+    default:
+      break;
   }
-
   return state;
 };
