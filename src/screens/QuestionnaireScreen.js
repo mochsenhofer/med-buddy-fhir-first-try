@@ -1,26 +1,29 @@
-import { useNavigation } from "@react-navigation/native";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import {
-  KeyboardAvoidingView,
-  SafeAreaView,
-  SectionList,
   View,
+  SafeAreaView,
+  Text,
+  SectionList,
+  KeyboardAvoidingView,
+  TextInput,
 } from "react-native";
+import { questionnaireItemStyle, commonStyle } from "../styles/commonStyle";
 import { BottomNavigationView } from "../components/BottomNavigationView";
-import { questionnaireSections } from "../fhir-resources/Questionnaire";
-import { QuestionnaireResponse } from "../fhir-resources/QuestionnaireResponse";
-import renderQuestionnaireItem from "../functions/renderQuestionnaireItem";
-import renderSectionHeader from "../functions/renderSectionHeader";
 import { overviewScreenRoute } from "../navigation/Navigation";
-import { commonStyle } from "../styles/commonStyle";
+import { questionnaireSections } from "../fhir-resources/Questionnaire";
+import { useNavigation } from "@react-navigation/native";
+import { useSelector, useDispatch } from "react-redux";
 
 export default function QuestionnaireScreen() {
-  const [questionnaireResponseState, setQuestionnaireResponseState] = useState(
-    QuestionnaireResponse
-  );
   const navigation = useNavigation();
   const [page, setPage] = useState(0);
+  const currentQuestionnaireSection = [questionnaireSections[page]];
   const totalNumberOfPages = questionnaireSections.length - 1;
+  const currentQuestionnaireResponseState = useSelector(
+    (state) => state.questionnaireResponseData.questionnaireResponse
+  );
+  const dispatch = useDispatch();
+  console.log(JSON.stringify(currentQuestionnaireResponseState.item[0]));
 
   function handleNextButtonPress() {
     // Check if it's the last page before navigating
@@ -28,7 +31,6 @@ export default function QuestionnaireScreen() {
       setPage(page + 1);
     } else {
       // Navigate to the next screen
-      console.log(JSON.stringify(questionnaireResponseState, null, 2));
       navigation.navigate(overviewScreenRoute);
     }
   }
@@ -44,67 +46,55 @@ export default function QuestionnaireScreen() {
     }
   }
 
-  // Define current questionnaire section
-  const currentQuestionnaireSection = [questionnaireSections[page]];
-  const currentQuestionnaireSectionLinkId =
-    currentQuestionnaireSection[0].linkId;
-
-  // Define questionnaire response state sections
-  const questionnaireResponseStateSections =
-    questionnaireResponseState.item.map((qRSitem) => ({
-      title: qRSitem.text, // Use 'text' as the title for the section
-      linkId: qRSitem.linkId, // Use 'linkId' as the key for the section
-      data: qRSitem.item ? qRSitem.item : [], // Pass the full item objects if they exist
-    }));
-
-  const currentQuestionnaireResponseStateSection =
-    questionnaireResponseStateSections.filter(
-      (qRSsection) => qRSsection.linkId === currentQuestionnaireSectionLinkId
-    );
-
-  function updateState(newValue, linkId, type) {
-    setQuestionnaireResponseState((prevState) => {
-      const updatedState = { ...prevState };
-      const section = updatedState.item.find(
-        (qRSitem) => qRSitem.linkId === currentQuestionnaireSectionLinkId
-      );
-      const item = section.item.find((qRitem) => qRitem.linkId === linkId);
-      if (item) {
-        switch (type) {
-          case "integer":
-            item.answer[0].valueInteger = newValue;
-            break;
-          case "string":
-            item.answer[0].valueString = newValue;
-            break;
-          case "choice":
-            item.answer[0].valueCoding.code = newValue;
-            break;
-          default:
-            break;
-        }
-      }
-
-      return updatedState;
-    });
+  function renderUserInput(item) {
+    switch (item.type) {
+      case "integer":
+        return (
+          <TextInput
+            keyboardType="numeric"
+            style={questionnaireItemStyle.textInput}
+            maxLength={item.maxLength}
+            key={item.linkId}
+            onChangeText={(text) =>
+              dispatch({
+                type: "CHANGE_QUESTIONNAIRE_RESPONSE_ANSWER_VALUE_INTEGER",
+                payload: text,
+              })
+            }
+          />
+        );
+      case "string":
+        return <Text>TextInput</Text>;
+      case "choice":
+        return <Text>RadioButtons</Text>;
+      default:
+        return null;
+    }
   }
-
+  function renderItem({ item }) {
+    return (
+      <View>
+        <Text>
+          {item.text} + {item.linkId}
+        </Text>
+        {renderUserInput(item)}
+      </View>
+    );
+  }
+  function renderSectionHeader({ section }) {
+    return <Text>{section.title}</Text>;
+  }
   return (
     <SafeAreaView style={commonStyle.body}>
-      <View style={commonStyle.header}></View>
+      <View style={commonStyle.header}>
+        <Text>Questionnaire</Text>
+      </View>
       <KeyboardAvoidingView behavior="padding" style={commonStyle.section}>
         <SectionList
           sections={currentQuestionnaireSection}
-          keyExtractor={(qItem, index) => qItem + index}
-          renderItem={({ item }) =>
-            renderQuestionnaireItem({
-              qItem: item,
-              currentQuestionnaireSectionLinkId,
-              currentQuestionnaireResponseStateSection,
-              updateState,
-            })
-          }
+          renderItem={renderItem}
           renderSectionHeader={renderSectionHeader}
+          keyExtractor={(item) => item.linkId}
           stickySectionHeadersEnabled={false}
         />
       </KeyboardAvoidingView>
