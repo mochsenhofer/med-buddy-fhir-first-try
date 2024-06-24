@@ -4,10 +4,13 @@ import { commonStyle, questionnaireItemStyle } from "../styles/commonStyle";
 import { BottomNavigationView } from "../components/BottomNavigationView";
 import { previewScreenRoute } from "../navigation/Navigation";
 import { useSelector, useDispatch } from "react-redux";
+import RadioButtons from "../components/RadioButtons";
 
 export default function RegistrationScreen() {
   const registeredPatient = useSelector((state) => state.patientData.patient);
   const dispatch = useDispatch();
+
+  const genderArray = [{ text: "male" }, { text: "female" }, { text: "other" }];
 
   // console.log(JSON.stringify(Patient));
   return (
@@ -49,6 +52,13 @@ export default function RegistrationScreen() {
               type: "CHANGE_PATIENTS_INSURANCE_NUMBER",
               payload: text,
             });
+          }}
+        />
+        <RadioButtons
+          options={genderArray}
+          selected={registeredPatient.gender}
+          onSelect={(text) => {
+            dispatch({ type: "CHANGE_PATIENTS_GENDER", payload: text });
           }}
         />
       </View>
