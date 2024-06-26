@@ -5,14 +5,16 @@ import {
   SectionList,
   Text,
   View,
+  TextInput,
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { BottomNavigationView } from "../components/BottomNavigationView";
-import { renderQuestionnaireItem } from "../functions/renderQuestionnaireItem";
 import renderSectionHeader from "../functions/renderSectionHeader";
 import { overviewScreenRoute } from "../navigation/Navigation";
 import { commonStyle } from "../styles/commonStyle";
-import { updateSize } from "../store/questionnaireResponseReducer";
+import { updateProperty } from "../store/questionnaireResponseReducer";
+import { questionnaireSections } from "../fhir-resources/Questionnaire";
+import { questionnaireItemStyle } from "../styles/commonStyle";
 
 export default function QuestionnaireScreen() {
   const questionnaireResponseInProgress = useSelector(
@@ -20,33 +22,19 @@ export default function QuestionnaireScreen() {
   );
   const dispatch = useDispatch();
 
-  const questionnaireRefs = {
-    size: useRef(null),
-    weight: useRef(null),
-  };
+  function renderQuestionnaireItem({ item }) {
+    return (
+      <View style={questionnaireItemStyle.questionContainer}>
+        <Text style={questionnaireItemStyle.questionText}>{item.text}</Text>
+      </View>
+    );
+  }
 
-  const questionnaireItems = [
-    {
-      title:
-        "Please answer the following questions to the best of your knowledge.",
-      data: [
-        {
-          heading: "Size",
-          key: "size",
-          value: questionnaireResponseInProgress.size,
-          placeholder: "Size",
-          onChange: (text) => {
-            dispatch(updateSize(text));
-          },
-          autoFocus: true,
-          ref: questionnaireRefs.size,
-          type: "integer",
-          maxLength: 3,
-        },
-      ],
-    },
-  ];
+  // onChange: (text) => {
+  //   dispatch(updateProperty({ linkId: "1.1", value: parseInt(text) }));
+  // },
 
+  console.log(JSON.stringify(questionnaireSections));
   return (
     <SafeAreaView style={commonStyle.body}>
       <View style={commonStyle.header}>
@@ -54,8 +42,8 @@ export default function QuestionnaireScreen() {
       </View>
       <KeyboardAvoidingView style={commonStyle.section} behavior="padding">
         <SectionList
-          sections={questionnaireItems}
-          keyExtractor={(item) => item.key}
+          sections={questionnaireSections}
+          keyExtractor={(item) => item.linkId}
           renderSectionHeader={renderSectionHeader}
           renderItem={renderQuestionnaireItem}
           stickySectionHeadersEnabled={false}
