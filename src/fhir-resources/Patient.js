@@ -15,13 +15,13 @@ export const Patient = {
         ],
       },
       system: "urn:oid:1.2.36.146.595.217.0.1",
-      value: "12345", //Sozialversicherungsnummer
+      value: "", //Sozialversicherungsnummer
     },
   ],
   name: [
     {
-      family: "Schick",
-      given: ["Thorsten"],
+      family: "",
+      given: [""],
     },
   ],
   communication: [
