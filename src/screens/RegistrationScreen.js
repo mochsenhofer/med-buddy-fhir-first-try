@@ -105,7 +105,6 @@ export default function RegistrationScreen() {
       </View>
       <KeyboardAvoidingView style={commonStyle.section} behavior="padding">
         <SectionList
-          style={{ width: "100%" }}
           sections={registrationFormFields}
           keyExtractor={(item) => item.key}
           renderSectionHeader={renderSectionHeader}
