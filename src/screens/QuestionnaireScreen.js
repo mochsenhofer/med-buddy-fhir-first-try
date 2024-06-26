@@ -1,119 +1,68 @@
-import { useNavigation } from "@react-navigation/native";
-import React, { useState } from "react";
+import React, { useRef } from "react";
 import {
   KeyboardAvoidingView,
   SafeAreaView,
   SectionList,
+  Text,
   View,
 } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
 import { BottomNavigationView } from "../components/BottomNavigationView";
-import { questionnaireSections } from "../fhir-resources/Questionnaire";
-import { QuestionnaireResponse } from "../fhir-resources/QuestionnaireResponse";
-import renderQuestionnaireItem from "../functions/renderQuestionnaireItem";
+import { renderQuestionnaireItem } from "../functions/renderQuestionnaireItem";
 import renderSectionHeader from "../functions/renderSectionHeader";
 import { overviewScreenRoute } from "../navigation/Navigation";
 import { commonStyle } from "../styles/commonStyle";
+import { updateSize } from "../store/questionnaireResponseReducer";
 
 export default function QuestionnaireScreen() {
-  const [questionnaireResponseState, setQuestionnaireResponseState] = useState(
-    QuestionnaireResponse
+  const questionnaireResponseInProgress = useSelector(
+    (state) => state.questionnaireResponse
   );
-  const navigation = useNavigation();
-  const [page, setPage] = useState(0);
-  const totalNumberOfPages = questionnaireSections.length - 1;
+  const dispatch = useDispatch();
 
-  function handleNextButtonPress() {
-    // Check if it's the last page before navigating
-    if (page < totalNumberOfPages) {
-      setPage(page + 1);
-    } else {
-      // Navigate to the next screen
-      console.log(JSON.stringify(questionnaireResponseState, null, 2));
-      navigation.navigate(overviewScreenRoute);
-    }
-  }
+  const questionnaireRefs = {
+    size: useRef(null),
+    weight: useRef(null),
+  };
 
-  function handleBackButtonPress() {
-    // Check if you are on the first page
-    if (page > 0) {
-      // If not, go back one page
-      setPage(page - 1);
-    } else {
-      // If on the first page, go back in navigation
-      navigation.goBack();
-    }
-  }
-
-  // Define current questionnaire section
-  const currentQuestionnaireSection = [questionnaireSections[page]];
-  const currentQuestionnaireSectionLinkId =
-    currentQuestionnaireSection[0].linkId;
-
-  // Define questionnaire response state sections
-  const questionnaireResponseStateSections =
-    questionnaireResponseState.item.map((qRSitem) => ({
-      title: qRSitem.text, // Use 'text' as the title for the section
-      linkId: qRSitem.linkId, // Use 'linkId' as the key for the section
-      data: qRSitem.item ? qRSitem.item : [], // Pass the full item objects if they exist
-    }));
-
-  const currentQuestionnaireResponseStateSection =
-    questionnaireResponseStateSections.filter(
-      (qRSsection) => qRSsection.linkId === currentQuestionnaireSectionLinkId
-    );
-
-  function updateState(newValue, linkId, type) {
-    setQuestionnaireResponseState((prevState) => {
-      const updatedState = { ...prevState };
-      const section = updatedState.item.find(
-        (qRSitem) => qRSitem.linkId === currentQuestionnaireSectionLinkId
-      );
-      const item = section.item.find((qRitem) => qRitem.linkId === linkId);
-      if (item) {
-        switch (type) {
-          case "integer":
-            item.answer[0].valueInteger = newValue;
-            break;
-          case "string":
-            item.answer[0].valueString = newValue;
-            break;
-          case "choice":
-            item.answer[0].valueCoding.code = newValue;
-            break;
-          default:
-            break;
-        }
-      }
-
-      return updatedState;
-    });
-  }
+  const questionnaireItems = [
+    {
+      title:
+        "Please answer the following questions to the best of your knowledge.",
+      data: [
+        {
+          heading: "Size",
+          key: "size",
+          value: questionnaireResponseInProgress.size,
+          placeholder: "Size",
+          onChange: (text) => {
+            dispatch(updateSize(text));
+          },
+          autoFocus: true,
+          ref: questionnaireRefs.size,
+          type: "integer",
+          maxLength: 3,
+        },
+      ],
+    },
+  ];
 
   return (
     <SafeAreaView style={commonStyle.body}>
-      <View style={commonStyle.header}></View>
-      <KeyboardAvoidingView behavior="padding" style={commonStyle.section}>
+      <View style={commonStyle.header}>
+        <Text>Questionnaire</Text>
+      </View>
+      <KeyboardAvoidingView style={commonStyle.section} behavior="padding">
         <SectionList
-          sections={currentQuestionnaireSection}
-          keyExtractor={(qItem, index) => qItem + index}
-          renderItem={({ item }) =>
-            renderQuestionnaireItem({
-              qItem: item,
-              currentQuestionnaireSectionLinkId,
-              currentQuestionnaireResponseStateSection,
-              updateState,
-            })
-          }
+          sections={questionnaireItems}
+          keyExtractor={(item) => item.key}
           renderSectionHeader={renderSectionHeader}
+          renderItem={renderQuestionnaireItem}
           stickySectionHeadersEnabled={false}
         />
       </KeyboardAvoidingView>
       <View style={commonStyle.footer}>
-        <BottomNavigationView
-          primaryButtonPressed={handleNextButtonPress}
-          secondaryButtonPressed={handleBackButtonPress}
-          page={`${page + 1}`}
-        />
+        <BottomNavigationView navigateTo={overviewScreenRoute} />
       </View>
     </SafeAreaView>
   );
