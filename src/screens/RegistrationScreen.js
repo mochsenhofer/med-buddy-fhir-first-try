@@ -41,6 +41,7 @@ export default function RegistrationScreen() {
       autoFocus: true,
       ref: registrationRefs.givenName,
       onSubmitEditing: () => registrationRefs.familyName.current.focus(),
+      type: "string",
     },
     {
       heading: "Family Name",
@@ -50,6 +51,7 @@ export default function RegistrationScreen() {
       onChange: (text) => dispatch(updateFamilyName(text)),
       ref: registrationRefs.familyName,
       onSubmitEditing: () => registrationRefs.insuranceNumber.current.focus(),
+      type: "string",
     },
     {
       heading: "Insurance Number",
@@ -60,6 +62,7 @@ export default function RegistrationScreen() {
       ref: registrationRefs.insuranceNumber,
       onSubmitEditing: () => registrationRefs.birthDate.current.focus(),
       maxLength: 10,
+      type: "integer",
     },
     {
       heading: "Date of Birth",
@@ -69,6 +72,7 @@ export default function RegistrationScreen() {
       onChange: (text) => dispatch(updateBirthDate(text)),
       ref: registrationRefs.birthDate,
       onSubmitEditing: () => registrationRefs.gender.current.focus(),
+      type: "date",
     },
     {
       heading: "Gender",
@@ -77,15 +81,43 @@ export default function RegistrationScreen() {
       placeholder: "Gender",
       onChange: (text) => dispatch(updateGender(text)),
       ref: registrationRefs.gender,
+      options: ["male", "female", "other"],
       onSubmitEditing: () => {}, // No next input, maybe submit form or blur
+      type: "choice",
     },
   ];
+
+  function renderUserInput(item) {
+    switch (item.type) {
+      case "string":
+      case "integer":
+        return (
+          <TextInput
+            style={questionnaireItemStyle.textInput}
+            onChangeText={item.onChange}
+            value={item.value}
+            placeholder={item.placeholder}
+            autoFocus={item.autoFocus}
+            ref={item.ref}
+            onSubmitEditing={item.onSubmitEditing}
+            maxLength={item.maxLength}
+            keyboardType={item.type === "integer" ? "numeric" : "default"}
+          />
+        );
+      case "date":
+        return <Text>Datepicker placeholder</Text>;
+      case "choice":
+        return <Text>RadioButtons placeholder</Text>;
+      default:
+        return null;
+    }
+  }
 
   return (
     <SafeAreaView style={commonStyle.body}>
       <View style={commonStyle.header}>
         <Text>
-          Registration + {registeredPatient.name[0].given[0]} +{" "}
+          Registration: {registeredPatient.name[0].given[0]}{" "}
           {registeredPatient.name[0].family}
         </Text>
       </View>
@@ -99,16 +131,7 @@ export default function RegistrationScreen() {
               <Text style={questionnaireItemStyle.questionText}>
                 {item.heading}
               </Text>
-              <TextInput
-                style={questionnaireItemStyle.textInput}
-                onChangeText={item.onChange}
-                value={item.value}
-                placeholder={item.placeholder}
-                autoFocus={item.autoFocus}
-                ref={item.ref}
-                onSubmitEditing={item.onSubmitEditing}
-                maxLength={item.maxLength}
-              />
+              {renderUserInput(item)}
             </>
           )}
         />
