@@ -1,24 +1,11 @@
 import React from "react";
 import { Text, View } from "react-native";
-import { commonStyle, questionnaireItemStyle } from "../styles/commonStyle";
-import renderUserInput from "./renderUserInput";
+import { questionnaireItemStyle } from "../styles/commonStyle";
+import { renderUserInput } from "./renderUserInput";
 
-// Define renderItem function outside of the component's return statement
-export default function renderQuestionnaireItem({
-  qItem,
-  currentQuestionnaireResponseStateSection,
-  setQuestionnaireResponseState,
-  updateState,
-}) {
-  return (
-    <View style={commonStyle.sectionContainer}>
-      <Text style={questionnaireItemStyle.questionText}>{qItem.text}</Text>
-      {renderUserInput({
-        qItem,
-        currentQuestionnaireResponseStateSection,
-        setQuestionnaireResponseState,
-        updateState,
-      })}
-    </View>
-  );
-}
+export const renderQuestionnaireItem = ({ item }) => (
+  <View style={questionnaireItemStyle.questionContainer}>
+    <Text style={questionnaireItemStyle.questionText}>{item.heading}</Text>
+    {renderUserInput(item)}
+  </View>
+);
