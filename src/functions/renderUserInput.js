@@ -1,61 +1,31 @@
 import React from "react";
-import { Text, TextInput } from "react-native";
+import { TextInput, Text } from "react-native";
 import { questionnaireItemStyle } from "../styles/commonStyle";
 import RadioButtons from "../components/RadioButtons";
 
-export default function renderUserInput({
-  qItem,
-  currentQuestionnaireResponseStateSection,
-  updateState,
-}) {
-  const currentResponseItem =
-    currentQuestionnaireResponseStateSection[0].data.find(
-      (qRitem) => qRitem.linkId === qItem.linkId
-    );
-
-  const currentResponseItemValue = currentResponseItem.answer[0];
-
-  switch (qItem.type) {
+export function renderUserInput(item) {
+  switch (item.type) {
+    case "string":
     case "integer":
       return (
         <TextInput
           style={questionnaireItemStyle.textInput}
-          keyboardType="numeric"
-          placeholder="Enter a number"
-          maxLength={qItem.maxLength}
-          value={
-            currentResponseItemValue.valueInteger !== undefined
-              ? currentResponseItemValue.valueInteger.toString()
-              : ""
-          }
-          onChangeText={(text) => {
-            const newValue = text;
-            updateState(newValue, currentResponseItem.linkId, qItem.type);
-          }}
+          onChangeText={item.onChange}
+          value={item.value}
+          placeholder={item.placeholder}
+          autoFocus={item.autoFocus}
+          ref={item.ref}
+          onSubmitEditing={item.onSubmitEditing}
+          maxLength={item.maxLength}
+          keyboardType={item.type === "integer" ? "numeric" : "default"}
+          autoComplete="off"
         />
       );
-    case "string":
-      return (
-        <TextInput
-          style={questionnaireItemStyle.textInput}
-          placeholder="Enter text"
-          value={currentResponseItemValue.valueString}
-          onChangeText={(text) => {
-            const newValue = text;
-            updateState(newValue, currentResponseItem.linkId, qItem.type);
-          }}
-        />
-      );
+    case "date":
+      return <Text>Datepicker placeholder</Text>;
     case "choice":
-      return (
-        <RadioButtons
-          options={qItem.answerOption}
-          qItem={qItem}
-          qrItem={currentResponseItem}
-          updateState={updateState}
-        />
-      );
+      return <RadioButtons options={item.options} onSelect={item.onChange} />;
     default:
-      return null; // Handle other types if necessary
+      return null;
   }
 }
