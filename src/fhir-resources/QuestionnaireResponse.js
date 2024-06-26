@@ -5,7 +5,7 @@ export const QuestionnaireResponse = {
   resourceType: "QuestionnaireResponse",
   status: "in-progress",
   id: "questionnaire-response-01",
-  contained: [Patient, Questionnaire],
+  contained: [Patient],
   questionnaire: {
     reference: `#${Questionnaire.id}`,
   },
