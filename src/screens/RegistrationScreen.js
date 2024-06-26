@@ -1,22 +1,23 @@
 import React, { useRef } from "react";
 import {
-  View,
-  SafeAreaView,
-  TextInput,
-  Text,
   KeyboardAvoidingView,
-  FlatList,
+  SafeAreaView,
+  SectionList,
+  Text,
+  View,
 } from "react-native";
-import { commonStyle, questionnaireItemStyle } from "../styles/commonStyle";
+import { useDispatch, useSelector } from "react-redux";
 import { BottomNavigationView } from "../components/BottomNavigationView";
+import { renderQuestionnaireItem } from "../functions/renderQuestionnaireItem";
+import renderSectionHeader from "../functions/renderSectionHeader";
 import { previewScreenRoute } from "../navigation/Navigation";
-import { useSelector, useDispatch } from "react-redux";
+import { commonStyle } from "../styles/commonStyle";
 import {
-  updateGivenName,
-  updateFamilyName,
-  updateInsuranceNumber,
   updateBirthDate,
+  updateFamilyName,
   updateGender,
+  updateGivenName,
+  updateInsuranceNumber,
 } from "./../store/patientReducer";
 
 export default function RegistrationScreen() {
@@ -33,106 +34,82 @@ export default function RegistrationScreen() {
 
   const registrationFormFields = [
     {
-      heading: "Given Name",
-      key: "givenName",
-      value: registeredPatient.name[0].given[0],
-      placeholder: "Given Name",
-      onChange: (text) => dispatch(updateGivenName(text)),
-      autoFocus: true,
-      ref: registrationRefs.givenName,
-      onSubmitEditing: () => registrationRefs.familyName.current.focus(),
-      type: "string",
-    },
-    {
-      heading: "Family Name",
-      key: "familyName",
-      value: registeredPatient.name[0].family,
-      placeholder: "Family Name",
-      onChange: (text) => dispatch(updateFamilyName(text)),
-      ref: registrationRefs.familyName,
-      onSubmitEditing: () => registrationRefs.insuranceNumber.current.focus(),
-      type: "string",
-    },
-    {
-      heading: "Insurance Number",
-      key: "insuranceNumber",
-      value: registeredPatient.identifier[0].value,
-      placeholder: "Insurance Number",
-      onChange: (text) => dispatch(updateInsuranceNumber(text)),
-      ref: registrationRefs.insuranceNumber,
-      maxLength: 10,
-      type: "integer",
-    },
-    {
-      heading: "Date of Birth",
-      key: "birthDate",
-      value: registeredPatient.birthDate,
-      placeholder: "Birth Date",
-      onChange: (text) => dispatch(updateBirthDate(text)),
-      ref: registrationRefs.birthDate,
-      onSubmitEditing: () => registrationRefs.gender.current.focus(),
-      type: "date",
-    },
-    {
-      heading: "Gender",
-      key: "gender",
-      value: registeredPatient.gender,
-      placeholder: "Gender",
-      onChange: (text) => dispatch(updateGender(text)),
-      ref: registrationRefs.gender,
-      options: ["male", "female", "other"],
-      onSubmitEditing: () => {}, // No next input, maybe submit form or blur
-      type: "choice",
+      title: "Personal Information",
+      data: [
+        {
+          heading: "Given Name",
+          key: "givenName",
+          value: registeredPatient.name[0].given[0],
+          placeholder: "Given Name",
+          onChange: (text) => dispatch(updateGivenName(text)),
+          autoFocus: true,
+          ref: registrationRefs.givenName,
+          onSubmitEditing: () => registrationRefs.familyName.current.focus(),
+          type: "string",
+        },
+        {
+          heading: "Family Name",
+          key: "familyName",
+          value: registeredPatient.name[0].family,
+          placeholder: "Family Name",
+          onChange: (text) => dispatch(updateFamilyName(text)),
+          ref: registrationRefs.familyName,
+          onSubmitEditing: () =>
+            registrationRefs.insuranceNumber.current.focus(),
+          type: "string",
+        },
+        {
+          heading: "Insurance Number",
+          key: "insuranceNumber",
+          value: registeredPatient.identifier[0].value,
+          placeholder: "Insurance Number",
+          onChange: (text) => dispatch(updateInsuranceNumber(text)),
+          ref: registrationRefs.insuranceNumber,
+          maxLength: 10,
+          type: "integer",
+        },
+        {
+          heading: "Date of Birth",
+          key: "birthDate",
+          value: registeredPatient.birthDate,
+          placeholder: "Birth Date",
+          onChange: (text) => dispatch(updateBirthDate(text)),
+          ref: registrationRefs.birthDate,
+          onSubmitEditing: () => registrationRefs.gender.current.focus(),
+          type: "date",
+        },
+        {
+          heading: "Gender",
+          key: "gender",
+          value: registeredPatient.gender,
+          placeholder: "Gender",
+          onChange: (text) => dispatch(updateGender(text)),
+          ref: registrationRefs.gender,
+          options: [
+            { display: "male", code: "male" },
+            { display: "female", code: "female" },
+            { display: "other", code: "other" },
+          ],
+          onSubmitEditing: () => {}, // No next input, maybe submit form or blur
+          type: "choice",
+        },
+      ],
     },
   ];
-
-  function renderUserInput(item) {
-    switch (item.type) {
-      case "string":
-      case "integer":
-        return (
-          <TextInput
-            style={questionnaireItemStyle.textInput}
-            onChangeText={item.onChange}
-            value={item.value}
-            placeholder={item.placeholder}
-            autoFocus={item.autoFocus}
-            ref={item.ref}
-            onSubmitEditing={item.onSubmitEditing}
-            maxLength={item.maxLength}
-            keyboardType={item.type === "integer" ? "numeric" : "default"}
-          />
-        );
-      case "date":
-        return <Text>Datepicker placeholder</Text>;
-      case "choice":
-        return <Text>RadioButtons placeholder</Text>;
-      default:
-        return null;
-    }
-  }
 
   return (
     <SafeAreaView style={commonStyle.body}>
       <View style={commonStyle.header}>
-        <Text>
-          Registration: {registeredPatient.name[0].given[0]}{" "}
-          {registeredPatient.name[0].family}
-        </Text>
+        <Text>Registration</Text>
       </View>
       <KeyboardAvoidingView style={commonStyle.section} behavior="padding">
-        <FlatList
+        <SectionList
           style={{ width: "100%" }}
-          data={registrationFormFields}
+          sections={registrationFormFields}
           keyExtractor={(item) => item.key}
-          renderItem={({ item }) => (
-            <>
-              <Text style={questionnaireItemStyle.questionText}>
-                {item.heading}
-              </Text>
-              {renderUserInput(item)}
-            </>
-          )}
+          renderSectionHeader={renderSectionHeader}
+          renderItem={renderQuestionnaireItem}
+          stickySectionHeadersEnabled={false}
         />
       </KeyboardAvoidingView>
       <View style={commonStyle.footer}>
