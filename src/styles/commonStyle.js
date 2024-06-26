@@ -125,6 +125,7 @@ export const questionnaireItemStyle = StyleSheet.create({
     borderRadius: questionnaireItemBorderRadius,
     alignItems: "center",
     justifyContent: "center",
+    paddingHorizontal: 20,
   },
   radioButtonText: {
     color: mainBlue,
@@ -136,5 +137,6 @@ export const questionnaireItemStyle = StyleSheet.create({
   },
   radioButtonSelectedText: {
     color: backgroundWhite,
+    fontSize: 25,
   },
 });
