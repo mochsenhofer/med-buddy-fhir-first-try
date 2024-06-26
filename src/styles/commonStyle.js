@@ -132,5 +132,9 @@ export const questionnaireItemStyle = StyleSheet.create({
   },
   radioButtonSelected: {
     backgroundColor: medBuddyBlue,
+    borderColor: medBuddyBlue,
+  },
+  radioButtonSelectedText: {
+    color: backgroundWhite,
   },
 });
