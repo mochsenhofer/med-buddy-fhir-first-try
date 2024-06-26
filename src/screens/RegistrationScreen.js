@@ -66,6 +66,7 @@ export default function RegistrationScreen() {
           onChange: (text) => dispatch(updateInsuranceNumber(text)),
           ref: registrationRefs.insuranceNumber,
           maxLength: 10,
+          onSubmitEditing: () => {},
           type: "integer",
         },
         {
