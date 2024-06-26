@@ -60,7 +60,6 @@ export default function RegistrationScreen() {
       placeholder: "Insurance Number",
       onChange: (text) => dispatch(updateInsuranceNumber(text)),
       ref: registrationRefs.insuranceNumber,
-      onSubmitEditing: () => registrationRefs.birthDate.current.focus(),
       maxLength: 10,
       type: "integer",
     },
