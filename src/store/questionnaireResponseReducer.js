@@ -49,7 +49,7 @@ export const questionnaireResponseReducer = createSlice({
       const findAndUpdateItem = (items) => {
         for (let item of items) {
           if (item.linkId === linkId && item.answer && item.answer[0]) {
-            item.answer[0].valueCoding = value;
+            item.answer[0].valueCoding.code = value;
             return true;
           }
           if (item.item && findAndUpdateItem(item.item)) {
