@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import { questionnaireItemStyle } from "../styles/commonStyle";
 
@@ -23,22 +23,26 @@ function RadioButton({ text, selected, onSelect }) {
   );
 }
 
-export default function RadioButtons({ options, onSelect }) {
-  const [selectedOption, setSelectedOption] = useState(null);
+export default function RadioButtons({ options, currentValue, onSelect }) {
+  const [selectedOption, setSelectedOption] = useState(currentValue);
 
-  const handleSelect = (option) => {
-    setSelectedOption(option);
-    onSelect(option);
+  useEffect(() => {
+    setSelectedOption(currentValue);
+  }, [currentValue]);
+
+  const handleSelect = (code) => {
+    setSelectedOption(code);
+    onSelect(code);
   };
 
   return (
     <View style={questionnaireItemStyle.radioButtonView}>
       {options.map((option) => (
         <RadioButton
-          key={option.display}
-          text={option.display}
-          selected={option.code === selectedOption}
-          onSelect={() => handleSelect(option.code)}
+          key={option.valueCoding.code}
+          text={option.valueCoding.display}
+          selected={option.valueCoding.code === selectedOption}
+          onSelect={() => handleSelect(option.valueCoding.code)}
         />
       ))}
     </View>
