@@ -22,6 +22,9 @@ export const patientReducer = createSlice({
     updateGender: (state, action) => {
       state.gender = action.payload;
     },
+    updateLanguage: (state, action) => {
+      state.communication[0].language.coding[0].code = action.payload;
+    },
   },
 });
 
@@ -32,6 +35,7 @@ export const {
   updateInsuranceNumber,
   updateBirthDate,
   updateGender,
+  updateLanguage,
 } = patientReducer.actions;
 
 export default patientReducer.reducer;
