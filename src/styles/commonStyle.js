@@ -20,7 +20,6 @@ export const commonStyle = StyleSheet.create({
     width: "75%",
     alignItems: "flex-start",
     justifyContent: "flex-start",
-    backgroundColor: "red",
   },
   footer: {
     flex: 0.75,
@@ -78,12 +77,18 @@ export const fontStyle = StyleSheet.create({
     textTransform: "uppercase",
   },
   h3: {
-    fontSize: 20,
+    fontSize: 18,
+    color: mainBlue,
     fontWeight: "bold",
+    marginBottom: 10,
+    marginTop: 5,
   },
   h4: {
     fontSize: 15,
     fontWeight: "bold",
+  },
+  p: {
+    fontSize: 18,
   },
 });
 
@@ -138,5 +143,15 @@ export const questionnaireItemStyle = StyleSheet.create({
   radioButtonSelectedText: {
     color: backgroundWhite,
     fontSize: 25,
+  },
+});
+
+export const overviewStyle = StyleSheet.create({
+  overviewContainer: {
+    alignItems: "flex-start",
+    justifyContent: "space-between",
+    flexDirection: "row",
+    marginHorizontal: 20,
+    marginVertical: 5,
   },
 });
