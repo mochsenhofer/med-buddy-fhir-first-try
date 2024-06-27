@@ -1,26 +1,25 @@
-import React, { useRef, useState, useEffect } from "react";
+import { useNavigation } from "@react-navigation/native";
+import React, { useState } from "react";
 import {
   KeyboardAvoidingView,
   SafeAreaView,
   SectionList,
   Text,
-  View,
   TextInput,
+  View,
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { BottomNavigationView } from "../components/BottomNavigationView";
+import RadioButtons from "../components/RadioButtons";
+import { questionnaireSections } from "../fhir-resources/Questionnaire";
 import renderSectionHeader from "../functions/renderSectionHeader";
 import { overviewScreenRoute } from "../navigation/Navigation";
-import { commonStyle } from "../styles/commonStyle";
 import {
+  updateValueCoding,
   updateValueInteger,
   updateValueString,
-  updateValueCoding,
 } from "../store/questionnaireResponseReducer";
-import { questionnaireSections } from "../fhir-resources/Questionnaire";
-import { questionnaireItemStyle } from "../styles/commonStyle";
-import RadioButtons from "../components/RadioButtons";
-import { useNavigation } from "@react-navigation/native";
+import { commonStyle, questionnaireItemStyle } from "../styles/commonStyle";
 
 export default function QuestionnaireScreen() {
   const [page, setPage] = useState(0);
@@ -101,6 +100,7 @@ export default function QuestionnaireScreen() {
           <TextInput
             style={questionnaireItemStyle.textInput}
             maxLength={item.maxLength}
+            placeholder={item.text}
             keyboardType="numeric"
             value={value}
             onChangeText={(text) => {
@@ -118,6 +118,7 @@ export default function QuestionnaireScreen() {
           <TextInput
             style={questionnaireItemStyle.textInput}
             keyboardType="default"
+            placeholder={item.text}
             value={value}
             onChangeText={(text) => {
               dispatch(updateValueString({ linkId: item.linkId, value: text }));
