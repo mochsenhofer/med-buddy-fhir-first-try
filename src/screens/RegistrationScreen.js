@@ -87,9 +87,11 @@ export default function RegistrationScreen() {
           onChange: (text) => dispatch(updateGender(text)),
           ref: registrationRefs.gender,
           options: [
-            { display: "male", code: "male" },
-            { display: "female", code: "female" },
-            { display: "other", code: "other" },
+            { valueCoding: { display: "male", code: "male" } },
+            {
+              valueCoding: { display: "female", code: "female" },
+            },
+            { valueCoding: { display: "other", code: "other" } },
           ],
           onSubmitEditing: () => {}, // No next input, maybe submit form or blur
           type: "choice",
