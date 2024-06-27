@@ -1,21 +1,36 @@
 import React from "react";
-import { View, SafeAreaView } from "react-native";
+import { View, Text, SafeAreaView, Alert } from "react-native";
 import { commonStyle } from "../styles/commonStyle";
 import { PrimaryButton } from "../components/BottomNavigationView";
-import { homeScreenRoute } from "../navigation/Navigation";
-
+import { DevSettings } from "react-native";
 
 export default function FaqScreen() {
-    return (
-        <SafeAreaView style={commonStyle.body}>
-            <View style={commonStyle.header}></View>
-            <View style={commonStyle.section}></View>
-            <View style={commonStyle.footer}>
-                <PrimaryButton 
-                    title="Finish"
-                    onPress={() => navigation.navigate(homeScreenRoute)}
-                />
-            </View>
-        </SafeAreaView>
-    );
+  function finishQuestionnaire() {
+    Alert.alert("Alert Title", "My Alert Msg", [
+      {
+        text: "Finish",
+        style: "destructive",
+        onPress: () => DevSettings.reload(),
+      },
+      {
+        text: "Cancel",
+        onPress: () => console.log("Cancel Pressed"),
+        style: "cancel",
+      },
+    ]);
+  }
+  return (
+    <SafeAreaView style={commonStyle.body}>
+      <View style={commonStyle.header}>
+        <Text style={commonStyle.title}>FAQ</Text>
+      </View>
+      <View style={commonStyle.section}></View>
+      <View style={commonStyle.footer}>
+        <PrimaryButton
+          title="Finish"
+          primaryButtonPressed={() => finishQuestionnaire()}
+        />
+      </View>
+    </SafeAreaView>
+  );
 }
