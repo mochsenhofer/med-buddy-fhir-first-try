@@ -20,12 +20,12 @@ export const QuestionnaireResponse = {
         {
           linkId: "1.1",
           text: "Size (cm)",
-          answer: [{ valueInteger: 180 }],
+          answer: [{ valueInteger: 0 }],
         },
         {
           linkId: "1.2",
           text: "Weight (kg)",
-          answer: [{ valueInteger: 79 }],
+          answer: [{ valueInteger: 0 }],
         },
         {
           linkId: "1.3",
