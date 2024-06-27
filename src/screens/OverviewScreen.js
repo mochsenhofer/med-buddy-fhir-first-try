@@ -5,10 +5,19 @@ import { BottomNavigationView } from "../components/BottomNavigationView";
 import { agreementScreenRoute } from "../navigation/Navigation";
 import { useSelector } from "react-redux";
 import { Questionnaire } from "../fhir-resources/Questionnaire";
+import useQuestionnaireData from "../components/QuestionnaireComponent";
 
 export default function OverviewScreen() {
   const updatedQuestionnaireResponse = useSelector(
     (state) => state.questionnaireResponse
+  );
+
+  const questionnaireSections = useQuestionnaireData().questionnaireSections;
+
+  console.log("questionnaireSections", JSON.stringify(questionnaireSections));
+  console.log(
+    "Questionnaire.item",
+    JSON.stringify(Questionnaire.item, null, 2)
   );
 
   const updatedQuestionnaireResponseSections =
@@ -42,7 +51,6 @@ export default function OverviewScreen() {
 
   function renderOverviewItem({ item }) {
     const questionnaireItem = getQuestionnaireItemByLinkId(item.linkId);
-    console.log("questionnaireItem", JSON.stringify(questionnaireItem));
 
     const renderAnswer = () => {
       switch (questionnaireItem.type) {
