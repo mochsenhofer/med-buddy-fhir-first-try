@@ -251,7 +251,7 @@ export const QuestionnaireResponse = {
           text: "If yes, which diabetes medications do you take?",
           answer: [
             {
-              valueString: "Unknown",
+              valueString: "",
             },
           ],
         },
