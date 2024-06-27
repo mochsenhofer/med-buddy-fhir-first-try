@@ -11,7 +11,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { BottomNavigationView } from "../components/BottomNavigationView";
 import RadioButtons from "../components/RadioButtons";
-import { questionnaireSections } from "../fhir-resources/Questionnaire";
+import useQuestionnaireData from "../components/QuestionnaireComponent";
 import renderSectionHeader from "../functions/renderSectionHeader";
 import { overviewScreenRoute } from "../navigation/Navigation";
 import {
@@ -22,6 +22,7 @@ import {
 import { commonStyle, questionnaireItemStyle } from "../styles/commonStyle";
 
 export default function QuestionnaireScreen() {
+  const questionnaireSections = useQuestionnaireData().questionnaireSections;
   const [page, setPage] = useState(0);
   const navigation = useNavigation();
   const totalNumberOfPages = questionnaireSections.length - 1;
