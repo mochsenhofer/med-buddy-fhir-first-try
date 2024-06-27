@@ -7,19 +7,17 @@ import { Questionnaire } from "../fhir-resources/Questionnaire";
 import { QuestionnaireResponse } from "../fhir-resources/QuestionnaireResponse";
 import { Patient } from "../fhir-resources/Patient";
 
-
 export default function SelectLanguageScreen() {
-    // console.log('Questionnaire: ' + JSON.stringify(Questionnaire));
-    // console.log('Patient: ' + JSON.stringify(Patient));
+  console.log("Questionnaire: " + JSON.stringify(Questionnaire));
+  // console.log('Patient: ' + JSON.stringify(Patient));
 
-
-    return (
-        <SafeAreaView style={commonStyle.body}>
-            <View style={commonStyle.header}></View>
-            <View style={commonStyle.section}></View>
-            <View style={commonStyle.footer}>
-                <BottomNavigationView navigateTo={registrationScreenRoute}/>
-            </View>
-        </SafeAreaView>
-    );
+  return (
+    <SafeAreaView style={commonStyle.body}>
+      <View style={commonStyle.header}></View>
+      <View style={commonStyle.section}></View>
+      <View style={commonStyle.footer}>
+        <BottomNavigationView navigateTo={registrationScreenRoute} />
+      </View>
+    </SafeAreaView>
+  );
 }
