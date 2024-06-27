@@ -4,18 +4,6 @@ export const Questionnaire = {
   status: "active",
   item: [
     {
-      linkId: "0",
-      text: "Patient Information",
-      type: "group",
-      item: [
-        {
-          linkId: "0.1",
-          text: "A CT scan is an special X-Ray examination",
-          type: "display",
-        },
-      ],
-    },
-    {
       linkId: "1",
       text: "Please answer the following questions to the best of your knowledge.",
       type: "group",
