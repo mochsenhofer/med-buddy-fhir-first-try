@@ -24,7 +24,13 @@ export function renderUserInput(item) {
     case "date":
       return <Text>Datepicker placeholder</Text>;
     case "choice":
-      return <RadioButtons options={item.options} onSelect={item.onChange} />;
+      return (
+        <RadioButtons
+          options={item.options}
+          currentValue={item.value}
+          onSelect={item.onChange}
+        />
+      );
     default:
       return null;
   }
