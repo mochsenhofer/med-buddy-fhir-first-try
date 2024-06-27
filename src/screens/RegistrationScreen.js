@@ -103,7 +103,10 @@ export default function RegistrationScreen() {
   return (
     <SafeAreaView style={commonStyle.body}>
       <View style={commonStyle.header}>
-        <Text>Registration</Text>
+        <Text>
+          Registration +
+          {registeredPatient.communication[0].language.coding[0].code}
+        </Text>
       </View>
       <KeyboardAvoidingView style={commonStyle.section} behavior="padding">
         <SectionList
