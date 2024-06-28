@@ -1,10 +1,10 @@
 import { useSelector } from "react-redux";
-import textsInPatientsChosenLanguage from "../assets/translationTexts/textsInPatientsChosenLanguage";
+import { textsInPatientsChosenLanguage } from "../assets/translationTexts/textsInPatientsChosenLanguage";
 
 const useQuestionnaireData = () => {
   const registeredPatient = useSelector((state) => state.patient);
   const language = registeredPatient.communication[0].language.coding[0].code;
-  const translatedTexts = textsInPatientsChosenLanguage[language];
+  const translatedTexts = textsInPatientsChosenLanguage[language].questionnaire;
   console.log(textsInPatientsChosenLanguage);
   const Questionnaire = {
     resourceType: "Questionnaire",
