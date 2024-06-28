@@ -106,6 +106,7 @@ export const questionnaireItemStyle = StyleSheet.create({
     borderRadius: questionnaireItemBorderRadius,
     marginHorizontal: questionnaireItemHorizontalMargin,
     paddingHorizontal: 20,
+    justifyContent: "center",
   },
   radioButtonView: {
     height: questionnaireItemHeight,
