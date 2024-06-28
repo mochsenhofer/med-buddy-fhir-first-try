@@ -22,7 +22,7 @@ import {
 import { commonStyle, questionnaireItemStyle } from "../styles/commonStyle";
 
 export default function QuestionnaireScreen() {
-  const questionnaireSections = useQuestionnaireData().questionnaireSections;
+  const { questionnaireSections } = useQuestionnaireData();
   const [page, setPage] = useState(0);
   const navigation = useNavigation();
   const totalNumberOfPages = questionnaireSections.length - 1;
