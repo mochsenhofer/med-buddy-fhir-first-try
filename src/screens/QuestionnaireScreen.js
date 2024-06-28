@@ -11,7 +11,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { BottomNavigationView } from "../components/BottomNavigationView";
 import RadioButtons from "../components/RadioButtons";
-import useQuestionnaireData from "../components/QuestionnaireComponent";
+import useQuestionnaireData from "../hooks/useQuestionnaireData";
 import renderSectionHeader from "../functions/renderSectionHeader";
 import { overviewScreenRoute } from "../navigation/Navigation";
 import {
