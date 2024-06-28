@@ -8,7 +8,7 @@ export const commonStyle = StyleSheet.create({
     alignItems: "center",
   },
   header: {
-    flex: 1.5,
+    flex: 1.25,
     flexDirection: "row",
     width: "100%",
     alignItems: "center",
