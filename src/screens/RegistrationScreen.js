@@ -25,7 +25,6 @@ export default function RegistrationScreen() {
   const registeredPatient = useSelector((state) => state.patient);
   const language = registeredPatient.communication[0].language.coding[0].code;
   const translatedTexts = textsInPatientsChosenLanguage[language].patient;
-  console.log("translatedTexts", translatedTexts["1"]);
 
   const dispatch = useDispatch();
 
@@ -39,13 +38,13 @@ export default function RegistrationScreen() {
 
   const registrationFormFields = [
     {
-      title: `${translatedTexts["1"]}`,
+      title: `${translatedTexts["p.1"]}`,
       data: [
         {
-          heading: `${translatedTexts["1.1"]}`,
+          heading: `${translatedTexts["p.1.1"]}`,
           key: "givenName",
           value: registeredPatient.name[0].given[0],
-          placeholder: `${translatedTexts["1.1"]}`,
+          placeholder: `${translatedTexts["p.1.1"]}`,
           onChange: (text) => dispatch(updateGivenName(text)),
           autoFocus: true,
           ref: registrationRefs.givenName,
@@ -53,10 +52,10 @@ export default function RegistrationScreen() {
           type: "string",
         },
         {
-          heading: `${translatedTexts["1.2"]}`,
+          heading: `${translatedTexts["p.1.2"]}`,
           key: "familyName",
           value: registeredPatient.name[0].family,
-          placeholder: `${translatedTexts["1.2"]}`,
+          placeholder: `${translatedTexts["p.1.2"]}`,
           onChange: (text) => dispatch(updateFamilyName(text)),
           ref: registrationRefs.familyName,
           onSubmitEditing: () =>
@@ -64,10 +63,10 @@ export default function RegistrationScreen() {
           type: "string",
         },
         {
-          heading: `${translatedTexts["1.3"]}`,
+          heading: `${translatedTexts["p.1.3"]}`,
           key: "insuranceNumber",
           value: registeredPatient.identifier[0].value,
-          placeholder: `${translatedTexts["1.3"]}`,
+          placeholder: `${translatedTexts["p.1.3"]}`,
           onChange: (text) => dispatch(updateInsuranceNumber(text)),
           ref: registrationRefs.insuranceNumber,
           maxLength: 10,
@@ -75,38 +74,38 @@ export default function RegistrationScreen() {
           type: "integer",
         },
         {
-          heading: `${translatedTexts["1.4"]}`,
+          heading: `${translatedTexts["p.1.4"]}`,
           key: "birthDate",
           value: registeredPatient.birthDate,
-          placeholder: `${translatedTexts["1.4"]}`,
+          placeholder: `${translatedTexts["p.1.4"]}`,
           onChange: (text) => dispatch(updateBirthDate(text)),
           ref: registrationRefs.birthDate,
           onSubmitEditing: () => registrationRefs.gender.current.focus(),
           type: "date",
         },
         {
-          heading: `${translatedTexts["1.5"]}`,
+          heading: `${translatedTexts["p.1.5"]}`,
           key: "gender",
           value: registeredPatient.gender,
-          placeholder: `${translatedTexts["1.5"]}`,
+          placeholder: `${translatedTexts["p.1.5"]}`,
           onChange: (text) => dispatch(updateGender(text)),
           ref: registrationRefs.gender,
           options: [
             {
               valueCoding: {
-                display: `${translatedTexts["male"]}`,
+                display: `${translatedTexts["p.male"]}`,
                 code: "male",
               },
             },
             {
               valueCoding: {
-                display: `${translatedTexts["female"]}`,
+                display: `${translatedTexts["p.female"]}`,
                 code: "female",
               },
             },
             {
               valueCoding: {
-                display: `${translatedTexts["other"]}`,
+                display: `${translatedTexts["p.other"]}`,
                 code: "other",
               },
             },
