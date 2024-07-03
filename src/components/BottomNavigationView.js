@@ -84,7 +84,7 @@ export function BottomNavigationView({
   );
 }
 
-const navigationButtonsMargin = 5;
+const navigationButtonsMargin = 15;
 
 const styles = StyleSheet.create({
   bottomNav: {
@@ -92,6 +92,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
+    bottom: navigationButtonsMargin,
   },
   page: {
     flex: 1,
