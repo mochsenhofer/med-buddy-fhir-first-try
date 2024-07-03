@@ -27,7 +27,6 @@ export const commonStyle = StyleSheet.create({
     width: "100%",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "green",
   },
   sectionHeading: {
     margin: 10,
@@ -89,6 +88,11 @@ export const fontStyle = StyleSheet.create({
   },
   p: {
     fontSize: 18,
+  },
+  p2: {
+    fontSize: 20,
+    marginBottom: 5,
+    marginLeft: 10,
   },
 });
 
