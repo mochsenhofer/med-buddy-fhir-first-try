@@ -14,21 +14,21 @@ export const QuestionnaireResponse = {
   },
   item: [
     {
-      linkId: "1",
+      linkId: "q.1",
       text: "Please answer the following questions to the best of your knowledge.",
       item: [
         {
-          linkId: "1.1",
+          linkId: "q.1.1",
           text: "Size (cm)",
           answer: [{ valueInteger: 0 }],
         },
         {
-          linkId: "1.2",
+          linkId: "q.1.2",
           text: "Weight (kg)",
           answer: [{ valueInteger: 0 }],
         },
         {
-          linkId: "1.3",
+          linkId: "q.1.3",
           text: "Is there a possibility of pregnancy?",
           answer: [
             {
@@ -42,11 +42,11 @@ export const QuestionnaireResponse = {
       ],
     },
     {
-      linkId: "2",
+      linkId: "q.2",
       text: "Did you have one of these examinations before?",
       item: [
         {
-          linkId: "2.1",
+          linkId: "q.2.1",
           text: "Computer tomography (CT)",
           answer: [
             {
@@ -58,7 +58,7 @@ export const QuestionnaireResponse = {
           ],
         },
         {
-          linkId: "2.2",
+          linkId: "q.2.2",
           text: "Vascular X-ray (Angiography / Cardiac Catheter)",
           answer: [
             {
@@ -70,7 +70,7 @@ export const QuestionnaireResponse = {
           ],
         },
         {
-          linkId: "2.3",
+          linkId: "q.2.3",
           text: "Kidney X-ray (Urography)",
           answer: [
             {
@@ -82,7 +82,7 @@ export const QuestionnaireResponse = {
           ],
         },
         {
-          linkId: "2.4",
+          linkId: "q.2.4",
           text: "Leg vein imaging (phlebography)",
           answer: [
             {
@@ -96,11 +96,11 @@ export const QuestionnaireResponse = {
       ],
     },
     {
-      linkId: "3",
+      linkId: "q.3",
       text: "Did you experience any side-effects after the administration of contrast agents? If so, which ones?",
       item: [
         {
-          linkId: "3.1",
+          linkId: "q.3.1",
           text: "Nausea/Vomiting/Suffocation",
           answer: [
             {
@@ -112,7 +112,7 @@ export const QuestionnaireResponse = {
           ],
         },
         {
-          linkId: "3.2",
+          linkId: "q.3.2",
           text: "Astma attack / shortness of breath",
           answer: [
             {
@@ -125,7 +125,7 @@ export const QuestionnaireResponse = {
         },
         // Additional side-effects based on the provided questionnaire structure
         {
-          linkId: "3.3",
+          linkId: "q.3.3",
           text: "Rash",
           answer: [
             {
@@ -137,7 +137,7 @@ export const QuestionnaireResponse = {
           ],
         },
         {
-          linkId: "3.4",
+          linkId: "q.3.4",
           text: "Seizures / unconsciousness",
           answer: [
             {
@@ -149,7 +149,7 @@ export const QuestionnaireResponse = {
           ],
         },
         {
-          linkId: "3.5",
+          linkId: "q.3.5",
           text: "Shivering attacks",
           answer: [
             {
@@ -163,12 +163,12 @@ export const QuestionnaireResponse = {
       ],
     },
     {
-      linkId: "4",
+      linkId: "q.4",
       text: "Do you suffer from any of the following medical conditions?",
       item: [
         // Following the pattern for medical conditions
         {
-          linkId: "4.1",
+          linkId: "q.4.1",
           text: "Allergies that require treatment?",
           answer: [
             {
@@ -180,7 +180,7 @@ export const QuestionnaireResponse = {
           ],
         },
         {
-          linkId: "4.2",
+          linkId: "q.4.2",
           text: "of the heart?",
           answer: [
             {
@@ -193,7 +193,7 @@ export const QuestionnaireResponse = {
         },
         // Adding remaining conditions as per the questionnaire structure
         {
-          linkId: "4.3",
+          linkId: "q.4.3",
           text: "of the kidney / adrenal gland?",
           answer: [
             {
@@ -205,7 +205,7 @@ export const QuestionnaireResponse = {
           ],
         },
         {
-          linkId: "4.4",
+          linkId: "q.4.4",
           text: "of the thyroid gland?",
           answer: [
             {
@@ -217,7 +217,7 @@ export const QuestionnaireResponse = {
           ],
         },
         {
-          linkId: "4.5",
+          linkId: "q.4.5",
           text: "Diabetes?",
           answer: [
             {
@@ -229,7 +229,7 @@ export const QuestionnaireResponse = {
           ],
         },
         {
-          linkId: "4.6",
+          linkId: "q.4.6",
           text: "Myasthenia gravis? (specific muscle disease)",
           answer: [
             {
@@ -243,11 +243,11 @@ export const QuestionnaireResponse = {
       ],
     },
     {
-      linkId: "5",
+      linkId: "q.5",
       text: "Please answer the following questions to the best of your knowledge.",
       item: [
         {
-          linkId: "5.1",
+          linkId: "q.5.1",
           text: "If yes, which diabetes medications do you take?",
           answer: [
             {
@@ -256,7 +256,7 @@ export const QuestionnaireResponse = {
           ],
         },
         {
-          linkId: "5.2",
+          linkId: "q.5.2",
           text: "Do you carry a pacemaker?",
           answer: [
             {
