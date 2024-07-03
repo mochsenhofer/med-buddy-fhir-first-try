@@ -24,7 +24,8 @@ import { textsInPatientsChosenLanguage } from "../assets/translationTexts/textsI
 export default function RegistrationScreen() {
   const registeredPatient = useSelector((state) => state.patient);
   const language = registeredPatient.communication[0].language.coding[0].code;
-  const translatedTexts = textsInPatientsChosenLanguage[language].patient;
+  const translatedTexts =
+    textsInPatientsChosenLanguage[language].registrationScreen;
 
   const dispatch = useDispatch();
 
@@ -120,10 +121,7 @@ export default function RegistrationScreen() {
   return (
     <SafeAreaView style={commonStyle.body}>
       <View style={commonStyle.header}>
-        <Text>
-          Registration +
-          {registeredPatient.communication[0].language.coding[0].code}
-        </Text>
+        <Text>{translatedTexts["heading"]}</Text>
       </View>
       <KeyboardAvoidingView style={commonStyle.section} behavior="padding">
         <SectionList
