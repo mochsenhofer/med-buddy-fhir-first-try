@@ -13,8 +13,12 @@ import { useDispatch } from "react-redux";
 import { registrationScreenRoute } from "../navigation/Navigation";
 import { updateLanguage } from "../store/patientReducer";
 import { commonStyle } from "../styles/commonStyle";
+import { questionnaireSections } from "../fhir-resources/Questionnaire";
 
 export default function SelectLanguageScreen() {
+  console.log(
+    "questionnaireSections: " + JSON.stringify(questionnaireSections, null, 2)
+  );
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const languageList = [
