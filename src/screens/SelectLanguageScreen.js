@@ -70,6 +70,7 @@ export default function SelectLanguageScreen() {
           renderItem={renderLanguageButton}
           keyExtractor={(item) => item.key}
           numColumns={3}
+          scrollEnabled={false}
         />
       </View>
       <View style={commonStyle.footer}></View>
