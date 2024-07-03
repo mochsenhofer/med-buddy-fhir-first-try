@@ -24,7 +24,7 @@ import { textsInPatientsChosenLanguage } from "../assets/translationTexts/textsI
 export default function RegistrationScreen() {
   const registeredPatient = useSelector((state) => state.patient);
   const language = registeredPatient.communication[0].language.coding[0].code;
-  const translatedTexts =
+  const translatedRegistrationTexts =
     textsInPatientsChosenLanguage[language].registrationScreen;
 
   const dispatch = useDispatch();
@@ -39,13 +39,16 @@ export default function RegistrationScreen() {
 
   const registrationFormFields = [
     {
-      title: `${translatedTexts["p.1"]}`,
+      title: `${translatedRegistrationTexts["heading"]}`,
       data: [
         {
-          heading: `${translatedTexts["p.1.1"]}`,
+          heading: translatedRegistrationTexts["subheading"],
+        },
+        {
+          heading: `${translatedRegistrationTexts["p.1.1"]}`,
           key: "givenName",
           value: registeredPatient.name[0].given[0],
-          placeholder: `${translatedTexts["p.1.1"]}`,
+          placeholder: `${translatedRegistrationTexts["p.1.1"]}`,
           onChange: (text) => dispatch(updateGivenName(text)),
           autoFocus: true,
           ref: registrationRefs.givenName,
@@ -53,10 +56,10 @@ export default function RegistrationScreen() {
           type: "string",
         },
         {
-          heading: `${translatedTexts["p.1.2"]}`,
+          heading: `${translatedRegistrationTexts["p.1.2"]}`,
           key: "familyName",
           value: registeredPatient.name[0].family,
-          placeholder: `${translatedTexts["p.1.2"]}`,
+          placeholder: `${translatedRegistrationTexts["p.1.2"]}`,
           onChange: (text) => dispatch(updateFamilyName(text)),
           ref: registrationRefs.familyName,
           onSubmitEditing: () =>
@@ -64,10 +67,10 @@ export default function RegistrationScreen() {
           type: "string",
         },
         {
-          heading: `${translatedTexts["p.1.3"]}`,
+          heading: `${translatedRegistrationTexts["p.1.3"]}`,
           key: "insuranceNumber",
           value: registeredPatient.identifier[0].value,
-          placeholder: `${translatedTexts["p.1.3"]}`,
+          placeholder: `${translatedRegistrationTexts["p.1.3"]}`,
           onChange: (text) => dispatch(updateInsuranceNumber(text)),
           ref: registrationRefs.insuranceNumber,
           maxLength: 10,
@@ -75,38 +78,38 @@ export default function RegistrationScreen() {
           type: "integer",
         },
         {
-          heading: `${translatedTexts["p.1.4"]}`,
+          heading: `${translatedRegistrationTexts["p.1.4"]}`,
           key: "birthDate",
           value: registeredPatient.birthDate,
-          placeholder: `${translatedTexts["p.1.4"]}`,
+          placeholder: `${translatedRegistrationTexts["p.1.4"]}`,
           onChange: (text) => dispatch(updateBirthDate(text)),
           ref: registrationRefs.birthDate,
           onSubmitEditing: () => registrationRefs.gender.current.focus(),
           type: "date",
         },
         {
-          heading: `${translatedTexts["p.1.5"]}`,
+          heading: `${translatedRegistrationTexts["p.1.5"]}`,
           key: "gender",
           value: registeredPatient.gender,
-          placeholder: `${translatedTexts["p.1.5"]}`,
+          placeholder: `${translatedRegistrationTexts["p.1.5"]}`,
           onChange: (text) => dispatch(updateGender(text)),
           ref: registrationRefs.gender,
           options: [
             {
               valueCoding: {
-                display: `${translatedTexts["p.male"]}`,
+                display: `${translatedRegistrationTexts["p.male"]}`,
                 code: "male",
               },
             },
             {
               valueCoding: {
-                display: `${translatedTexts["p.female"]}`,
+                display: `${translatedRegistrationTexts["p.female"]}`,
                 code: "female",
               },
             },
             {
               valueCoding: {
-                display: `${translatedTexts["p.other"]}`,
+                display: `${translatedRegistrationTexts["p.other"]}`,
                 code: "other",
               },
             },
@@ -120,9 +123,7 @@ export default function RegistrationScreen() {
 
   return (
     <SafeAreaView style={commonStyle.body}>
-      <View style={commonStyle.header}>
-        <Text>{translatedTexts["heading"]}</Text>
-      </View>
+      <View style={commonStyle.header}></View>
       <KeyboardAvoidingView style={commonStyle.section} behavior="padding">
         <SectionList
           sections={registrationFormFields}
@@ -130,6 +131,7 @@ export default function RegistrationScreen() {
           renderSectionHeader={renderSectionHeader}
           renderItem={renderQuestionnaireItem}
           stickySectionHeadersEnabled={false}
+          scrollEnabled={false}
         />
       </KeyboardAvoidingView>
       <View style={commonStyle.footer}>
