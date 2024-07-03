@@ -1,9 +1,15 @@
-import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { buttonStyle } from '../styles/commonStyle';
+import React from "react";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { buttonStyle } from "../styles/commonStyle";
+import { useSelector } from "react-redux";
+import { textsInPatientsChosenLanguage } from "../assets/translationTexts/textsInPatientsChosenLanguage";
 
 export function PrimaryButton({ navigateTo, primaryButtonPressed }) {
+  const registeredPatient = useSelector((state) => state.patient);
+  const language = registeredPatient.communication[0].language.coding[0].code;
+  const translatedTexts =
+    textsInPatientsChosenLanguage[language].navigationButtons;
   const navigation = useNavigation();
 
   const handlePress = () => {
@@ -15,15 +21,27 @@ export function PrimaryButton({ navigateTo, primaryButtonPressed }) {
   };
 
   return (
-    <TouchableOpacity style={[buttonStyle.button, buttonStyle.primaryButton, styles.primaryButtonPosition]} onPress={handlePress}>
-      <Text style={buttonStyle.primaryButtonText}>Next</Text>
+    <TouchableOpacity
+      style={[
+        buttonStyle.button,
+        buttonStyle.primaryButton,
+        styles.primaryButtonPosition,
+      ]}
+      onPress={handlePress}
+    >
+      <Text style={buttonStyle.primaryButtonText}>
+        {translatedTexts["n.next"]}{" "}
+      </Text>
     </TouchableOpacity>
   );
 }
 
 export function SecondaryButton({ secondaryButtonPressed }) {
+  const registeredPatient = useSelector((state) => state.patient);
+  const language = registeredPatient.communication[0].language.coding[0].code;
+  const translatedTexts =
+    textsInPatientsChosenLanguage[language].navigationButtons;
   const navigation = useNavigation();
-
   const handlePress = () => {
     if (secondaryButtonPressed) {
       secondaryButtonPressed();
@@ -33,18 +51,35 @@ export function SecondaryButton({ secondaryButtonPressed }) {
   };
 
   return (
-    <TouchableOpacity style={[buttonStyle.button, buttonStyle.secondaryButton, styles.secondaryButtonPosition]} onPress={handlePress}>
-      <Text style={buttonStyle.secondaryButtonText}>Back</Text>
+    <TouchableOpacity
+      style={[
+        buttonStyle.button,
+        buttonStyle.secondaryButton,
+        styles.secondaryButtonPosition,
+      ]}
+      onPress={handlePress}
+    >
+      <Text style={buttonStyle.secondaryButtonText}>
+        {translatedTexts["n.back"]}
+      </Text>
     </TouchableOpacity>
   );
 }
 
-export function BottomNavigationView({ navigateTo, primaryButtonPressed, secondaryButtonPressed, page}) {
+export function BottomNavigationView({
+  navigateTo,
+  primaryButtonPressed,
+  secondaryButtonPressed,
+  page,
+}) {
   return (
     <View style={styles.bottomNav}>
       <SecondaryButton secondaryButtonPressed={secondaryButtonPressed} />
       <Text style={styles.page}>{page}</Text>
-      <PrimaryButton navigateTo={navigateTo} primaryButtonPressed={primaryButtonPressed} />
+      <PrimaryButton
+        navigateTo={navigateTo}
+        primaryButtonPressed={primaryButtonPressed}
+      />
     </View>
   );
 }
@@ -53,21 +88,21 @@ const navigationButtonsMargin = 5;
 
 const styles = StyleSheet.create({
   bottomNav: {
-    width: '100%',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
   },
   page: {
     flex: 1,
-    textAlign: 'center',
+    textAlign: "center",
   },
   primaryButtonPosition: {
-    position: 'absolute',
+    position: "absolute",
     right: navigationButtonsMargin,
   },
   secondaryButtonPosition: {
-    position: 'absolute',
-    left: navigationButtonsMargin, 
+    position: "absolute",
+    left: navigationButtonsMargin,
   },
 });
