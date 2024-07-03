@@ -12,6 +12,7 @@ import renderSectionHeader from "../functions/renderSectionHeader";
 import useQuestionnaireData from "../hooks/useQuestionnaireData";
 import { questionnaireScreenRoute } from "../navigation/Navigation";
 import { commonStyle } from "../styles/commonStyle";
+import renderInformationItem from "../functions/renderInformationItem";
 
 export default function InformationScreen() {
   const { informationSections } = useQuestionnaireData();
@@ -39,14 +40,6 @@ export default function InformationScreen() {
       // If on the first page, go back in navigation
       navigation.goBack();
     }
-  }
-
-  function renderInformationItem({ item }) {
-    return (
-      <View style={commonStyle.item}>
-        <Text style={commonStyle.itemText}>{item.text}</Text>
-      </View>
-    );
   }
 
   return (
