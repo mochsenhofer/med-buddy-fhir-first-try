@@ -44,7 +44,6 @@ export default function OverviewScreen() {
 
   function renderOverviewItem({ item }) {
     const questionnaireItem = getQuestionnaireItemByLinkId(item.linkId);
-    console.log("questionnaireItem", JSON.stringify(questionnaireItem));
 
     const renderAnswer = () => {
       switch (questionnaireItem.type) {
