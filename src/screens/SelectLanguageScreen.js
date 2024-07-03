@@ -16,12 +16,9 @@ import { commonStyle } from "../styles/commonStyle";
 import { questionnaireSections } from "../fhir-resources/Questionnaire";
 
 export default function SelectLanguageScreen() {
-  console.log(
-    "questionnaireSections: " + JSON.stringify(questionnaireSections, null, 2)
-  );
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  const languageList = [
+  const languageButtonProps = [
     {
       title: "Willkommen",
       description: "Für Deutsch klicken",
@@ -69,7 +66,7 @@ export default function SelectLanguageScreen() {
       <View style={[commonStyle.section, { width: "90%" }]}>
         <FlatList
           contentContainerStyle={styles.flatListContainer}
-          data={languageList}
+          data={languageButtonProps}
           renderItem={renderLanguageButton}
           keyExtractor={(item) => item.key}
           numColumns={3}
