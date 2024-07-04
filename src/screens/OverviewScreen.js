@@ -16,6 +16,8 @@ export default function OverviewScreen() {
     textsInPatientsChosenLanguage[language].questionnaireScreen.questionnaire;
   const translatedPatientTexts =
     textsInPatientsChosenLanguage[language].registrationScreen;
+  const translatedOverviewTexts =
+    textsInPatientsChosenLanguage[language].overviewSectionHeadings;
 
   function findAnswerByLinkId(linkId) {
     for (const item of updatedQuestionnaireResponse.item) {
@@ -35,36 +37,34 @@ export default function OverviewScreen() {
 
   const overviewScreenFields = [
     {
-      title: "Personal Information",
+      title: translatedOverviewTexts["oSH.1"],
       key: "personalInformation",
       data: [
         {
-          text: "Prename",
+          text: translatedPatientTexts["p.1.1"],
           answer: registeredPatient.name[0].given[0],
           key: "p.1.1",
         },
         {
-          text: "Surname",
+          text: translatedPatientTexts["p.1.2"],
           answer: registeredPatient.name[0].family,
           key: "p.1.2",
         },
         {
-          text: "Date of Birth",
+          text: translatedPatientTexts["p.1.3"],
           answer: registeredPatient.birthDate,
           key: "p.1.3",
         },
         {
-          text: "Insurance Number",
+          text: translatedPatientTexts["p.1.4"],
           answer: registeredPatient.identifier[0].value,
           key: "p.1.4",
         },
-        { text: "Gender", answer: registeredPatient.gender, key: "p.1.5" },
-      ],
-    },
-    {
-      title: translatedQuestionnaireTexts["q.1"],
-      key: "questionnaire",
-      data: [
+        {
+          text: translatedPatientTexts["p.1.5"],
+          answer: registeredPatient.gender,
+          key: "p.1.5",
+        },
         {
           key: "q.1.1",
           text: translatedQuestionnaireTexts["q.1.1"],
@@ -83,7 +83,7 @@ export default function OverviewScreen() {
       ],
     },
     {
-      title: translatedQuestionnaireTexts["q.2"],
+      title: translatedOverviewTexts["oSH.2"],
       key: "examinations",
       data: [
         {
@@ -109,7 +109,7 @@ export default function OverviewScreen() {
       ],
     },
     {
-      title: translatedQuestionnaireTexts["q.3"],
+      title: translatedOverviewTexts["oSH.3"],
       key: "medicalConditions",
       data: [
         {
@@ -135,7 +135,7 @@ export default function OverviewScreen() {
       ],
     },
     {
-      title: translatedQuestionnaireTexts["q.4"],
+      title: translatedOverviewTexts["oSH.4"],
       key: "medicationAndDevices",
       data: [
         {
@@ -171,7 +171,7 @@ export default function OverviewScreen() {
       ],
     },
     {
-      title: translatedQuestionnaireTexts["q.5"],
+      title: translatedOverviewTexts["oSH.5"],
       key: "additionalQuestions",
       data: [
         {
