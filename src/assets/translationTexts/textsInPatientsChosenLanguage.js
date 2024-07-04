@@ -86,6 +86,13 @@ const textsInPatientsChosenLanguage = {
       "n.next": "Next",
       "n.back": "Back",
     },
+    overviewSectionHeadings: {
+      "oSH.1": "Personal Information",
+      "oSH.2": "Previous Examinations",
+      "oSH.3": "Side Effects",
+      "oSH.4": "Medical Conditions",
+      "oSH.5": "Additional Information",
+    },
   },
   de: {
     registrationScreen: {
