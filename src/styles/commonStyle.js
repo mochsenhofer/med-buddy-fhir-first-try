@@ -70,7 +70,7 @@ export const fontStyle = StyleSheet.create({
     fontWeight: "bold",
   },
   h2: {
-    fontSize: 20,
+    fontSize: 22,
     color: mainBlue,
     fontWeight: "bold",
     textTransform: "uppercase",
