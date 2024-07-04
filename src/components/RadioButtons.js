@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import { questionnaireItemStyle } from "../styles/commonStyle";
+import { useSelector } from "react-redux";
+import { textsInPatientsChosenLanguage } from "../assets/translationTexts/textsInPatientsChosenLanguage";
 
 function RadioButton({ text, selected, onSelect }) {
   return (
@@ -25,6 +27,11 @@ function RadioButton({ text, selected, onSelect }) {
 
 export default function RadioButtons({ options, currentValue, onSelect }) {
   const [selectedOption, setSelectedOption] = useState(currentValue);
+  const language = useSelector(
+    (state) => state.patient.communication[0].language.coding[0].code
+  );
+  const translatedPatientTexts =
+    textsInPatientsChosenLanguage[language].questionnaireScreen.questionnaire;
 
   useEffect(() => {
     setSelectedOption(currentValue);
@@ -37,14 +44,19 @@ export default function RadioButtons({ options, currentValue, onSelect }) {
 
   return (
     <View style={questionnaireItemStyle.radioButtonView}>
-      {options.map((option) => (
-        <RadioButton
-          key={option.valueCoding.code}
-          text={option.valueCoding.display}
-          selected={option.valueCoding.code === selectedOption}
-          onSelect={() => handleSelect(option.valueCoding.code)}
-        />
-      ))}
+      {options.map((option) => {
+        if (option.valueCoding.code === "ASKU") {
+          option.valueCoding.display = translatedPatientTexts["q.idk"];
+        }
+        return (
+          <RadioButton
+            key={option.valueCoding.code}
+            text={option.valueCoding.display}
+            selected={option.valueCoding.code === selectedOption}
+            onSelect={() => handleSelect(option.valueCoding.code)}
+          />
+        );
+      })}
     </View>
   );
 }
