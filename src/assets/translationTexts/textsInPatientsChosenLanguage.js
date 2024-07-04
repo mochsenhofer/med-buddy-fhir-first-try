@@ -79,6 +79,7 @@ const textsInPatientsChosenLanguage = {
         "q.yes": "Yes",
         "q.no": "No",
         "q.unknown": "asked but unknown",
+        "q.idk": "I don't know",
       },
     },
     navigationButtons: {
