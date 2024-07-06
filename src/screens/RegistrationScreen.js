@@ -39,7 +39,7 @@ export default function RegistrationScreen() {
 
   const registrationFormFields = [
     {
-      title: `${translatedRegistrationTexts["heading"]}`,
+      title: translatedRegistrationTexts["heading"],
       data: [
         {
           heading: translatedRegistrationTexts["subheading"],
