@@ -8,6 +8,9 @@ const useQuestionnaireData = () => {
     textsInPatientsChosenLanguage[language].informationScreen.information;
   const translatedQuestionnaireTexts =
     textsInPatientsChosenLanguage[language].questionnaireScreen.questionnaire;
+  const translatedConsentTexts =
+    textsInPatientsChosenLanguage[language].consentScreen;
+
   const Questionnaire = {
     resourceType: "Questionnaire",
     id: "questionnaire-1",
@@ -644,6 +647,45 @@ const useQuestionnaireData = () => {
           },
         ],
       },
+      {
+        linkId: "consent",
+        type: "group",
+        item: [
+          {
+            linkId: "c.1",
+            text: translatedConsentTexts["c.1"],
+            type: "group",
+            item: [
+              {
+                linkId: "c.1.1",
+                text: translatedConsentTexts["c.1.1"],
+                type: "choice",
+                answerOption: [
+                  {
+                    valueCoding: {
+                      system: "http://terminology.hl7.org/CodeSystem/v2-0532",
+                      code: "Y",
+                      display: translatedQuestionnaireTexts["q.yes"],
+                    },
+                  },
+                  {
+                    valueCoding: {
+                      system: "http://terminology.hl7.org/CodeSystem/v2-0532",
+                      code: "N",
+                      display: translatedQuestionnaireTexts["q.no"],
+                    },
+                  },
+                ],
+              },
+              // {
+              //   linkId: "c.1.2",
+              //   text: translatedConsentTexts["c.1.2"],
+              //   type: "integer",
+              // },
+            ],
+          },
+        ],
+      },
     ],
   };
 
@@ -655,6 +697,10 @@ const useQuestionnaireData = () => {
 
   const sectionWithLinkIdInformation = Questionnaire.item.find(
     (item) => item.linkId === "information"
+  );
+
+  const sectionWithLinkIdConsent = Questionnaire.item.find(
+    (item) => item.linkId === "consent"
   );
 
   const questionnaireSections = sectionWithLinkIdQuestionnaire.item.map(
@@ -673,7 +719,18 @@ const useQuestionnaireData = () => {
     })
   );
 
-  return { questionnaireSections, informationSections, Questionnaire };
+  const consentSections = sectionWithLinkIdConsent.item.map((qItem) => ({
+    title: qItem.text, // Use 'text' as the title for the section
+    linkId: qItem.linkId, // Use 'linkId' as the key for the section
+    data: qItem.item ? qItem.item : [], // Pass the full item objects if they exist
+  }));
+
+  return {
+    consentSections,
+    questionnaireSections,
+    informationSections,
+    Questionnaire,
+  };
 };
 
 export default useQuestionnaireData;
