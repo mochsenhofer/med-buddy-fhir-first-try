@@ -113,7 +113,7 @@ export const QuestionnaireResponse = {
         },
         {
           linkId: "q.3.2",
-          text: "Astma attack / shortness of breath",
+          text: "Asthma attack / shortness of breath",
           answer: [
             {
               valueCoding: {
@@ -123,7 +123,6 @@ export const QuestionnaireResponse = {
             },
           ],
         },
-        // Additional side-effects based on the provided questionnaire structure
         {
           linkId: "q.3.3",
           text: "Rash",
@@ -166,7 +165,6 @@ export const QuestionnaireResponse = {
       linkId: "q.4",
       text: "Do you suffer from any of the following medical conditions?",
       item: [
-        // Following the pattern for medical conditions
         {
           linkId: "q.4.1",
           text: "Allergies that require treatment?",
@@ -191,7 +189,6 @@ export const QuestionnaireResponse = {
             },
           ],
         },
-        // Adding remaining conditions as per the questionnaire structure
         {
           linkId: "q.4.3",
           text: "of the kidney / adrenal gland?",
@@ -258,6 +255,24 @@ export const QuestionnaireResponse = {
         {
           linkId: "q.5.2",
           text: "Do you carry a pacemaker?",
+          answer: [
+            {
+              valueCoding: {
+                system: "http://terminology.hl7.org/CodeSystem/v2-0532",
+                code: "UNK",
+              },
+            },
+          ],
+        },
+      ],
+    },
+    {
+      linkId: "c.1",
+      text: "Consent",
+      item: [
+        {
+          linkId: "c.1.1",
+          text: "The patient agrees to the examination",
           answer: [
             {
               valueCoding: {
