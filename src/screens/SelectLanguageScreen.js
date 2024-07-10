@@ -14,6 +14,7 @@ import { registrationScreenRoute } from "../navigation/Navigation";
 import { updateLanguage } from "../store/patientReducer";
 import { commonStyle } from "../styles/commonStyle";
 import { questionnaireSections } from "../fhir-resources/Questionnaire";
+import MedBuddyCornerLogo from "../components/MedBuddyCornerLogo";
 
 export default function SelectLanguageScreen() {
   const navigation = useNavigation();
@@ -62,7 +63,9 @@ export default function SelectLanguageScreen() {
 
   return (
     <SafeAreaView style={commonStyle.body}>
-      <View style={commonStyle.header}></View>
+      <View style={commonStyle.header}>
+        <MedBuddyCornerLogo />
+      </View>
       <View style={[commonStyle.section, { width: "90%" }]}>
         <FlatList
           contentContainerStyle={styles.flatListContainer}
