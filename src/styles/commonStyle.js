@@ -86,6 +86,13 @@ export const fontStyle = StyleSheet.create({
     fontSize: 15,
     fontWeight: "bold",
   },
+  h5: {
+    fontSize: 20,
+    fontWeight: "bold",
+    margin: 5,
+    color: mainBlue,
+    textTransform: "uppercase",
+  },
   p: {
     fontSize: 18,
   },
