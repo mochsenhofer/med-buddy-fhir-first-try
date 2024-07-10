@@ -99,6 +99,8 @@ const textsInPatientsChosenLanguage = {
       "c.2.1": "Signature",
       "c.2.1":
         "By signing, I confirm that I have read and understood the text in this form. I have answered the questions to the best of my knowledge and belief. In a personal talk, the risks were explained to me and my additional questions were answered satisfactorily. I agree that the suggested examination should be carried out",
+      clear: "Clear",
+      signature: "Signature of the patient and/or his/her legal representative",
     },
   },
   de: {
@@ -179,6 +181,7 @@ const textsInPatientsChosenLanguage = {
         "q.yes": "Ja",
         "q.no": "Nein",
         "q.unknown": "gefragt aber unbekannt",
+        "q.idk": "Weiß ich nicht",
       },
     },
     navigationButtons: {
@@ -198,6 +201,9 @@ const textsInPatientsChosenLanguage = {
       "c.2.1": "Unterschrift",
       "c.2.1":
         "Durch meine Unterschrift bestätige ich, dass ich den Text dieses Formulars gelesen und verstanden habe. Ich habe die Fragen nach bestem Wissen beantwortet. In einem persönlichen Gespräch wurden mir die Risiken erklärt und meine weiteren Fragen sind ausreichend beantwortet worden. Ich stimme der Durchführung der vorgeschlagenen Untersuchung zu.",
+      clear: "Löschen",
+      signature:
+        "Unterschrift der Patientin/des Patienten und/oder seines/ihres gesetzlichen Vertreters",
     },
   },
   pl: {
@@ -280,6 +286,7 @@ const textsInPatientsChosenLanguage = {
         "q.yes": "Tak",
         "q.no": "Nie",
         "q.unknown": "zapytano, ale nie wiadomo",
+        "q.idk": "Nie wiem",
       },
     },
     navigationButtons: {
@@ -299,6 +306,9 @@ const textsInPatientsChosenLanguage = {
       "c.2.1": "Podpis",
       "c.2.1":
         "Swoim podpisem potwierdzam, że zapoznałam/em się ze zrozumieniem z tekstem tego formularza.Odpowiedzi na pytania udzieliłam/em zgodnie z moją wiedzą. Podczas osobistej rozmowy objaśniono mi zagrożenia i udzielono pełnej odpowiedzi na moje pytania. Zgadzam się na wykonanie zalecanego badania.",
+      clear: "Wyczyść",
+      signature:
+        "Podpis pacjentki/pacjenta i/lub jej/jego przedstawiciela prawnego",
     },
   },
 };
