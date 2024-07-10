@@ -105,6 +105,7 @@ export const questionnaireItemStyle = StyleSheet.create({
   questionContainer: {
     width: "100%",
     backgroundColor: "green",
+    minWidth: 500,
   },
   textInput: {
     height: questionnaireItemHeight,
