@@ -4,6 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 import { buttonStyle } from "../styles/commonStyle";
 import { useSelector } from "react-redux";
 import { textsInPatientsChosenLanguage } from "../assets/translationTexts/textsInPatientsChosenLanguage";
+import { AntDesign } from "@expo/vector-icons";
 
 export function PrimaryButton({ navigateTo, primaryButtonPressed }) {
   const registeredPatient = useSelector((state) => state.patient);
@@ -31,12 +32,13 @@ export function PrimaryButton({ navigateTo, primaryButtonPressed }) {
     >
       <Text style={buttonStyle.primaryButtonText}>
         {translatedTexts["n.next"]}{" "}
+        <AntDesign name="right" size={24} color="white" />
       </Text>
     </TouchableOpacity>
   );
 }
 
-export function SecondaryButton({ secondaryButtonPressed }) {
+export function SecondaryButton({ secondaryButtonPressed, text, style }) {
   const registeredPatient = useSelector((state) => state.patient);
   const language = registeredPatient.communication[0].language.coding[0].code;
   const translatedTexts =
@@ -56,11 +58,13 @@ export function SecondaryButton({ secondaryButtonPressed }) {
         buttonStyle.button,
         buttonStyle.secondaryButton,
         styles.secondaryButtonPosition,
+        style,
       ]}
       onPress={handlePress}
     >
       <Text style={buttonStyle.secondaryButtonText}>
-        {translatedTexts["n.back"]}
+        {text ? text : <AntDesign name="left" size={24} color="black" />}{" "}
+        {text || translatedTexts["n.back"]}
       </Text>
     </TouchableOpacity>
   );
