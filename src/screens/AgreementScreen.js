@@ -11,7 +11,10 @@ import {
   StyleSheet,
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { BottomNavigationView } from "../components/BottomNavigationView";
+import {
+  BottomNavigationView,
+  SecondaryButton,
+} from "../components/BottomNavigationView";
 import RadioButtons from "../components/RadioButtons";
 import useQuestionnaireData from "../hooks/useQuestionnaireData";
 import renderSectionHeader from "../functions/renderSectionHeader";
@@ -27,8 +30,8 @@ import {
 import { commonStyle, questionnaireItemStyle } from "../styles/commonStyle";
 import { findResponseItem } from "../functions/findResponseItem";
 import { Canvas } from "@benjeau/react-native-draw";
-import { SecondaryButton } from "../components/BottomNavigationView";
 import { textsInPatientsChosenLanguage } from "../assets/translationTexts/textsInPatientsChosenLanguage";
+import { getDatabase, push, ref, set } from "firebase/database";
 
 export default function AgreementScreen() {
   const { consentSections, Questionnaire } = useQuestionnaireData();
@@ -39,6 +42,9 @@ export default function AgreementScreen() {
   const questionnaireResponseInProgress = useSelector(
     (state) => state.questionnaireResponse || {}
   );
+  const updatedQuestionnaireResponse = useSelector(
+    (state) => state.questionnaireResponse
+  );
   const registeredPatient = useSelector((state) => state.patient);
   const language = registeredPatient.communication[0].language.coding[0].code;
   const translatedConsentTexts =
@@ -46,18 +52,12 @@ export default function AgreementScreen() {
   const canvasRef = useRef(null);
   const dispatch = useDispatch();
 
-  function handleNextButtonPress() {
-    // Check if it's the last page before navigating
+  const handleNextButtonPress = () => {
     if (page < totalNumberOfPages) {
       setPage(page + 1);
     } else {
-      // Navigate to the next screen
       Alert.alert("Alert Title", "My Alert Msg", [
-        {
-          text: "Finish",
-          style: "destructive",
-          onPress: handleSave,
-        },
+        { text: "Finish", style: "destructive", onPress: handleSave },
         {
           text: "Cancel",
           onPress: () => console.log("Cancel Pressed"),
@@ -65,34 +65,45 @@ export default function AgreementScreen() {
         },
       ]);
     }
-  }
+  };
 
-  function handleBackButtonPress() {
-    // Check if you are on the first page
+  const handleBackButtonPress = () => {
     if (page > 0) {
-      // If not, go back one page
       setPage(page - 1);
     } else {
-      // If on the first page, go back in navigation
       navigation.goBack();
     }
-  }
+  };
 
   const handleClear = () => {
     canvasRef.current?.clear();
   };
 
   const handleSave = async () => {
-    signature = await canvasRef.current?.getSvg();
+    const signature = await canvasRef.current?.getSvg();
     dispatch(updateValueString({ linkId: "c.2.1", value: signature }));
     dispatch(updatePatient(registeredPatient));
     dispatch(updateQuestionnaire(Questionnaire));
     dispatch(updateQuestionnaireResponseStatus("completed"));
 
-    navigation.navigate(faqScreenRoute);
+    try {
+      const db = getDatabase();
+      const questionnaireResponseCollectionRef = ref(
+        db,
+        "questionnaireResponse"
+      );
+      const newQuestionnaireResponseRef = push(
+        questionnaireResponseCollectionRef
+      );
+      await set(newQuestionnaireResponseRef, updatedQuestionnaireResponse);
+    } catch (error) {
+      console.error("Error adding document: ", error);
+    } finally {
+      navigation.navigate(faqScreenRoute);
+    }
   };
 
-  function getValueByLinkId(item) {
+  const getValueByLinkId = (item) => {
     const responseItem = findResponseItem(
       item.linkId,
       questionnaireResponseInProgress.item || []
@@ -114,9 +125,9 @@ export default function AgreementScreen() {
       }
     }
     return "";
-  }
+  };
 
-  function renderUserInputQuestionnaire({ item }) {
+  const renderUserInputQuestionnaire = ({ item }) => {
     const value = getValueByLinkId(item);
 
     switch (item.type) {
@@ -148,16 +159,13 @@ export default function AgreementScreen() {
               height={canvasHeight}
               roundPoints={true}
             />
-            <Text>
-              {page === 1 && (
-                <Text style={questionnaireItemStyle.questionText}>
-                  {translatedConsentTexts["signature"]}{" "}
-                </Text>
-              )}
-            </Text>
+            {page === 1 && (
+              <Text style={questionnaireItemStyle.questionText}>
+                {translatedConsentTexts["signature"]}{" "}
+              </Text>
+            )}
           </View>
         );
-
       case "choice":
         return (
           <RadioButtons
@@ -173,20 +181,16 @@ export default function AgreementScreen() {
       default:
         return null;
     }
-  }
+  };
 
-  function renderQuestionnaireAndQuestionnaireResponseItem({ item }) {
-    return (
-      <View style={questionnaireItemStyle.questionContainer}>
-        <Text
-          style={[questionnaireItemStyle.questionText, styles.questionText]}
-        >
-          {item.text}
-        </Text>
-        {renderUserInputQuestionnaire({ item })}
-      </View>
-    );
-  }
+  const renderQuestionnaireAndQuestionnaireResponseItem = ({ item }) => (
+    <View style={questionnaireItemStyle.questionContainer}>
+      <Text style={[questionnaireItemStyle.questionText, styles.questionText]}>
+        {item.text}
+      </Text>
+      {renderUserInputQuestionnaire({ item })}
+    </View>
+  );
 
   return (
     <SafeAreaView style={commonStyle.body}>
@@ -206,9 +210,7 @@ export default function AgreementScreen() {
           <SecondaryButton
             secondaryButtonPressed={handleClear}
             text={translatedConsentTexts["clear"]}
-            style={{
-              bottom: 50,
-            }}
+            style={{ bottom: 50 }}
           />
         )}
       </KeyboardAvoidingView>
