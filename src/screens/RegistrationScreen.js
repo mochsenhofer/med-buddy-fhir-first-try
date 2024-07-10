@@ -71,7 +71,7 @@ export default function RegistrationScreen() {
           key: "insuranceNumber",
           value: registeredPatient.identifier[0].value,
           placeholder: `${translatedRegistrationTexts["p.1.3"]}`,
-          onChange: (text) => dispatch(updateInsuranceNumber(text)),
+          onChange: (text) => dispatch(updateInsuranceNumber(parseInt(text))),
           ref: registrationRefs.insuranceNumber,
           maxLength: 10,
           onSubmitEditing: () => {},
