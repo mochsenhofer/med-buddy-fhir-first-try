@@ -31,7 +31,8 @@ export default function RadioButtons({ options, currentValue, onSelect }) {
     (state) => state.patient.communication[0].language.coding[0].code
   );
   const translatedPatientTexts =
-    textsInPatientsChosenLanguage[language].questionnaireScreen.questionnaire;
+    textsInPatientsChosenLanguage[language].questionnaireScreen.questionnaire ||
+    textsInPatientsChosenLanguage["en"].questionnaireScreen.questionnaire;
 
   useEffect(() => {
     setSelectedOption(currentValue);
