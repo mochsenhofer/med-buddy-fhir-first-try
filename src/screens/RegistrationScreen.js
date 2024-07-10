@@ -45,7 +45,7 @@ export default function RegistrationScreen() {
           heading: translatedRegistrationTexts["subheading"],
         },
         {
-          heading: `${translatedRegistrationTexts["p.1.1"]}`,
+          heading: translatedRegistrationTexts["p.1.1"],
           key: "givenName",
           value: registeredPatient.name[0].given[0],
           placeholder: `${translatedRegistrationTexts["p.1.1"]}`,
