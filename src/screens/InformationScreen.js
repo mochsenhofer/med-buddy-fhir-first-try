@@ -13,6 +13,7 @@ import useQuestionnaireData from "../hooks/useQuestionnaireData";
 import { questionnaireScreenRoute } from "../navigation/Navigation";
 import { commonStyle } from "../styles/commonStyle";
 import renderInformationItem from "../functions/renderInformationItem";
+import MedBuddyCornerLogo from "../components/MedBuddyCornerLogo";
 
 export default function InformationScreen() {
   const { informationSections } = useQuestionnaireData();
@@ -45,7 +46,7 @@ export default function InformationScreen() {
   return (
     <SafeAreaView style={commonStyle.body}>
       <View style={commonStyle.header}>
-        <Text>Information</Text>
+        <MedBuddyCornerLogo />
       </View>
       <KeyboardAvoidingView style={commonStyle.section}>
         <SectionList
