@@ -5,7 +5,7 @@ export const QuestionnaireResponse = {
   resourceType: "QuestionnaireResponse",
   status: "in-progress",
   id: "questionnaire-response-01",
-  contained: [Patient],
+  contained: [],
   questionnaire: {
     reference: `#${Questionnaire.id}`,
   },
@@ -286,11 +286,11 @@ export const QuestionnaireResponse = {
     },
     {
       linkId: "c.2",
-      text: "Consent",
+      text: "Signature",
       item: [
         {
           linkId: "c.2.1",
-          text: "The patient agrees to the administration of contrast agents",
+          text: "By signing, I confirm that I have read and understood the text in this form. I have answered the questions to the best of my knowledge and belief. In a personal talk, the risks were explained to me and my additional questions were answered satisfactorily. I agree that the suggested examination should be carried out",
           answer: [
             {
               valueString: "",
