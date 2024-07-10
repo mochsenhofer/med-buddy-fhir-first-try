@@ -3,8 +3,14 @@ import { View, Text, SafeAreaView, Alert } from "react-native";
 import { commonStyle } from "../styles/commonStyle";
 import { PrimaryButton } from "../components/BottomNavigationView";
 import { DevSettings } from "react-native";
+import { useSelector } from "react-redux";
 
 export default function FaqScreen() {
+  const updatedQuestionnaireResponse = useSelector(
+    (state) => state.questionnaireResponse
+  );
+
+  console.log(JSON.stringify(updatedQuestionnaireResponse));
   function finishQuestionnaire() {
     Alert.alert("Alert Title", "My Alert Msg", [
       {
