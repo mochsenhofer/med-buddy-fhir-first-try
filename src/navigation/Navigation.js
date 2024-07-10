@@ -1,5 +1,6 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
+import MedBuddyCornerLogo from "../components/MedBuddyCornerLogo";
 
 // import screens
 import HomeScreen from "../screens/HomeScreen";
@@ -27,35 +28,35 @@ export const faqScreenRoute = "FaqScreen";
 
 // create an array of screens
 const screens = [
-    { name: homeScreenRoute, component: HomeScreen },
-    { name: selectLanguageScreenRoute, component: SelectLanguageScreen },
-    { name: registrationScreenRoute, component: RegistrationScreen },
-    { name: previewScreenRoute, component: PreviewScreen },
-    { name: videoScreenRoute, component: VideoScreen },
-    { name: informationScreenRoute, component: InformationScreen },
-    { name: questionnaireScreenRoute, component: QuestionnaireScreen },
-    { name: overviewScreenRoute, component: OverviewScreen },
-    { name: agreementScreenRoute, component: AgreementScreen },
-    { name: faqScreenRoute, component: FaqScreen },
+  { name: homeScreenRoute, component: HomeScreen },
+  { name: selectLanguageScreenRoute, component: SelectLanguageScreen },
+  { name: registrationScreenRoute, component: RegistrationScreen },
+  { name: previewScreenRoute, component: PreviewScreen },
+  { name: videoScreenRoute, component: VideoScreen },
+  { name: informationScreenRoute, component: InformationScreen },
+  { name: questionnaireScreenRoute, component: QuestionnaireScreen },
+  { name: overviewScreenRoute, component: OverviewScreen },
+  { name: agreementScreenRoute, component: AgreementScreen },
+  { name: faqScreenRoute, component: FaqScreen },
 ];
 
 const Stack = createNativeStackNavigator();
 
 export default function MedBuddyStackNavigation() {
-    return (
-        <NavigationContainer>
-            <Stack.Navigator initialRouteName={homeScreenRoute} screenOptions={{headerShown: false}}>
-                {screens.map((screen, index) => (
-                    <Stack.Screen
-                        key={index}
-                        name={screen.name}
-                        component={screen.component}
-                    />
-                ))}
-            </Stack.Navigator>
-        </NavigationContainer>
-    );
-};
-
-
-
+  return (
+    <NavigationContainer>
+      <Stack.Navigator
+        initialRouteName={homeScreenRoute}
+        screenOptions={{ headerShown: false }}
+      >
+        {screens.map((screen, index) => (
+          <Stack.Screen
+            key={index}
+            name={screen.name}
+            component={screen.component}
+          />
+        ))}
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
