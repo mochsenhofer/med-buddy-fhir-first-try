@@ -35,8 +35,6 @@ export default function PreviewScreen() {
           text: translatedPreviewTexts["text"],
           videoBoxText: translatedPreviewTexts["watchVideo"],
           readInfoBoxText: translatedPreviewTexts["readInformation"],
-          videoImage: require("../assets/images/english.png"),
-          readInfoImage: require("../assets/images/austria.png"),
         },
       ],
     },
