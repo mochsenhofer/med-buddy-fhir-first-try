@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import {
   KeyboardAvoidingView,
   SafeAreaView,
@@ -8,6 +8,7 @@ import {
   TextInput,
   View,
   Alert,
+  StyleSheet,
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { BottomNavigationView } from "../components/BottomNavigationView";
@@ -19,12 +20,16 @@ import {
   updateValueCoding,
   updateValueInteger,
   updateValueString,
+  updatePatient,
+  updateQuestionnaire,
 } from "../store/questionnaireResponseReducer";
 import { commonStyle, questionnaireItemStyle } from "../styles/commonStyle";
 import { findResponseItem } from "../functions/findResponseItem";
+import { Canvas } from "@benjeau/react-native-draw";
+import { SecondaryButton } from "../components/BottomNavigationView";
 
 export default function AgreementScreen() {
-  const { consentSections } = useQuestionnaireData();
+  const { consentSections, Questionnaire } = useQuestionnaireData();
   const [page, setPage] = useState(0);
   const navigation = useNavigation();
   const totalNumberOfPages = consentSections.length - 1;
@@ -32,6 +37,8 @@ export default function AgreementScreen() {
   const questionnaireResponseInProgress = useSelector(
     (state) => state.questionnaireResponse || {}
   );
+  const registeredPatient = useSelector((state) => state.patient);
+  const canvasRef = useRef(null);
   const dispatch = useDispatch();
 
   function handleNextButtonPress() {
@@ -44,7 +51,7 @@ export default function AgreementScreen() {
         {
           text: "Finish",
           style: "destructive",
-          onPress: navigation.navigate(faqScreenRoute),
+          onPress: handleSave,
         },
         {
           text: "Cancel",
@@ -65,6 +72,19 @@ export default function AgreementScreen() {
       navigation.goBack();
     }
   }
+
+  const handleClear = () => {
+    canvasRef.current?.clear();
+  };
+
+  const handleSave = async () => {
+    signature = await canvasRef.current?.getSvg();
+    dispatch(updateValueString({ linkId: "c.2.1", value: signature }));
+    dispatch(updatePatient(registeredPatient));
+    dispatch(updateQuestionnaire(Questionnaire));
+
+    navigation.navigate(faqScreenRoute);
+  };
 
   function getValueByLinkId(item) {
     const responseItem = findResponseItem(
@@ -113,7 +133,17 @@ export default function AgreementScreen() {
           />
         );
       case "string":
-        return <Text>Signature Canvas</Text>;
+        return (
+          <View style={styles.canvasContainer}>
+            <Canvas
+              ref={canvasRef}
+              style={styles.signaturePad}
+              width={canvasWidth}
+              height={canvasHeight}
+              simplifyCurrentStroke={false}
+            />
+          </View>
+        );
 
       case "choice":
         return (
@@ -135,7 +165,11 @@ export default function AgreementScreen() {
   function renderQuestionnaireAndQuestionnaireResponseItem({ item }) {
     return (
       <View style={questionnaireItemStyle.questionContainer}>
-        <Text style={questionnaireItemStyle.questionText}>{item.text}</Text>
+        <Text
+          style={[questionnaireItemStyle.questionText, styles.questionText]}
+        >
+          {item.text}
+        </Text>
         {renderUserInputQuestionnaire({ item })}
       </View>
     );
@@ -153,15 +187,48 @@ export default function AgreementScreen() {
           renderSectionHeader={renderSectionHeader}
           renderItem={renderQuestionnaireAndQuestionnaireResponseItem}
           stickySectionHeadersEnabled={false}
+          scrollEnabled={false}
         />
+        {page === 1 && (
+          <SecondaryButton
+            secondaryButtonPressed={handleClear}
+            text="Clear"
+            style={{
+              marginTop: 10,
+              position: "relative",
+              bottom: 40,
+            }}
+          />
+        )}
       </KeyboardAvoidingView>
       <View style={commonStyle.footer}>
         <BottomNavigationView
           primaryButtonPressed={handleNextButtonPress}
           secondaryButtonPressed={handleBackButtonPress}
-          page={`${page + 1}`}
         />
       </View>
     </SafeAreaView>
   );
 }
+
+const canvasWidth = 800;
+const canvasHeight = 200;
+
+const styles = StyleSheet.create({
+  signaturePad: {
+    backgroundColor: "white",
+    flex: 1,
+    width: canvasWidth,
+    height: canvasHeight,
+    borderRadius: 25,
+    borderWidth: 5,
+    marginTop: 25,
+  },
+  canvasContainer: {
+    flex: 1,
+    flexDirection: "column",
+  },
+  questionText: {
+    marginBottom: 50,
+  },
+});
