@@ -677,11 +677,18 @@ const useQuestionnaireData = () => {
                   },
                 ],
               },
-              // {
-              //   linkId: "c.1.2",
-              //   text: translatedConsentTexts["c.1.2"],
-              //   type: "integer",
-              // },
+            ],
+          },
+          {
+            linkId: "c.2",
+            text: translatedConsentTexts["c.2"],
+            type: "group",
+            item: [
+              {
+                linkId: "c.2.1",
+                text: translatedConsentTexts["c.2.1"],
+                type: "string",
+              },
             ],
           },
         ],
