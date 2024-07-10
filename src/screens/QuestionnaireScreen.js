@@ -92,7 +92,10 @@ export default function QuestionnaireScreen() {
             value={value}
             onChangeText={(text) => {
               dispatch(
-                updateValueInteger({ linkId: item.linkId, value: text })
+                updateValueInteger({
+                  linkId: item.linkId,
+                  value: parseInt(text),
+                })
               );
             }}
           />
