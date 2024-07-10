@@ -54,9 +54,7 @@ export default function PreviewScreen() {
           scrollEnabled={false}
         />
       </KeyboardAvoidingView>
-      <View style={commonStyle.footer}>
-        <BottomNavigationView navigateTo={informationScreenRoute} />
-      </View>
+      <View style={commonStyle.footer}></View>
     </SafeAreaView>
   );
 }
