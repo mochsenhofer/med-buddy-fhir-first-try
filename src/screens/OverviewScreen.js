@@ -52,12 +52,13 @@ export default function OverviewScreen() {
         },
         {
           text: translatedPatientTexts["p.1.3"],
-          answer: registeredPatient.birthDate,
+          answer: registeredPatient.identifier[0].value,
+
           key: "p.1.3",
         },
         {
           text: translatedPatientTexts["p.1.4"],
-          answer: registeredPatient.identifier[0].value,
+          answer: registeredPatient.birthDate,
           key: "p.1.4",
         },
         {
