@@ -21,6 +21,7 @@ import {
 } from "../store/questionnaireResponseReducer";
 import { commonStyle, questionnaireItemStyle } from "../styles/commonStyle";
 import { findResponseItem } from "../functions/findResponseItem";
+import MedBuddyCornerLogo from "../components/MedBuddyCornerLogo";
 
 export default function QuestionnaireScreen() {
   const { questionnaireSections } = useQuestionnaireData();
@@ -141,7 +142,7 @@ export default function QuestionnaireScreen() {
   return (
     <SafeAreaView style={commonStyle.body}>
       <View style={commonStyle.header}>
-        <Text>Questionnaire</Text>
+        <MedBuddyCornerLogo />
       </View>
       <KeyboardAvoidingView style={commonStyle.section} behavior="padding">
         <SectionList
@@ -150,6 +151,7 @@ export default function QuestionnaireScreen() {
           renderSectionHeader={renderSectionHeader}
           renderItem={renderQuestionnaireAndQuestionnaireResponseItem}
           stickySectionHeadersEnabled={false}
+          scrollEnabled={false}
         />
       </KeyboardAvoidingView>
       <View style={commonStyle.footer}>
