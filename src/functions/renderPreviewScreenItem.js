@@ -7,6 +7,7 @@ import {
   videoScreenRoute,
   informationScreenRoute,
 } from "../navigation/Navigation";
+import { Entypo } from "@expo/vector-icons";
 
 export default function renderPreviewScreenItem({ item }) {
   const navigation = useNavigation();
@@ -19,15 +20,15 @@ export default function renderPreviewScreenItem({ item }) {
           style={styles.box}
           onPress={() => navigation.navigate(videoScreenRoute)}
         >
-          <Text>{item.videoBoxText}</Text>
-          <Image style={styles.boxImage} src={item.videoImage} />
+          <Text style={fontStyle.h5}>{item.videoBoxText}</Text>
+          <Entypo name="video" size={"150%"} color="black" />
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.box}
           onPress={() => navigation.navigate(informationScreenRoute)}
         >
-          <Text>{item.readInfoBoxText}</Text>
-          <Image style={styles.boxImage} src={item.readInfoImage} />
+          <Text style={fontStyle.h5}>{item.readInfoBoxText}</Text>
+          <Entypo name="open-book" size={"150%"} color="black" />
         </TouchableOpacity>
       </View>
     </View>
@@ -46,7 +47,7 @@ const styles = StyleSheet.create({
   },
   box: {
     alignItems: "center",
-    justifyContent: "flex-start",
+    justifyContent: "center",
     flexDirection: "column",
     width: boxWidth,
     minWidth: boxMinWidth,
