@@ -102,6 +102,10 @@ const questionnaireItemBorderRadius = 1000;
 const questionnaireItemHorizontalMargin = 20;
 
 export const questionnaireItemStyle = StyleSheet.create({
+  questionContainer: {
+    width: "100%",
+    backgroundColor: "green",
+  },
   textInput: {
     height: questionnaireItemHeight,
     width: "90%",
