@@ -20,6 +20,7 @@ import {
   updateValueString,
 } from "../store/questionnaireResponseReducer";
 import { commonStyle, questionnaireItemStyle } from "../styles/commonStyle";
+import { findResponseItem } from "../functions/findResponseItem";
 
 export default function QuestionnaireScreen() {
   const { questionnaireSections } = useQuestionnaireData();
@@ -53,21 +54,6 @@ export default function QuestionnaireScreen() {
     }
   }
 
-  function findResponseItem(linkId, items) {
-    for (const item of items) {
-      if (item.linkId === linkId) {
-        return item;
-      }
-      if (item.item) {
-        const foundItem = findResponseItem(linkId, item.item);
-        if (foundItem) {
-          return foundItem;
-        }
-      }
-    }
-    return null;
-  }
-
   function getValueByLinkId(item) {
     const responseItem = findResponseItem(
       item.linkId,
@@ -92,28 +78,10 @@ export default function QuestionnaireScreen() {
     return "";
   }
 
-  function renderUserInputQuestionnaire({ item }) {
+  function renderUserInputConsentScreen({ item }) {
     const value = getValueByLinkId(item);
 
     switch (item.type) {
-      case "integer":
-        return (
-          <TextInput
-            style={questionnaireItemStyle.textInput}
-            maxLength={item.maxLength}
-            placeholder={item.text}
-            keyboardType="numeric"
-            value={value}
-            onChangeText={(text) => {
-              dispatch(
-                updateValueInteger({
-                  linkId: item.linkId,
-                  value: parseInt(text),
-                })
-              );
-            }}
-          />
-        );
       case "string":
         return (
           <TextInput
@@ -147,7 +115,7 @@ export default function QuestionnaireScreen() {
     return (
       <View style={questionnaireItemStyle.questionContainer}>
         <Text style={questionnaireItemStyle.questionText}>{item.text}</Text>
-        {renderUserInputQuestionnaire({ item })}
+        {renderUserInputConsentScreen({ item })}
       </View>
     );
   }
