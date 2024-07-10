@@ -4,7 +4,7 @@ import { backgroundWhite, mainBlue, medBuddyBlue } from "./colors";
 export const commonStyle = StyleSheet.create({
   body: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: backgroundWhite,
     alignItems: "center",
   },
   header: {
@@ -13,7 +13,6 @@ export const commonStyle = StyleSheet.create({
     width: "100%",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "blue",
   },
   section: {
     flex: 5,
@@ -111,7 +110,9 @@ const questionnaireItemHorizontalMargin = 20;
 export const questionnaireItemStyle = StyleSheet.create({
   questionContainer: {
     width: "100%",
-    minWidth: 500,
+    minWidth: 800,
+    maxWidth: 800,
+    marginBottom: 2.5,
   },
   textInput: {
     height: questionnaireItemHeight,
