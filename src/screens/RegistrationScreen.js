@@ -3,11 +3,12 @@ import {
   KeyboardAvoidingView,
   SafeAreaView,
   SectionList,
-  Text,
   View,
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
+import { textsInPatientsChosenLanguage } from "../assets/translationTexts/textsInPatientsChosenLanguage";
 import { BottomNavigationView } from "../components/BottomNavigationView";
+import MedBuddyCornerLogo from "../components/MedBuddyCornerLogo";
 import { renderQuestionnaireItem } from "../functions/renderQuestionnaireItem";
 import renderSectionHeader from "../functions/renderSectionHeader";
 import { previewScreenRoute } from "../navigation/Navigation";
@@ -19,7 +20,6 @@ import {
   updateGivenName,
   updateInsuranceNumber,
 } from "./../store/patientReducer";
-import { textsInPatientsChosenLanguage } from "../assets/translationTexts/textsInPatientsChosenLanguage";
 
 export default function RegistrationScreen() {
   const registeredPatient = useSelector((state) => state.patient);
@@ -123,7 +123,9 @@ export default function RegistrationScreen() {
 
   return (
     <SafeAreaView style={commonStyle.body}>
-      <View style={commonStyle.header}></View>
+      <View style={commonStyle.header}>
+        <MedBuddyCornerLogo />
+      </View>
       <KeyboardAvoidingView style={commonStyle.section} behavior="padding">
         <SectionList
           sections={registrationFormFields}
