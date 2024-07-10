@@ -1,24 +1,16 @@
 import React from "react";
 import {
-  View,
-  SafeAreaView,
-  Text,
   KeyboardAvoidingView,
+  SafeAreaView,
   SectionList,
-  StyleSheet,
-  TouchableOpacity,
+  View,
 } from "react-native";
-import { commonStyle } from "../styles/commonStyle";
-import { BottomNavigationView } from "../components/BottomNavigationView";
-import {
-  informationScreenRoute,
-  videoScreenRoute,
-} from "../navigation/Navigation";
 import { useSelector } from "react-redux";
 import { textsInPatientsChosenLanguage } from "../assets/translationTexts/textsInPatientsChosenLanguage";
-import renderSectionHeader from "../functions/renderSectionHeader";
-import renderInformationItem from "../functions/renderInformationItem";
+import MedBuddyCornerLogo from "../components/MedBuddyCornerLogo";
 import renderPreviewScreenItem from "../functions/renderPreviewScreenItem";
+import renderSectionHeader from "../functions/renderSectionHeader";
+import { commonStyle } from "../styles/commonStyle";
 
 export default function PreviewScreen() {
   const registeredPatient = useSelector((state) => state.patient);
@@ -42,7 +34,9 @@ export default function PreviewScreen() {
 
   return (
     <SafeAreaView style={commonStyle.body}>
-      <View style={commonStyle.header}></View>
+      <View style={commonStyle.header}>
+        <MedBuddyCornerLogo />
+      </View>
       <KeyboardAvoidingView style={commonStyle.section} behavior="padding">
         <SectionList
           sections={previewSections}
