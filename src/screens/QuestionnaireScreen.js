@@ -82,6 +82,21 @@ export default function QuestionnaireScreen() {
     const value = getValueByLinkId(item);
 
     switch (item.type) {
+      case "integer":
+        return (
+          <TextInput
+            style={questionnaireItemStyle.textInput}
+            keyboardType="numeric"
+            placeholder={item.text}
+            maxLength={item.maxLength}
+            value={value}
+            onChangeText={(text) => {
+              dispatch(
+                updateValueInteger({ linkId: item.linkId, value: text })
+              );
+            }}
+          />
+        );
       case "string":
         return (
           <TextInput
