@@ -96,7 +96,8 @@ const textsInPatientsChosenLanguage = {
     consentScreen: {
       "c.1": "Consent",
       "c.1.1": "The patient agrees to the examination: ",
-      "c.1.2":
+      "c.2.1": "Signature",
+      "c.2.1":
         "By signing, I confirm that I have read and understood the text in this form. I have answered the questions to the best of my knowledge and belief. In a personal talk, the risks were explained to me and my additional questions were answered satisfactorily. I agree that the suggested examination should be carried out",
     },
   },
@@ -184,6 +185,20 @@ const textsInPatientsChosenLanguage = {
       "n.next": "Weiter",
       "n.back": "Zurück",
     },
+    overviewSectionHeadings: {
+      "oSH.1": "Persönliche Angaben",
+      "oSH.2": "Voruntersuchungen",
+      "oSH.3": "Nebenwirkungen",
+      "oSH.4": "Erkrankungen",
+      "oSH.5": "Zusätzliche Informationen",
+    },
+    consentScreen: {
+      "c.1": "Einverständniserklärung",
+      "c.1.1": "Die Patientin/der Patient stimmt der Untersuchung zu: ",
+      "c.2.1": "Unterschrift",
+      "c.2.1":
+        "Durch meine Unterschrift bestätige ich, dass ich den Text dieses Formulars gelesen und verstanden habe. Ich habe die Fragen nach bestem Wissen beantwortet. In einem persönlichen Gespräch wurden mir die Risiken erklärt und meine weiteren Fragen sind ausreichend beantwortet worden. Ich stimme der Durchführung der vorgeschlagenen Untersuchung zu.",
+    },
   },
   pl: {
     registrationScreen: {
@@ -270,6 +285,20 @@ const textsInPatientsChosenLanguage = {
     navigationButtons: {
       "n.next": "Dalej",
       "n.back": "Wstecz",
+    },
+    overviewSectionHeadings: {
+      "oSH.1": "Dane osobowe",
+      "oSH.2": "Poprzednie badania",
+      "oSH.3": "Skutki uboczne",
+      "oSH.4": "Choroby",
+      "oSH.5": "Dodatkowe informacje",
+    },
+    consentScreen: {
+      "c.1": "Zgoda",
+      "c.1.1": "Pacjentka/Pacjent wyraża zgodę na badanie: ",
+      "c.2.1": "Podpis",
+      "c.2.1":
+        "Swoim podpisem potwierdzam, że zapoznałam/em się ze zrozumieniem z tekstem tego formularza.Odpowiedzi na pytania udzieliłam/em zgodnie z moją wiedzą. Podczas osobistej rozmowy objaśniono mi zagrożenia i udzielono pełnej odpowiedzi na moje pytania. Zgadzam się na wykonanie zalecanego badania.",
     },
   },
 };
