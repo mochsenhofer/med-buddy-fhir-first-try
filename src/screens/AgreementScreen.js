@@ -22,11 +22,13 @@ import {
   updateValueString,
   updatePatient,
   updateQuestionnaire,
+  updateQuestionnaireResponseStatus,
 } from "../store/questionnaireResponseReducer";
 import { commonStyle, questionnaireItemStyle } from "../styles/commonStyle";
 import { findResponseItem } from "../functions/findResponseItem";
 import { Canvas } from "@benjeau/react-native-draw";
 import { SecondaryButton } from "../components/BottomNavigationView";
+import { textsInPatientsChosenLanguage } from "../assets/translationTexts/textsInPatientsChosenLanguage";
 
 export default function AgreementScreen() {
   const { consentSections, Questionnaire } = useQuestionnaireData();
@@ -38,6 +40,9 @@ export default function AgreementScreen() {
     (state) => state.questionnaireResponse || {}
   );
   const registeredPatient = useSelector((state) => state.patient);
+  const language = registeredPatient.communication[0].language.coding[0].code;
+  const translatedConsentTexts =
+    textsInPatientsChosenLanguage[language].consentScreen;
   const canvasRef = useRef(null);
   const dispatch = useDispatch();
 
@@ -82,6 +87,7 @@ export default function AgreementScreen() {
     dispatch(updateValueString({ linkId: "c.2.1", value: signature }));
     dispatch(updatePatient(registeredPatient));
     dispatch(updateQuestionnaire(Questionnaire));
+    dispatch(updateQuestionnaireResponseStatus("completed"));
 
     navigation.navigate(faqScreenRoute);
   };
@@ -140,8 +146,15 @@ export default function AgreementScreen() {
               style={styles.signaturePad}
               width={canvasWidth}
               height={canvasHeight}
-              simplifyCurrentStroke={false}
+              roundPoints={true}
             />
+            <Text>
+              {page === 1 && (
+                <Text style={questionnaireItemStyle.questionText}>
+                  {translatedConsentTexts["signature"]}{" "}
+                </Text>
+              )}
+            </Text>
           </View>
         );
 
@@ -178,7 +191,7 @@ export default function AgreementScreen() {
   return (
     <SafeAreaView style={commonStyle.body}>
       <View style={commonStyle.header}>
-        <Text>Questionnaire</Text>
+        <Text>{translatedConsentTexts["c.1"]}</Text>
       </View>
       <KeyboardAvoidingView style={commonStyle.section} behavior="padding">
         <SectionList
@@ -192,11 +205,9 @@ export default function AgreementScreen() {
         {page === 1 && (
           <SecondaryButton
             secondaryButtonPressed={handleClear}
-            text="Clear"
+            text={translatedConsentTexts["clear"]}
             style={{
-              marginTop: 10,
-              position: "relative",
-              bottom: 40,
+              bottom: 50,
             }}
           />
         )}
@@ -222,13 +233,13 @@ const styles = StyleSheet.create({
     height: canvasHeight,
     borderRadius: 25,
     borderWidth: 5,
-    marginTop: 25,
+    marginBottom: 5,
   },
   canvasContainer: {
     flex: 1,
     flexDirection: "column",
   },
   questionText: {
-    marginBottom: 50,
+    marginBottom: 20,
   },
 });
