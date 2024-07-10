@@ -7,6 +7,12 @@ export const questionnaireResponseReducer = createSlice({
   name: "questionnaireResponse",
   initialState,
   reducers: {
+    updatePatient: (state, action) => {
+      state.contained[0] = action.payload;
+    },
+    updateQuestionnaire: (state, action) => {
+      state.contained[1] = action.payload;
+    },
     updateValueInteger: (state, action) => {
       const { linkId, value } = action.payload;
       // Find the item with the matching linkId
@@ -65,7 +71,12 @@ export const questionnaireResponseReducer = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { updateValueInteger, updateValueString, updateValueCoding } =
-  questionnaireResponseReducer.actions;
+export const {
+  updateValueInteger,
+  updateValueString,
+  updateValueCoding,
+  updatePatient,
+  updateQuestionnaire,
+} = questionnaireResponseReducer.actions;
 
 export default questionnaireResponseReducer.reducer;
