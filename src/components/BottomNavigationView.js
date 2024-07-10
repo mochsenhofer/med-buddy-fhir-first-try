@@ -63,8 +63,8 @@ export function SecondaryButton({ secondaryButtonPressed, text, style }) {
       onPress={handlePress}
     >
       <Text style={buttonStyle.secondaryButtonText}>
-        {text ? text : <AntDesign name="left" size={24} color="black" />}{" "}
-        {text || translatedTexts["n.back"]}
+        {text ? null : <AntDesign name="left" size={24} color="black" />}{" "}
+        {text ? text : translatedTexts["n.back"]}
       </Text>
     </TouchableOpacity>
   );
