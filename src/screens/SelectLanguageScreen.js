@@ -10,11 +10,10 @@ import {
   View,
 } from "react-native";
 import { useDispatch } from "react-redux";
+import MedBuddyCornerLogo from "../components/MedBuddyCornerLogo";
 import { registrationScreenRoute } from "../navigation/Navigation";
 import { updateLanguage } from "../store/patientReducer";
 import { commonStyle } from "../styles/commonStyle";
-import { questionnaireSections } from "../fhir-resources/Questionnaire";
-import MedBuddyCornerLogo from "../components/MedBuddyCornerLogo";
 
 export default function SelectLanguageScreen() {
   const navigation = useNavigation();
