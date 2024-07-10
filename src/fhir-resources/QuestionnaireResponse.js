@@ -284,5 +284,20 @@ export const QuestionnaireResponse = {
         },
       ],
     },
+    {
+      linkId: "c.2",
+      text: "Consent",
+      item: [
+        {
+          linkId: "c.2.1",
+          text: "The patient agrees to the administration of contrast agents",
+          answer: [
+            {
+              valueString: "",
+            },
+          ],
+        },
+      ],
+    },
   ],
 };
