@@ -5,6 +5,7 @@ import { BottomNavigationView } from "../components/BottomNavigationView";
 import { agreementScreenRoute } from "../navigation/Navigation";
 import { useSelector } from "react-redux";
 import { textsInPatientsChosenLanguage } from "../assets/translationTexts/textsInPatientsChosenLanguage";
+import MedBuddyCornerLogo from "../components/MedBuddyCornerLogo";
 
 export default function OverviewScreen() {
   const updatedQuestionnaireResponse = useSelector(
@@ -231,11 +232,11 @@ export default function OverviewScreen() {
   return (
     <SafeAreaView style={commonStyle.body}>
       <View style={commonStyle.header}>
-        <Text>Overview</Text>
+        <MedBuddyCornerLogo />
       </View>
       <View style={commonStyle.section}>
         <SectionList
-          style={{ marginBottom: 30 }}
+          style={{ marginBottom: 30, width: "100%" }}
           sections={overviewScreenFields}
           keyExtractor={(item) => item.key}
           renderItem={renderOverviewItem}
