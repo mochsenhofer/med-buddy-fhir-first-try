@@ -19,6 +19,11 @@ const textsInPatientsChosenLanguage = {
       watchVideo: "Watch Video",
       readInformation: "Read Information",
     },
+    videoScreen: {
+      "v.1": "Information Leaflet",
+      readInfoBtn: "Read Information",
+      video: require("../videos/English.mp4"),
+    },
     informationScreen: {
       information: {
         "i.1": "Dear Patient!",
@@ -123,6 +128,11 @@ const textsInPatientsChosenLanguage = {
       watchVideo: "Video ansehen",
       readInformation: "Information lesen",
     },
+    videoScreen: {
+      "v.1": "Informationsblatt",
+      readInfoBtn: "Information lesen",
+      video: require("../videos/German.mp4"),
+    },
     informationScreen: {
       information: {
         "i.1": "Sehr geehrte Patientin! Sehr geehrter Patient!",
@@ -225,6 +235,11 @@ const textsInPatientsChosenLanguage = {
       text: "Prosimy usiąść w poczekalni. Podczas oczekiwania można obejrzeć film edukacyjny lub przeczytać materiały informacyjne. Następnie prosimy wypełnić ankietę.",
       watchVideo: "Obejrzyj film",
       readInformation: "Przeczytaj informacje",
+    },
+    videoScreen: {
+      "v.1": "Ulotka informacyjna",
+      readInfoBtn: "Przeczytaj informacje",
+      video: require("../videos/Polish.mp4"),
     },
     informationScreen: {
       information: {
