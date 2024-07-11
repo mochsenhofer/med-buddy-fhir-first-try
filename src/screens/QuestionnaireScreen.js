@@ -22,6 +22,7 @@ import {
 import { commonStyle, questionnaireItemStyle } from "../styles/commonStyle";
 import { findResponseItem } from "../functions/findResponseItem";
 import MedBuddyCornerLogo from "../components/MedBuddyCornerLogo";
+import ProgressBarComponent from "../components/ProgressBarComponent";
 
 export default function QuestionnaireScreen() {
   const { questionnaireSections } = useQuestionnaireData();
@@ -143,6 +144,7 @@ export default function QuestionnaireScreen() {
     <SafeAreaView style={commonStyle.body}>
       <View style={commonStyle.header}>
         <MedBuddyCornerLogo />
+        <ProgressBarComponent currentStep={1} />
       </View>
       <KeyboardAvoidingView style={commonStyle.section} behavior="padding">
         <SectionList

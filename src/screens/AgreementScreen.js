@@ -34,6 +34,7 @@ import { textsInPatientsChosenLanguage } from "../assets/translationTexts/textsI
 import { push, ref, set } from "firebase/database";
 import { db } from "../firebase/firebase";
 import MedBuddyCornerLogo from "../components/MedBuddyCornerLogo";
+import ProgressBarComponent from "../components/ProgressBarComponent";
 
 export default function AgreementScreen() {
   const { consentSections, Questionnaire } = useQuestionnaireData();
@@ -208,6 +209,7 @@ export default function AgreementScreen() {
     <SafeAreaView style={commonStyle.body}>
       <View style={commonStyle.header}>
         <MedBuddyCornerLogo />
+        <ProgressBarComponent currentStep={3} />
       </View>
       <KeyboardAvoidingView style={commonStyle.section} behavior="padding">
         <SectionList

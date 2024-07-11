@@ -4,16 +4,16 @@ import {
   KeyboardAvoidingView,
   SafeAreaView,
   SectionList,
-  Text,
   View,
 } from "react-native";
 import { BottomNavigationView } from "../components/BottomNavigationView";
+import MedBuddyCornerLogo from "../components/MedBuddyCornerLogo";
+import ProgressBarComponent from "../components/ProgressBarComponent";
+import renderInformationItem from "../functions/renderInformationItem";
 import renderSectionHeader from "../functions/renderSectionHeader";
 import useQuestionnaireData from "../hooks/useQuestionnaireData";
 import { questionnaireScreenRoute } from "../navigation/Navigation";
 import { commonStyle } from "../styles/commonStyle";
-import renderInformationItem from "../functions/renderInformationItem";
-import MedBuddyCornerLogo from "../components/MedBuddyCornerLogo";
 
 export default function InformationScreen() {
   const { informationSections } = useQuestionnaireData();
@@ -21,6 +21,7 @@ export default function InformationScreen() {
   const navigation = useNavigation();
   const totalNumberOfPages = informationSections.length - 1;
   const currentInformationSection = [informationSections[page]];
+  const currentStep = 0;
 
   function handleNextButtonPress() {
     // Check if it's the last page before navigating
@@ -47,7 +48,9 @@ export default function InformationScreen() {
     <SafeAreaView style={commonStyle.body}>
       <View style={commonStyle.header}>
         <MedBuddyCornerLogo />
+        <ProgressBarComponent currentStep={0} />
       </View>
+
       <KeyboardAvoidingView style={commonStyle.section}>
         <SectionList
           sections={currentInformationSection}

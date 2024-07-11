@@ -6,6 +6,7 @@ import { agreementScreenRoute } from "../navigation/Navigation";
 import { useSelector } from "react-redux";
 import { textsInPatientsChosenLanguage } from "../assets/translationTexts/textsInPatientsChosenLanguage";
 import MedBuddyCornerLogo from "../components/MedBuddyCornerLogo";
+import ProgressBarComponent from "../components/ProgressBarComponent";
 
 export default function OverviewScreen() {
   const updatedQuestionnaireResponse = useSelector(
@@ -233,6 +234,7 @@ export default function OverviewScreen() {
     <SafeAreaView style={commonStyle.body}>
       <View style={commonStyle.header}>
         <MedBuddyCornerLogo />
+        <ProgressBarComponent currentStep={2} />
       </View>
       <View style={commonStyle.section}>
         <SectionList

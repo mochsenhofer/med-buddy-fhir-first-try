@@ -9,6 +9,7 @@ import renderSectionHeader from "../functions/renderSectionHeader";
 import { questionnaireScreenRoute } from "../navigation/Navigation";
 import { commonStyle } from "../styles/commonStyle";
 import MedBuddyCornerLogo from "../components/MedBuddyCornerLogo";
+import ProgressBarComponent from "../components/ProgressBarComponent";
 
 export default function VideoScreen() {
   const registeredPatient = useSelector((state) => state.patient);
@@ -46,6 +47,7 @@ export default function VideoScreen() {
     <SafeAreaView style={commonStyle.body}>
       <View style={commonStyle.header}>
         <MedBuddyCornerLogo />
+        <ProgressBarComponent currentStep={0} />
       </View>
       <View style={[commonStyle.section, styles.center]}>
         <SectionList
