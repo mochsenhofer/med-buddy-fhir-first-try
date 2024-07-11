@@ -87,7 +87,6 @@ export default function AgreementScreen() {
     dispatch(updatePatient(registeredPatient));
     dispatch(updateQuestionnaire(Questionnaire));
     dispatch(updateQuestionnaireResponseStatus("completed"));
-    console.log(updatedQuestionnaireResponse);
 
     try {
       const questionnaireResponseCollectionRef = ref(
@@ -99,6 +98,7 @@ export default function AgreementScreen() {
       );
       await set(newQuestionnaireResponseRef, {
         hello: "world",
+        // push updateQuestionnaireResponse here
       });
     } catch (error) {
       console.error("Error adding document: ", error);
