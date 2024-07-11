@@ -33,6 +33,7 @@ import { Canvas } from "@benjeau/react-native-draw";
 import { textsInPatientsChosenLanguage } from "../assets/translationTexts/textsInPatientsChosenLanguage";
 import { push, ref, set } from "firebase/database";
 import { db } from "../firebase/firebase";
+import MedBuddyCornerLogo from "../components/MedBuddyCornerLogo";
 
 export default function AgreementScreen() {
   const { consentSections, Questionnaire } = useQuestionnaireData();
@@ -162,10 +163,18 @@ export default function AgreementScreen() {
               height={canvasHeight}
               roundPoints={true}
             />
+
             {page === 1 && (
               <Text style={questionnaireItemStyle.questionText}>
                 {translatedConsentTexts["signature"]}{" "}
               </Text>
+            )}
+            {page === 1 && (
+              <SecondaryButton
+                secondaryButtonPressed={handleClear}
+                text={translatedConsentTexts["clear"]}
+                style={{ position: "static", marginTop: 0 }}
+              />
             )}
           </View>
         );
@@ -198,7 +207,7 @@ export default function AgreementScreen() {
   return (
     <SafeAreaView style={commonStyle.body}>
       <View style={commonStyle.header}>
-        <Text>{translatedConsentTexts["c.1"]}</Text>
+        <MedBuddyCornerLogo />
       </View>
       <KeyboardAvoidingView style={commonStyle.section} behavior="padding">
         <SectionList
@@ -209,13 +218,6 @@ export default function AgreementScreen() {
           stickySectionHeadersEnabled={false}
           scrollEnabled={false}
         />
-        {page === 1 && (
-          <SecondaryButton
-            secondaryButtonPressed={handleClear}
-            text={translatedConsentTexts["clear"]}
-            style={{ bottom: 50 }}
-          />
-        )}
       </KeyboardAvoidingView>
       <View style={commonStyle.footer}>
         <BottomNavigationView
