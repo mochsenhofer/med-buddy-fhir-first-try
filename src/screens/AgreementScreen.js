@@ -31,7 +31,8 @@ import { commonStyle, questionnaireItemStyle } from "../styles/commonStyle";
 import { findResponseItem } from "../functions/findResponseItem";
 import { Canvas } from "@benjeau/react-native-draw";
 import { textsInPatientsChosenLanguage } from "../assets/translationTexts/textsInPatientsChosenLanguage";
-import { getDatabase, push, ref, set } from "firebase/database";
+import { push, ref, set } from "firebase/database";
+import { db } from "../firebase/firebase";
 
 export default function AgreementScreen() {
   const { consentSections, Questionnaire } = useQuestionnaireData();
@@ -85,17 +86,19 @@ export default function AgreementScreen() {
     dispatch(updatePatient(registeredPatient));
     dispatch(updateQuestionnaire(Questionnaire));
     dispatch(updateQuestionnaireResponseStatus("completed"));
+    console.log(updatedQuestionnaireResponse);
 
     try {
-      const db = getDatabase();
       const questionnaireResponseCollectionRef = ref(
         db,
-        "questionnaireResponse"
+        "questionnaireResponseCollection"
       );
       const newQuestionnaireResponseRef = push(
         questionnaireResponseCollectionRef
       );
-      await set(newQuestionnaireResponseRef, updatedQuestionnaireResponse);
+      await set(newQuestionnaireResponseRef, {
+        hello: "world",
+      });
     } catch (error) {
       console.error("Error adding document: ", error);
     } finally {
