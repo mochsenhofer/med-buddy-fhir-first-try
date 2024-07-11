@@ -27,8 +27,7 @@ export default function MedBuddyCornerLogo() {
           },
           style: "destructive",
         },
-      ],
-      { cancelable: false }
+      ]
     );
   }
 
