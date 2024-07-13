@@ -1,6 +1,5 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getDatabase } from "firebase/database";
 import {
   API_KEY,
   AUTH_DOMAIN,
@@ -24,8 +23,9 @@ const firebaseConfig = {
   measurementId: MEASUREMENT_ID,
 };
 
+console.log("firebaseconfig" + JSON.stringify(firebaseConfig));
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
 
-export { db, app };
+export default app;

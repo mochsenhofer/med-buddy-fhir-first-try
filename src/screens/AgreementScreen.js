@@ -31,10 +31,10 @@ import { commonStyle, questionnaireItemStyle } from "../styles/commonStyle";
 import { findResponseItem } from "../functions/findResponseItem";
 import { Canvas } from "@benjeau/react-native-draw";
 import { textsInPatientsChosenLanguage } from "../assets/translationTexts/textsInPatientsChosenLanguage";
-import { push, ref, set } from "firebase/database";
-import { db } from "../firebase/firebase";
+import { push, ref, set, getDatabase } from "firebase/database";
 import MedBuddyCornerLogo from "../components/MedBuddyCornerLogo";
 import ProgressBarComponent from "../components/ProgressBarComponent";
+import app from "../firebase/firebase";
 
 export default function AgreementScreen() {
   const { consentSections, Questionnaire } = useQuestionnaireData();
@@ -88,25 +88,27 @@ export default function AgreementScreen() {
     dispatch(updatePatient(registeredPatient));
     dispatch(updateQuestionnaire(Questionnaire));
     dispatch(updateQuestionnaireResponseStatus("completed"));
+    uploadData();
+  };
 
+  async function uploadData() {
     try {
-      const questionnaireResponseCollectionRef = ref(
-        db,
-        "questionnaireResponseCollection"
-      );
-      const newQuestionnaireResponseRef = push(
-        questionnaireResponseCollectionRef
-      );
-      await set(newQuestionnaireResponseRef, {
-        hello: "world",
-        // push updateQuestionnaireResponse here
+      const db = getDatabase(app);
+
+      const patientRef = ref(db, "patients/");
+
+      const newPatientRef = push(patientRef);
+
+      await set(newPatientRef, {
+        updatedQuestionnaireResponse,
       });
     } catch (error) {
       console.error("Error adding document: ", error);
     } finally {
+      console.log("Data uploaded");
       navigation.navigate(faqScreenRoute);
     }
-  };
+  }
 
   const getValueByLinkId = (item) => {
     const responseItem = findResponseItem(

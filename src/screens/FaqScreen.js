@@ -10,7 +10,7 @@ export default function FaqScreen() {
     (state) => state.questionnaireResponse
   );
 
-  console.log(JSON.stringify(updatedQuestionnaireResponse));
+  console.log(JSON.stringify(updatedQuestionnaireResponse, null, 2));
   function finishQuestionnaire() {
     Alert.alert("Alert Title", "My Alert Msg", [
       {
