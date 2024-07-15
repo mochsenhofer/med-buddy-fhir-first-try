@@ -19,7 +19,9 @@ import {
   updateGender,
   updateGivenName,
   updateInsuranceNumber,
+  updatePatientId,
 } from "./../store/patientReducer";
+import { updateAuthor } from "./../store/questionnaireResponseReducer";
 import { FIREBASE_DB } from "../firebase/firebase";
 import { push, ref, set } from "firebase/database";
 import { useNavigation } from "@react-navigation/native";
@@ -42,31 +44,38 @@ export default function RegistrationScreen() {
   };
 
   async function handleNextPressed() {
-    const db = FIREBASE_DB;
+    try {
+      const db = FIREBASE_DB;
 
-    const patientRef = ref(db, "patients/");
+      const patientRef = ref(db, "patients/");
 
-    const newPatientRef = push(patientRef);
+      const newPatientRef = push(patientRef);
+      console.log(newPatientRef.key);
 
-    await set(newPatientRef, {
-      resourceType: registeredPatient.resourceType,
-      id: newPatientRef.key,
-      name: [
-        {
-          given: [registeredPatient.name[0].given[0]],
-          family: registeredPatient.name[0].family,
-        },
-      ],
-      identifier: [
-        {
-          value: registeredPatient.identifier[0].value,
-        },
-      ],
-      birthDate: registeredPatient.birthDate,
-      gender: registeredPatient.gender,
-    });
-
-    navigation.navigate(previewScreenRoute);
+      await set(newPatientRef, {
+        resourceType: registeredPatient.resourceType,
+        id: newPatientRef.key,
+        name: [
+          {
+            given: [registeredPatient.name[0].given[0]],
+            family: registeredPatient.name[0].family,
+          },
+        ],
+        identifier: [
+          {
+            value: registeredPatient.identifier[0].value,
+          },
+        ],
+        birthDate: registeredPatient.birthDate,
+        gender: registeredPatient.gender,
+      });
+      dispatch(updateAuthor(newPatientRef.key));
+      dispatch(updatePatientId(newPatientRef.key));
+    } catch (error) {
+      console.error("Error adding document: ", error);
+    } finally {
+      navigation.navigate(previewScreenRoute);
+    }
   }
 
   const registrationFormFields = [
@@ -103,7 +112,7 @@ export default function RegistrationScreen() {
           key: "insuranceNumber",
           value: registeredPatient.identifier[0].value,
           placeholder: `${translatedRegistrationTexts["p.1.3"]}`,
-          onChange: (text) => dispatch(updateInsuranceNumber(parseInt(text))),
+          onChange: (text) => dispatch(updateInsuranceNumber(text)),
           ref: registrationRefs.insuranceNumber,
           maxLength: 10,
           onSubmitEditing: () => {},
