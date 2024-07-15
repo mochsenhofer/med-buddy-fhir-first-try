@@ -13,6 +13,7 @@ import { useDispatch } from "react-redux";
 import MedBuddyCornerLogo from "../components/MedBuddyCornerLogo";
 import { registrationScreenRoute } from "../navigation/Navigation";
 import { updateLanguage } from "../store/patientReducer";
+import { updateQuestionnaireId } from "../store/questionnaireResponseReducer";
 import { commonStyle } from "../styles/commonStyle";
 
 export default function SelectLanguageScreen() {
@@ -40,8 +41,8 @@ export default function SelectLanguageScreen() {
   ];
 
   function selectLanguage(language) {
-    console.log("Selected Language: ", language);
     dispatch(updateLanguage(language));
+    dispatch(updateQuestionnaireId(language));
     navigation.navigate(registrationScreenRoute);
   }
 
