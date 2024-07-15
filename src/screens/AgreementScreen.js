@@ -1,40 +1,38 @@
+import { Canvas } from "@benjeau/react-native-draw";
 import { useNavigation } from "@react-navigation/native";
-import React, { useState, useRef } from "react";
+import React, { useRef, useState } from "react";
 import {
+  Alert,
   KeyboardAvoidingView,
   SafeAreaView,
   SectionList,
+  StyleSheet,
   Text,
   TextInput,
   View,
-  Alert,
-  StyleSheet,
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
+import { textsInPatientsChosenLanguage } from "../assets/translationTexts/textsInPatientsChosenLanguage";
 import {
   BottomNavigationView,
   SecondaryButton,
 } from "../components/BottomNavigationView";
+import MedBuddyCornerLogo from "../components/MedBuddyCornerLogo";
+import ProgressBarComponent from "../components/ProgressBarComponent";
 import RadioButtons from "../components/RadioButtons";
-import useQuestionnaireData from "../hooks/useQuestionnaireData";
+import { findResponseItem } from "../functions/findResponseItem";
 import renderSectionHeader from "../functions/renderSectionHeader";
+import useQuestionnaireData from "../hooks/useQuestionnaireData";
 import { faqScreenRoute } from "../navigation/Navigation";
 import {
-  updateValueCoding,
-  updateValueInteger,
-  updateValueString,
   updatePatient,
   updateQuestionnaire,
   updateQuestionnaireResponseStatus,
+  updateValueCoding,
+  updateValueInteger,
+  updateValueString,
 } from "../store/questionnaireResponseReducer";
 import { commonStyle, questionnaireItemStyle } from "../styles/commonStyle";
-import { findResponseItem } from "../functions/findResponseItem";
-import { Canvas } from "@benjeau/react-native-draw";
-import { textsInPatientsChosenLanguage } from "../assets/translationTexts/textsInPatientsChosenLanguage";
-import { push, ref, set, getDatabase } from "firebase/database";
-import MedBuddyCornerLogo from "../components/MedBuddyCornerLogo";
-import ProgressBarComponent from "../components/ProgressBarComponent";
-import { FIREBASE_DB } from "../firebase/firebase";
 
 export default function AgreementScreen() {
   const { consentSections, Questionnaire } = useQuestionnaireData();
@@ -45,9 +43,7 @@ export default function AgreementScreen() {
   const questionnaireResponseInProgress = useSelector(
     (state) => state.questionnaireResponse || {}
   );
-  const updatedQuestionnaireResponse = useSelector(
-    (state) => state.questionnaireResponse || {}
-  );
+
   const registeredPatient = useSelector((state) => state.patient);
   const language = registeredPatient.communication[0].language.coding[0].code;
   const translatedConsentTexts =
@@ -64,7 +60,7 @@ export default function AgreementScreen() {
         {
           text: "Finish",
           style: "destructive",
-          onPress: uploadData,
+          onPress: () => navigation.navigate(faqScreenRoute),
         },
         {
           text: "Cancel",
@@ -87,40 +83,12 @@ export default function AgreementScreen() {
     canvasRef.current?.clear();
   };
 
-  const handleSave = async () => {
+  async function handleSave() {
     const signature = await canvasRef.current?.getSvg();
     dispatch(updateValueString({ linkId: "c.2.1", value: signature }));
     dispatch(updatePatient(registeredPatient));
     dispatch(updateQuestionnaire(Questionnaire));
     dispatch(updateQuestionnaireResponseStatus("completed"));
-  };
-
-  async function uploadData() {
-    console.log(
-      JSON.stringify("uQR" + JSON.stringify(updatedQuestionnaireResponse))
-    );
-    try {
-      const db = FIREBASE_DB;
-
-      const questionnaireResponseRef = ref(db, "questionnaireResponses/");
-
-      const newQuestionnaireResponseRef = push(questionnaireResponseRef);
-
-      await set(newQuestionnaireResponseRef, {
-        resourceType: updatedQuestionnaireResponse.resourceType,
-        status: updatedQuestionnaireResponse.status,
-        id: newQuestionnaireResponseRef.key,
-        contained: updatedQuestionnaireResponse.contained,
-        questionnaire: updatedQuestionnaireResponse.questionnaire,
-        author: updatedQuestionnaireResponse.author,
-        item: updatedQuestionnaireResponse.item,
-      });
-    } catch (error) {
-      console.error("Error adding document: ", error);
-    } finally {
-      console.log("Data uploaded");
-      navigation.navigate(faqScreenRoute);
-    }
   }
 
   const getValueByLinkId = (item) => {
