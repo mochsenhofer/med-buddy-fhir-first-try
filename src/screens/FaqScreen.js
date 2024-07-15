@@ -13,15 +13,11 @@ export default function FaqScreen() {
   const updatedQuestionnaireResponse = useSelector(
     (state) => state.questionnaireResponse || {}
   );
-  const registeredPatient = useSelector((state) => state.patient || {});
 
-  // Custom hook to get questionnaire data
-  const { Questionnaire } = useQuestionnaireData();
-
-  console.log(
-    "Questionnaire",
-    JSON.stringify(updatedQuestionnaireResponse.contained[1])
+  const linkedQuestionnaire = JSON.stringify(
+    updatedQuestionnaireResponse.contained[1]
   );
+  console.log("Linked Questionnaire: ", linkedQuestionnaire);
 
   // Function to upload data to Firebase
   async function uploadData() {
@@ -34,7 +30,10 @@ export default function FaqScreen() {
         resourceType: updatedQuestionnaireResponse.resourceType,
         status: updatedQuestionnaireResponse.status,
         id: newQuestionnaireResponseRef.key,
-        contained: [updatedQuestionnaireResponse.contained[0]],
+        contained: [
+          updatedQuestionnaireResponse.contained[0],
+          linkedQuestionnaire,
+        ],
         questionnaire: updatedQuestionnaireResponse.questionnaire,
         author: updatedQuestionnaireResponse.author,
         item: updatedQuestionnaireResponse.item,
@@ -52,7 +51,7 @@ export default function FaqScreen() {
     (async () => {
       await uploadData();
     })();
-  }, [updatedQuestionnaireResponse, registeredPatient, Questionnaire]);
+  }, [updatedQuestionnaireResponse]);
 
   // Function to handle finish button press
   function finishQuestionnaire() {
