@@ -17,7 +17,6 @@ export default function PreviewScreen() {
   const language = registeredPatient.communication[0].language.coding[0].code;
   const translatedPreviewTexts =
     textsInPatientsChosenLanguage[language].previewScreen;
-  console.log("registeredPatient", registeredPatient);
 
   const previewSections = [
     {
