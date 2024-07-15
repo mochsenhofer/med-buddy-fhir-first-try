@@ -55,12 +55,17 @@ export default function AgreementScreen() {
   const canvasRef = useRef(null);
   const dispatch = useDispatch();
 
-  const handleNextButtonPress = () => {
+  const handleNextButtonPress = async () => {
     if (page < totalNumberOfPages) {
       setPage(page + 1);
     } else {
+      await handleSave();
       Alert.alert("Alert Title", "My Alert Msg", [
-        { text: "Finish", style: "destructive", onPress: handleSave },
+        {
+          text: "Finish",
+          style: "destructive",
+          onPress: uploadData,
+        },
         {
           text: "Cancel",
           onPress: () => console.log("Cancel Pressed"),
@@ -88,19 +93,23 @@ export default function AgreementScreen() {
     dispatch(updatePatient(registeredPatient));
     dispatch(updateQuestionnaire(Questionnaire));
     dispatch(updateQuestionnaireResponseStatus("completed"));
-    uploadData();
   };
 
   async function uploadData() {
     try {
       const db = FIREBASE_DB;
 
-      const patientRef = ref(db, "patients/");
+      const questionnaireResponseRef = ref(db, "questionnaireResponses/");
 
-      const newPatientRef = push(patientRef);
+      const newQuestionnaireResponseRef = push(questionnaireResponseRef);
 
-      await set(newPatientRef, {
-        updatedQuestionnaireResponse,
+      await set(newQuestionnaireResponseRef, {
+        resourceType: updatedQuestionnaireResponse.resourceType,
+        status: updatedQuestionnaireResponse.status,
+        id: newQuestionnaireResponseRef.key,
+        contained: updatedQuestionnaireResponse.contained,
+        questionnaire: updatedQuestionnaireResponse.questionnaire,
+        author: updatedQuestionnaireResponse.author,
       });
     } catch (error) {
       console.error("Error adding document: ", error);
