@@ -190,7 +190,7 @@ const textsInPatientsChosenLanguage = {
         "q.5.2": "Tragen Sie einen Herzschrittmacher?",
         "q.yes": "Ja",
         "q.no": "Nein",
-        "q.unknown": "gefragt aber unbekannt",
+        "q.unknown": "gefragt, aber nicht genannt",
         "q.idk": "Weiß ich nicht",
       },
     },
