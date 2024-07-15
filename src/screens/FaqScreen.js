@@ -1,16 +1,9 @@
 import React from "react";
-import { View, Text, SafeAreaView, Alert } from "react-native";
-import { commonStyle } from "../styles/commonStyle";
+import { Alert, DevSettings, SafeAreaView, Text, View } from "react-native";
 import { PrimaryButton } from "../components/BottomNavigationView";
-import { DevSettings } from "react-native";
-import { useSelector } from "react-redux";
+import { commonStyle } from "../styles/commonStyle";
 
 export default function FaqScreen() {
-  const updatedQuestionnaireResponse = useSelector(
-    (state) => state.questionnaireResponse
-  );
-
-  console.log(JSON.stringify(updatedQuestionnaireResponse, null, 2));
   function finishQuestionnaire() {
     Alert.alert("Alert Title", "My Alert Msg", [
       {
