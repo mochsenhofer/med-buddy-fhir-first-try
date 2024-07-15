@@ -75,5 +75,6 @@ export default function ProgressBarComponent({ currentStep }) {
 const styles = StyleSheet.create({
   container: {
     width: "60%",
+    marginTop: 30,
   },
 });
