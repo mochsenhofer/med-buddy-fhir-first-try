@@ -20,10 +20,14 @@ import {
   updateGivenName,
   updateInsuranceNumber,
 } from "./../store/patientReducer";
+import { FIREBASE_DB } from "../firebase/firebase";
+import { push, ref, set } from "firebase/database";
+import { useNavigation } from "@react-navigation/native";
 
 export default function RegistrationScreen() {
   const registeredPatient = useSelector((state) => state.patient);
   const language = registeredPatient.communication[0].language.coding[0].code;
+  const navigation = useNavigation();
   const translatedRegistrationTexts =
     textsInPatientsChosenLanguage[language].registrationScreen;
 
@@ -36,6 +40,34 @@ export default function RegistrationScreen() {
     birthDate: useRef(null),
     gender: useRef(null),
   };
+
+  async function handleNextPressed() {
+    const db = FIREBASE_DB;
+
+    const patientRef = ref(db, "patients/");
+
+    const newPatientRef = push(patientRef);
+
+    await set(newPatientRef, {
+      resourceType: registeredPatient.resourceType,
+      id: newPatientRef.key,
+      name: [
+        {
+          given: [registeredPatient.name[0].given[0]],
+          family: registeredPatient.name[0].family,
+        },
+      ],
+      identifier: [
+        {
+          value: registeredPatient.identifier[0].value,
+        },
+      ],
+      birthDate: registeredPatient.birthDate,
+      gender: registeredPatient.gender,
+    });
+
+    navigation.navigate(previewScreenRoute);
+  }
 
   const registrationFormFields = [
     {
@@ -137,7 +169,7 @@ export default function RegistrationScreen() {
         />
       </KeyboardAvoidingView>
       <View style={commonStyle.footer}>
-        <BottomNavigationView navigateTo={previewScreenRoute} />
+        <BottomNavigationView primaryButtonPressed={handleNextPressed} />
       </View>
     </SafeAreaView>
   );

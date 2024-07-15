@@ -46,7 +46,7 @@ export default function AgreementScreen() {
     (state) => state.questionnaireResponse || {}
   );
   const updatedQuestionnaireResponse = useSelector(
-    (state) => state.questionnaireResponse
+    (state) => state.questionnaireResponse || {}
   );
   const registeredPatient = useSelector((state) => state.patient);
   const language = registeredPatient.communication[0].language.coding[0].code;
@@ -96,6 +96,9 @@ export default function AgreementScreen() {
   };
 
   async function uploadData() {
+    console.log(
+      JSON.stringify("uQR" + JSON.stringify(updatedQuestionnaireResponse))
+    );
     try {
       const db = FIREBASE_DB;
 
@@ -110,6 +113,7 @@ export default function AgreementScreen() {
         contained: updatedQuestionnaireResponse.contained,
         questionnaire: updatedQuestionnaireResponse.questionnaire,
         author: updatedQuestionnaireResponse.author,
+        item: updatedQuestionnaireResponse.item,
       });
     } catch (error) {
       console.error("Error adding document: ", error);
