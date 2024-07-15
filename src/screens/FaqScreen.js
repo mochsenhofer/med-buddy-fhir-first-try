@@ -1,11 +1,62 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Alert, DevSettings, SafeAreaView, Text, View } from "react-native";
 import { PrimaryButton } from "../components/BottomNavigationView";
 import { commonStyle } from "../styles/commonStyle";
+import { useSelector } from "react-redux";
+import { FIREBASE_DB } from "../firebase/firebase";
+import { push, ref, set, update } from "firebase/database";
+import useQuestionnaireData from "../hooks/useQuestionnaireData";
 
+// The FAQ Screen component
 export default function FaqScreen() {
+  // Extracting state from Redux store
+  const updatedQuestionnaireResponse = useSelector(
+    (state) => state.questionnaireResponse || {}
+  );
+  const registeredPatient = useSelector((state) => state.patient || {});
+
+  // Custom hook to get questionnaire data
+  const { Questionnaire } = useQuestionnaireData();
+
+  console.log(
+    "Questionnaire",
+    JSON.stringify(updatedQuestionnaireResponse.contained[1])
+  );
+
+  // Function to upload data to Firebase
+  async function uploadData() {
+    try {
+      const db = FIREBASE_DB;
+      const questionnaireResponseRef = ref(db, "questionnaireResponses");
+      const newQuestionnaireResponseRef = push(questionnaireResponseRef);
+
+      await set(newQuestionnaireResponseRef, {
+        resourceType: updatedQuestionnaireResponse.resourceType,
+        status: updatedQuestionnaireResponse.status,
+        id: newQuestionnaireResponseRef.key,
+        contained: [updatedQuestionnaireResponse.contained[0]],
+        questionnaire: updatedQuestionnaireResponse.questionnaire,
+        author: updatedQuestionnaireResponse.author,
+        item: updatedQuestionnaireResponse.item,
+      });
+
+      console.log("Data uploaded successfully");
+    } catch (error) {
+      console.error("Error adding document: ", error.message);
+      Alert.alert("Upload Error", "Failed to upload data. Please try again.");
+    }
+  }
+
+  // Effect to upload data on component mount
+  useEffect(() => {
+    (async () => {
+      await uploadData();
+    })();
+  }, [updatedQuestionnaireResponse, registeredPatient, Questionnaire]);
+
+  // Function to handle finish button press
   function finishQuestionnaire() {
-    Alert.alert("Alert Title", "My Alert Msg", [
+    Alert.alert("Finish Questionnaire", "Are you sure you want to finish?", [
       {
         text: "Finish",
         style: "destructive",
@@ -18,12 +69,15 @@ export default function FaqScreen() {
       },
     ]);
   }
+
   return (
     <SafeAreaView style={commonStyle.body}>
       <View style={commonStyle.header}>
         <Text style={commonStyle.title}>FAQ</Text>
       </View>
-      <View style={commonStyle.section}></View>
+      <View style={commonStyle.section}>
+        <Text>{JSON.stringify(updatedQuestionnaireResponse.contained[1])}</Text>
+      </View>
       <View style={commonStyle.footer}>
         <PrimaryButton
           title="Finish"
