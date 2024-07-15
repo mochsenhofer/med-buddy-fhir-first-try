@@ -19,6 +19,12 @@ const textsInPatientsChosenLanguage = {
       watchVideo: "Watch Video",
       readInformation: "Read Information",
     },
+    progressBar: {
+      "pB.1": "Information",
+      "pB.2": "Questionnaire",
+      "pB.3": "Overview",
+      "pB.4": "Consent",
+    },
     videoScreen: {
       "v.1": "Information Leaflet",
       readInfoBtn: "Read Information",
