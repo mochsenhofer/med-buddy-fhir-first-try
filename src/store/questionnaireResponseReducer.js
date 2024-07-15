@@ -7,6 +7,9 @@ export const questionnaireResponseReducer = createSlice({
   name: "questionnaireResponse",
   initialState,
   reducers: {
+    updateAuthor: (state, action) => {
+      state.author.reference = action.payload;
+    },
     updateQuestionnaireId: (state, action) => {
       state.questionnaire = action.payload;
     },
@@ -85,6 +88,7 @@ export const {
   updateQuestionnaire,
   updateQuestionnaireResponseStatus,
   updateQuestionnaireId,
+  updateAuthor,
 } = questionnaireResponseReducer.actions;
 
 export default questionnaireResponseReducer.reducer;
