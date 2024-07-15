@@ -34,7 +34,7 @@ import { textsInPatientsChosenLanguage } from "../assets/translationTexts/textsI
 import { push, ref, set, getDatabase } from "firebase/database";
 import MedBuddyCornerLogo from "../components/MedBuddyCornerLogo";
 import ProgressBarComponent from "../components/ProgressBarComponent";
-import app from "../firebase/firebase";
+import { FIREBASE_DB } from "../firebase/firebase";
 
 export default function AgreementScreen() {
   const { consentSections, Questionnaire } = useQuestionnaireData();
@@ -93,7 +93,7 @@ export default function AgreementScreen() {
 
   async function uploadData() {
     try {
-      const db = getDatabase(app);
+      const db = FIREBASE_DB;
 
       const patientRef = ref(db, "patients/");
 
