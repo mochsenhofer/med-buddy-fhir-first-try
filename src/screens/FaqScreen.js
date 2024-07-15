@@ -13,11 +13,6 @@ export default function FaqScreen() {
     (state) => state.questionnaireResponse || {}
   );
 
-  const linkedQuestionnaire = JSON.stringify(
-    updatedQuestionnaireResponse.contained[1]
-  );
-  console.log("Linked Questionnaire: ", linkedQuestionnaire);
-
   // Function to upload data to Firebase
   async function uploadData() {
     try {
@@ -26,16 +21,8 @@ export default function FaqScreen() {
       const newQuestionnaireResponseRef = push(questionnaireResponseRef);
 
       await set(newQuestionnaireResponseRef, {
-        resourceType: updatedQuestionnaireResponse.resourceType,
-        status: updatedQuestionnaireResponse.status,
+        ...updatedQuestionnaireResponse,
         id: newQuestionnaireResponseRef.key,
-        contained: [
-          updatedQuestionnaireResponse.contained[0],
-          linkedQuestionnaire,
-        ],
-        questionnaire: updatedQuestionnaireResponse.questionnaire,
-        author: updatedQuestionnaireResponse.author,
-        item: updatedQuestionnaireResponse.item,
       });
 
       console.log("Data uploaded successfully");
