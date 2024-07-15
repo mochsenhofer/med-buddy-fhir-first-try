@@ -3,7 +3,8 @@ import { textsInPatientsChosenLanguage } from "../assets/translationTexts/textsI
 
 const useQuestionnaireData = () => {
   const registeredPatient = useSelector((state) => state.patient);
-  const language = registeredPatient.communication[0].language.coding[0].code;
+  const language =
+    registeredPatient.communication[0].language.coding[0].code || "en";
   const translatedInformationTexts =
     textsInPatientsChosenLanguage[language].informationScreen.information;
   const translatedQuestionnaireTexts =
@@ -13,7 +14,7 @@ const useQuestionnaireData = () => {
 
   const Questionnaire = {
     resourceType: "Questionnaire",
-    id: "questionnaire-1",
+    id: language,
     status: "active",
     item: [
       {
