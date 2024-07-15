@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Patient } from "../fhir-resources/Patient";
+import { updatePatient } from "./questionnaireResponseReducer";
 
 const initialState = Patient;
 
@@ -25,6 +26,9 @@ export const patientReducer = createSlice({
     updateLanguage: (state, action) => {
       state.communication[0].language.coding[0].code = action.payload;
     },
+    updatePatientId: (state, action) => {
+      state.id = action.payload;
+    },
   },
 });
 
@@ -36,6 +40,7 @@ export const {
   updateBirthDate,
   updateGender,
   updateLanguage,
+  updatePatientId,
 } = patientReducer.actions;
 
 export default patientReducer.reducer;
