@@ -1,6 +1,6 @@
 export const Patient = {
   resourceType: "Patient",
-  id: "patient-01",
+  id: "",
   gender: "",
   birthDate: "",
   identifier: [
