@@ -134,6 +134,12 @@ const textsInPatientsChosenLanguage = {
       watchVideo: "Video ansehen",
       readInformation: "Information lesen",
     },
+    progressBar: {
+      "pB.1": "Information",
+      "pB.2": "Fragebogen",
+      "pB.3": "Übersicht",
+      "pB.4": "Einverständnis",
+    },
     videoScreen: {
       "v.1": "Informationsblatt",
       readInfoBtn: "Information lesen",
@@ -241,6 +247,12 @@ const textsInPatientsChosenLanguage = {
       text: "Prosimy usiąść w poczekalni. Podczas oczekiwania można obejrzeć film edukacyjny lub przeczytać materiały informacyjne. Następnie prosimy wypełnić ankietę.",
       watchVideo: "Obejrzyj film",
       readInformation: "Przeczytaj informacje",
+    },
+    progressBar: {
+      "pB.1": "Informacje",
+      "pB.2": "Ankieta",
+      "pB.3": "Podsumowanie",
+      "pB.4": "Zgoda",
     },
     videoScreen: {
       "v.1": "Ulotka informacyjna",
