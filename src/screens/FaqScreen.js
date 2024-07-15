@@ -1,11 +1,10 @@
+import { push, ref, set } from "firebase/database";
 import React, { useEffect } from "react";
 import { Alert, DevSettings, SafeAreaView, Text, View } from "react-native";
-import { PrimaryButton } from "../components/BottomNavigationView";
-import { commonStyle } from "../styles/commonStyle";
 import { useSelector } from "react-redux";
+import { PrimaryButton } from "../components/BottomNavigationView";
 import { FIREBASE_DB } from "../firebase/firebase";
-import { push, ref, set, update } from "firebase/database";
-import useQuestionnaireData from "../hooks/useQuestionnaireData";
+import { commonStyle } from "../styles/commonStyle";
 
 // The FAQ Screen component
 export default function FaqScreen() {
