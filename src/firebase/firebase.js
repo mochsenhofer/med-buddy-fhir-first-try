@@ -1,5 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import { getDatabase } from "firebase/database";
+import { getAuth } from "firebase/auth";
 import {
   API_KEY,
   AUTH_DOMAIN,
@@ -23,9 +25,9 @@ const firebaseConfig = {
   measurementId: MEASUREMENT_ID,
 };
 
-console.log("firebaseconfig" + JSON.stringify(firebaseConfig));
-
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-
-export default app;
+export const FIREBASE_APP = initializeApp(firebaseConfig);
+// Get a reference to the database service
+export const FIREBASE_DB = getDatabase(FIREBASE_APP);
+// Get a reference to the auth service
+export const FIREBASE_AUTH = getAuth(FIREBASE_APP);
